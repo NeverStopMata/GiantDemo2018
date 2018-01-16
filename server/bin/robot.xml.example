@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Robot default="2" old="7" max="10" normal="6" startId="66000000" >
+	<level val="1" robot="45" player="5" good="6" bad="10" up="2" down="1" />
+	<level val="2" robot="40" player="10" good="11" bad="15" up="2" down="1" />
+	<level val="3" robot="30" player="20" good="11" bad="19" up="2" down="1" />
+	<level val="4" robot="20" player="30" good="11" bad="19" up="2" down="1" />
+	<level val="5" robot="10" player="40" good="11" bad="19" up="2" down="1" />
+	<level val="6" good="11" bad="19" up="1" down="1" />
+	<level val="7" good="11" bad="19" up="1" down="1" />
+	<level val="8" good="11" bad="19" up="1" down="1" />
+	<level val="9" good="11" bad="19" up="1" down="1" />
+	<level val="10" good="11" bad="19" up="1" down="1" />
+</Robot>

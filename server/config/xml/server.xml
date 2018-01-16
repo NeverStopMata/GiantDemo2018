@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<config>
+	<!-- id服务器id CountryConfig.xml中 -->
+	<server id="901">
+		<!-- 组队模式 opentype开启类型(0或不填用closetime,1全天开启,2全天关闭) closetime组队关闭时间段 -->
+		<team opentype="1" closetime="03:00-07:00"/>
+		<!-- 闪电战模式 opentype开启类型(0或不填用closetime,1全天开启,2全天关闭) closetime关闭时间段 -->
+		<quick opentype="0" closetime="03:00-07:00"/>
+	</server>
+	<server id="902">
+		<team opentype="2" closetime="00:01-09:00"/>
+		<quick opentype="2" closetime="03:00-07:00"/>
+		<battle opentype="2" closetime="03:00-07:00"/>
+	</server>
+	<server id="903">
+		<team opentype="2" closetime="03:00-07:00"/>
+		<quick opentype="2" closetime="03:00-07:00"/>
+		<battle opentype="2" closetime="03:00-07:00"/>
+	</server>
+	<server id="904">
+		<team opentype="2" closetime="00:01-09:00"/>
+		<quick opentype="2" closetime="03:00-07:00"/>
+		<battle opentype="2" closetime="03:00-07:00"/>
+	</server>
+</config>
+

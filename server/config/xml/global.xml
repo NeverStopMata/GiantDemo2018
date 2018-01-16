@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<global>
+	<troom playernum= "50" lasttime="600"/>
+	<teamroom playernum= "50" lasttime="600"/>
+	<allmap>0</allmap>
+	<pystress>0</pystress>
+	<norobot>0</norobot>
+</global>

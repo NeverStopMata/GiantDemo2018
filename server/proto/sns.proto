@@ -1,0 +1,130 @@
+syntax = "proto2";
+
+package usercmd;
+
+
+// 获取玩家照片列表 msg?c=MsgType_GetPhotoList&t=查看玩家id
+message RetPhotoList
+{
+	message PhotoInfo 
+	{
+		required string Id        = 1;  // 照片ID
+		required uint64 Uid       = 2;  // 玩家id
+		required uint32 FileSize  = 3;  // 文件大小
+		required string UploadUrl = 4;  // 原文件地址
+		required uint32 ShowNum   = 5;  // 查看次数
+		required uint32 LaudNum   = 6;  // 赞次数
+		required string Thumb198  = 7;  // 缩略图198x198
+		required uint64 Time      = 8;  // 时间
+		required uint32 State     = 9;  // 状态(0 未审核  1 审核通过  2审核未通过  3删除)
+		optional bool   IsPraise  = 10; // 是否点赞
+		optional bool   IsShow    = 11; // 是否查看
+	}
+	repeated PhotoInfo Data       = 1;   //数据
+}
+
+//查看照片   msg?c=ShowPhoto&t=照片id  /MsgType_ErrorMsg
+
+//删除照片   msg?=DelPhoto&t=照片id /MsgType_ErrorMsg
+
+//照片点赞     msg?c=Praise&t=照片id  /MsgType_ErrorMsg
+
+//删除照片赞   msg?=DelPraise&t=照片id /MsgType_ErrorMsg
+
+
+// 返回社区玩家详细数据 /msg?c=SnsDetailInfo&u=玩家id
+message RetSnsDetailInfo
+{
+	required uint64 Id 	 		= 1;  // 玩家id
+	required string Account     = 2;  // 帐号
+	required string NickName 	= 3;  // 昵称
+	required uint32 Icon        = 4;  // 图标	
+	required uint32 Location    = 5;  // 位置
+	required string Sign        = 6;  // 签名
+	required uint32 Sex         = 7;  // 性别
+	required uint32 Level 		= 8;  // 段位等级
+	required uint32 Scores 		= 9;  // 段位星数
+	optional uint32 FollowNum   = 10;  // 关注总数
+	optional uint32 FansNum     = 11;  // 粉丝总数
+	optional uint32 FriendNum 	= 12;  // 互关数量
+	optional bool   ShowPos 	= 13; // 是否显示位置
+	optional uint32 Age 		= 14; // 年龄
+	optional string PassIcon    = 15; // 通过验证的头像
+	optional uint32 AudienceNum = 16; // 听众人数
+	optional string AudienceUrl = 17; // 语音签名
+	optional uint32 AudienceTime = 18; // 语音签名时间
+	optional bool   IsFollow 	 = 19; // 是否关注(true:是, false:否)
+	optional bool 	IsBanList 	 = 20; // 是否黑名单
+	optional uint32 State 		 = 21; // 状态 0离线1在线2无限模式,3限时模式, 4团战
+	optional string Position 	 = 22; // 位置信息
+}
+
+// 返回近期比赛记录 /msg?c=MatchList&u=玩家id
+message RetMatchList
+{
+	message MatchData
+	{
+		required uint32 Icon     = 1; // 图标			
+		required string NickName = 2; // 昵称
+		required uint32 Time     = 3; // 比赛时间
+		required uint32 Rank     = 4; // 排名		
+		required uint32 SceneID  = 5; // 游戏模式
+		required uint32 Score    = 6; // 结算分数
+		required uint32 AnimalID = 7; // 对应动物
+		required uint32 JiangGuo = 8; // 彩豆
+		optional string PassIcon = 9; // 已审核头像
+	}
+	repeated MatchData Datas = 1; // 玩家列表
+}
+
+// 请求荣誉列表 /msg?c=HonorList&u=玩家id
+message RetHonorList
+{
+	message HonorUser
+	{
+		required uint32 Season = 1; // 赛季编号
+		required uint32 Level  = 2; // 段位
+		required uint32 Scores = 3; // 星数
+	}
+	repeated HonorUser Honors = 1; // 荣誉列表
+}
+
+// 玩家基本信息 /msg?c=UserBaseInfo?a=账号&u=玩家id (账号,id任选一个)
+message RetUserBaseInfo
+{
+	required uint64 Id       = 1;  // 玩家id
+	required string Account  = 2;  // 帐号	
+	optional uint32 Icon     = 3;  // 图标	
+	optional string PassIcon = 4;  // 头像
+	optional uint32 Sex      = 5;  // 性别
+	optional uint32 Age      = 6;  // 年龄
+	optional uint32 Location = 7;  // 位置
+	optional string Position = 8;  // 位置信息
+	optional uint32 RelType  = 9;  // 关系类型 1互不关注 2关注 3粉丝 4好友
+	optional uint32 Level    = 10; // 段位
+	optional uint32 Scores   = 11; // 星 
+}
+
+// 举报 /msg?c=AddReport&class=举报大类(1照片、2留言、3语音)&rid=举报资源ID&rtype=举报类型(涉嫌色情、广告、违反规则)
+//举报大类:1照片、2留言、3语音(注：语音的资源ID是用户ID)
+//举报类型:1涉嫌色情\2广告欺诈\3反动言论\4恶意骚扰\5就是不爽
+// 状态:(0未处理、1已删除、2白名单)
+
+
+// 是否举报 /msg?c=IsReport&class=举报大类(1照片、2留言、3语音)&rid=举报资源ID
+message IsReportMsg {
+	required bool Ret          = 1;  //是否举报	
+}
+
+// 获取被举报消息 /msg?c=GetReportMsg
+message RetReportMsgList {
+	message ReportMsg
+	{
+		required uint32 RClass     = 1; // 举报大类
+		required uint32 Rtype      = 2; // 举报类型
+		required string RId        = 3; // 举报资源ID
+		optional string Reason     = 4; // 理由
+		optional int64  Time       = 5; // 时间
+	}
+	repeated ReportMsg Data = 1; // 消息列表
+}

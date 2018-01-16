@@ -1,0 +1,116 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "858de180-cc1e-45a4-b18f-e3ec4c9bf496",
+  "title": "skill_102",
+  "description": "",
+  "root": "f6bbf4c7-a5b4-40c6-8eeb-fada8d34a11e",
+  "properties": {
+    "skillid": 102,
+    "skillcost": 10
+  },
+  "nodes": {
+    "43dfa138-2334-4927-8e00-ea96d1b14d55": {
+      "id": "43dfa138-2334-4927-8e00-ea96d1b14d55",
+      "name": "ActionAttack3",
+      "title": "ActionAttack3",
+      "description": "三段式攻击 - 第三段",
+      "properties": {
+        "skillid": 102,
+        "attack_type": 3,
+        "attack_range": 0.6
+      },
+      "display": {
+        "x": 108,
+        "y": 216
+      }
+    },
+    "f6bbf4c7-a5b4-40c6-8eeb-fada8d34a11e": {
+      "id": "f6bbf4c7-a5b4-40c6-8eeb-fada8d34a11e",
+      "name": "CompositeSkillMemSeq",
+      "title": "CompositeSkillMemSeq",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -168,
+        "y": -204
+      },
+      "children": [
+        "a8e63987-b8dd-4ee5-8084-fa9a141aa732",
+        "43dfa138-2334-4927-8e00-ea96d1b14d55",
+        "9e081df6-3926-4c0b-86da-3cb8dd191359"
+      ]
+    },
+    "9e081df6-3926-4c0b-86da-3cb8dd191359": {
+      "id": "9e081df6-3926-4c0b-86da-3cb8dd191359",
+      "name": "ActionNextSceneRander5",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 1,
+        "n": 2
+      },
+      "display": {
+        "x": 144,
+        "y": 276
+      }
+    },
+    "a8e63987-b8dd-4ee5-8084-fa9a141aa732": {
+      "id": "a8e63987-b8dd-4ee5-8084-fa9a141aa732",
+      "name": "ActionNextSceneRander5",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 2
+      },
+      "display": {
+        "x": 132,
+        "y": 156
+      }
+    }
+  },
+  "display": {
+    "camera_x": 610,
+    "camera_y": 329.5,
+    "camera_z": 0.75,
+    "x": -360,
+    "y": -204
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 11
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack3",
+      "category": "action",
+      "title": "ActionAttack3",
+      "description": "三段式攻击 - 第三段",
+      "properties": {
+        "skillid": 102,
+        "attack_type": 3,
+        "attack_range": 0
+      }
+    }
+  ]
+}

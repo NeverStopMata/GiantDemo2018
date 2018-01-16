@@ -1,0 +1,877 @@
+syntax = "proto2";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+option (gogoproto.sizer_all) = true;
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+package usercmd;
+
+enum MsgType {
+	Login				= 1; // 登录
+	GateAddr			= 2; // 网关地址
+	ReqIntoFRoom		= 3; // 请求进入房间
+	ErrorMsg			= 4; // 错误消息
+	DetailInfo			= 5; // 详细数据
+	SearchUser          = 6;  // 搜索玩家
+	AddFollow           = 7;  // 添加关注
+	UnFollow            = 8;  // 取消关注
+	FollowList          = 9;  // 关注列表
+	FansList            = 10; // 粉丝列表
+	BlackList           = 11; // 坏人列表
+	RelationStat        = 12; // 关系状态
+	CheckFollows        = 13; // 检查关注
+    AddBanList       	= 14; // 增加黑名单
+    GetBanList        	= 15; // 获取黑名单
+    DelBanList        	= 16; // 删除黑名单
+    AddRemark         	= 17; // 添加备注
+	GetTopScore         = 18; // 最好成绩
+	CheckConnect        = 19; // 重连
+
+	JoinUserRoom 		= 20; // 加入别人的房间
+	FriendList  		= 21; // 关注列表
+	RespAddFriend 		= 22; // 回应添加好友申请
+	BatchAddFollow 		= 23; // 批量关注
+	AddStar  			= 24; // 点赞
+	
+	AuthCode            = 25; // 验证码
+    BindTel             = 26; // 绑定手机
+    ReqResetPassword    = 27;  // 重置密码
+    SetAccount          = 28;  // 设置账号
+    SetPasswd           = 29;  // 设置密码  (创建密码) 
+    SetIcon             = 30;  // 设置图标
+    CheckBindTel        = 31;  // 查检电话是否有绑定
+    SetAge              = 32;  // 设置年龄
+    SetSex              = 33;  // 设置性别
+    ChangePasswd        = 34;  // 修改密码
+    ReqAuthCode         = 35;  // 请求验证码
+    ChangeBindTelSubmitCode       = 36;  // 更换绑定手机提交验证码
+    ChangeBindTelSubmitOk       = 37;  // 更换绑定手机提交
+    CheckOldPassword    = 38;          //检查旧密码
+	ShareData           = 39; //分享数据
+
+	FansNumRank         = 40; // 粉丝排名
+	
+	ReqScoreNumRankGift = 43; // 请求分数排行榜奖励
+	NotifyMoneyMessage  = 44; // 上线通知获得奖励
+	AddIcon             = 45; // 添加图像   
+	GetIcons            = 46; // 查看有哪些图像
+	CheckSeason 		= 47; // 检查赛季
+	Questionnaire       = 48; // 问卷调查
+	PreTeamMemList      = 49;  // 近期队友列表
+
+
+
+
+	SnsDetailInfo    = 59; // 浏览玩家社区信息
+	SetUserSign 	 = 60; // 修改签名
+	AddAudience      = 61; // 增加听众人数
+	GetPhotoList     = 62; // 获取照片列表
+	ShowPhoto        = 63; // 查看照片
+	Praise           = 64; // 点赞
+	DelPraise        = 65; // 删除赞
+	DelPhoto         = 66; // 删除照片
+	AddReport        = 67; // 举报
+	MatchList 		 = 68; // 近期比赛记录
+	HonorList 		 = 69; // 荣誉列表
+	GLevelRank 		 = 70; // 段位排行
+	TodayTicketInfo  = 71; // 查看或领取当天的入场券
+	IsReport		 = 72; // 是否举报
+	GetReportMsg     = 73; // 获取举报消息
+	ExchangeActCode  = 74; // 兑换激活码
+	
+	
+	MailList		  = 96;	//邮件列表
+	
+	ReadMail		  = 97; //读取邮件
+	DelMail			  = 98;	//删除邮件
+	RecvMail		  = 99; //领取邮件
+	QuickRecvMail  = 100;//快速领取好友邮件
+	QuickRecvSysMail  = 101;//快速领取系统邮件
+	DelAllSysMail 	  = 102;//删除所有系统邮件
+	UpdateReqMail	  = 103;//更新索要邮件(拒绝, 支付购买)	
+	DelAllReqMail     = 104;//删除所有索要邮件
+	GetMailState	  = 105;//获取邮件状态
+	
+	FriendMail = 110;	//请求好友邮件列表
+	SystemMail = 111;	//请求系统邮件列表
+	RequestMail = 112; //请求索要邮件列表
+	SetApplyState =113; //设置接收所要邮件
+	
+		
+    GiftGiving        = 200; //赠送礼物
+    AskingGift        = 201; //索要礼物
+	CheckIdCard       = 203; //验证身份证
+	
+
+	BindChannl        = 753; // 绑定渠道
+	CheckBindChannl   = 754; // 检查openid是否有绑定
+	CheckAccPwBind    = 755; // 检查帐号和密码
+
+	UpdateLocation		= 1000;//更新位置
+	GetUsersNearby		= 1001;//查找附近的玩家
+	UpdateLocalDesc		= 1002;//更新位置描述
+	GetNearRoom			= 1004;//查找附近的自建房间
+	GetInviteNearby 	= 1005;//查找附近邀请
+	GetRecentTeamFriend = 1006;//近期队友
+	ShakeOpen			= 1010;//打开摇一摇界面
+	ShakeGetUser		= 1011;//摇一摇获取用户
+	ShakeUpdateTime		= 1012;//摇一摇更新时间
+	RadarOpen			= 1020;//打开雷达界面
+	RadarGetUser		= 1021;//雷达获取用户
+	RadarClosed			= 1022;//关闭雷达界面
+	FFJoinGame          = 1023;//一起游戏
+};
+
+// 启动 //share?type=4&id=玩家id&dev=设备号&device=android|ios&phonetype=手机型号&mobile=手机号&operation=激活成功=1&custid=渠道编号
+// 请求登录 /msg?c=Login?a=帐号&p=密码&ver=版本号&dev=设备号&device=android|ios&r=1注册,0或不填登录&jb=是否越狱的设备&phonetype=手机型号&custid=渠道编号&channl=?&accid=?&switchacc=1
+message RetLoginMsg
+{
+	required string Account   = 1; // 账号
+    required uint64 Id        = 2; // 玩家id
+    required bool IsNewbie    = 3; // 是否新用户
+    required string Password  = 4; // 密码
+    required uint32 Location  = 6; // 位置
+    optional int64 TimeNow    = 7; // 服务器当前时间
+    optional uint32 sex       = 8; // 性别
+    optional uint32 age       = 9; // 年龄
+    optional string tel       = 10; // 已绑定的手机号
+    optional uint32 icon      = 11; // icon id
+	optional string nick      = 12; // 昵称
+	optional uint32 channl    = 13; // 渠道号
+	optional uint32 isregist  = 14; // 是否是游客
+	optional string PassIcon  = 15; // passicon
+	optional uint32 MaxLevel  = 16;
+	optional string idcard    = 17;
+	optional uint32 RegTime   = 18;  //注册时间
+}
+
+// 获取网关地址 /msg?c=GateAddr
+message RetGateAddr
+{
+	required string Address  = 1; // ip:端口
+    required string Key      = 2; // 密钥
+}
+
+// 请求进入房间 /msg?c=ReqIntoFRoom&ver=版本号&model=0个人|1加入|2观战|4组队|5闪电战&oid=好友id&ticket=门票数&ucoo=0普通1纯净2纯净非语音&ticketnum=
+message RetIntoFRoom
+{
+	required uint32 Err    = 1; // 错误码
+	optional string Addr   = 2; // 房间地址
+	optional string Key    = 3; // 登录key
+	optional uint64 UId    = 4; // 玩家id
+	optional uint32 Tips   = 5; // 提示信息
+	optional uint32 RoomId = 6; // 房间id
+	optional uint32 Priv   = 7; // 权限
+	optional uint32 Model  = 8; // 房间类型
+	optional uint32 SceneId  = 9; // 房间mapid
+	optional uint32 ticketnum = 10; // 入场券数量
+}
+
+// 请求填充数据 /msg?c=FillInfo&s=性别&e=邮箱&n=年龄&p=密码&pos=是否显示位置
+
+// 返回统一错误码
+message RetErrorMsg
+{
+	required uint32 RetCode   = 1; // 错误码
+	optional uint64 Params    = 2; // 参数
+	optional string JsonParam = 3; // 参数
+}
+
+// 返回玩家详细数据 /msg?c=DetailInfo&u=玩家id
+message RetDetailInfo
+{
+	required uint64 Id             = 1;  // 玩家id
+	required string Account        = 2;  // 帐号
+	required uint32 Icon           = 3;  // 图标
+	required uint32 Sex 		   = 4;
+	optional string PassIcon 	   = 5;  // 验证图标
+	optional uint32 Level 		   = 10;  // 段位
+	optional uint32 Scores 		   = 11; // 段位的积分
+	optional uint32 HideScores 	   = 12; // 隐藏积分
+	optional uint32 JiangGuo 	   = 21; // 浆果数量
+	optional uint32 ActCodeFigt    = 22; // 激活码奖励
+	optional uint32 Speaker        = 23; // 小喇叭
+}
+
+// 检查服务器开启时间 /msg?c=CheckTeam
+message ReqCheckTeam
+{
+	required uint32 OpenTime = 1; // 开放相对时间
+}
+
+// 返回段位排行榜 /msg?c=GLevelRank&t=当前(1)地区(2)总(3)
+message RetGLevelRankList
+{
+	message LevelUser
+	{
+		required uint64 Id         = 1;  // 玩家id
+		required string Account    = 2;  // 帐号	
+		required uint32 Icon       = 3;  // 图标	
+		required uint32 Sex        = 4;  // 性别
+		required uint32 Level      = 6;  // 段位
+		required uint32 Stars      = 7;  // 星数
+		required uint32 Rank 	   = 8;  // 排名
+		optional string PassIcon   = 9;  // 已审核头像 	
+		optional uint32 MaxLevel   = 10; // 最高段位
+		optional uint32 MaxStars   = 11; // 最高星数
+		optional bool IsFollow   = 12; // 是否关注
+	}
+	repeated LevelUser Players 	= 1; // 玩家列表
+	optional LevelUser SelfInfo = 2; // 玩家自己(Rank为0表示未上榜, 大于0表示真实的排名)
+}
+
+
+//===========================
+//	好友系统
+//===========================
+// 搜索玩家 /msg?c=SearchUser&account=玩家账号
+message RetSearchUser
+{
+	required uint64 Id        = 1;  // 玩家ID
+	required string Account   = 2;  // 帐号
+	required uint32 Sex       = 3;  // 性别
+	optional uint32 Age       = 4;  // 年龄
+	required uint32 Icon      = 5;  // 图标
+	optional string PassIcon  = 6;  // 已审核头像
+	required bool IsFriend    = 7;  // 是否好友
+	required uint32 Location  = 8;  // 位置
+}
+
+message RetSearchUsers
+{
+	repeated RetSearchUser Players = 1;	//玩家列表
+}
+
+// 请求添加好友 /msg?c=AddFriend&u=玩家id&a=玩家账号(任选一个)
+
+// 响应添加好友 /msg?c=RespAddFriend&u=玩家id&a=玩家账号(任选一个)
+
+// 请求好友列表 /msg?c=FriendList
+message RetFriendList
+{
+	message FriendData
+	{
+		required uint64 Id      = 1; // 玩家id
+		required string Account = 2; // 帐号	
+		required uint32 Icon    = 3; // 图标	
+		required uint32 Sex     = 4; // 性别
+		required uint32 State   = 5; // 状态(0离线1在线2游戏中)
+		optional string PassIcon  = 6; // 已审核头像 
+		optional uint32 PrizeCup = 7;
+	}
+	repeated FriendData Players = 1; // 玩家列表
+}
+
+//===========================
+//	关注系统
+//===========================
+//批量关注/msg?c=BatchAddFollow&uids=1|2|3 返回BatchAddFollowRet
+message BatchAddFollowRet
+{
+	message RetAddFollow
+	{
+		required uint64 UID		= 1;	//成功关注的玩家
+		required uint32 RelType = 2;	//关系类型 1互不关注 2关注 3粉丝 4好友
+	}
+	repeated RetAddFollow RetFollow = 1;
+}
+
+//==============================================
+// 好友粉丝
+//==============================================
+
+// 请求点赞 /msg?c=AddStar&u=玩家id
+// 请求关注 /msg?c=AddFollow&u=玩家id&a=玩家账号 (任选一个)&ft=0(1通过扫码关注,2摇一摇关注)
+message RetAddFollow
+{
+	optional uint32 Ret = 1;        //错误码
+	optional uint64 Uid = 2;        //玩家ID
+}
+
+// 请求取消关注 /msg?c=UnFollow&u=玩家id
+message RetUnFollow
+{
+	optional uint32 Ret = 1;        //错误码
+	optional uint64 Uid = 2;        //玩家ID
+}
+
+// 关系数据
+message RelationUser
+{
+	required uint64 Id       = 1; // 玩家id
+	required string Account  = 2; // 帐号
+	required uint32 Icon     = 3; // 图标
+	required uint32 Sex      = 4; // 性别
+	required string Msg      = 5; // 被关注人的动态  时间,标识(MType),参数1,参数2
+	required uint32 State    = 6; // 状态 0离线1在线2无限模式,3限时模式
+	optional string PassIcon = 7; // 已审核头像
+	optional double Longitude = 10;//被邀请玩家经度
+	optional double Latitude = 11;//被邀请玩家纬度
+	optional uint32 Level = 12;//段位
+	optional uint32 Scores = 13;//星星数
+	optional uint32 IsNew = 14;//是否新粉丝
+	optional uint32 Age = 15;//年龄
+	optional string Sign = 16;//签名
+	optional uint32 Follows = 17; // 关注数
+	optional uint32 Fans    = 18; // 粉丝数
+	optional uint32 RelType = 19;//关系状态
+	optional uint32 OrderId = 20;//关注顺序ID
+	optional string Remark  = 23;  // 备注信息
+	optional uint32 IsBan  = 24;   // 是否在黑名单0-不在黑名单1-在黑名单里
+	optional uint32 FollowTime = 25;  // 关注时间
+
+}
+
+// 返回关注列表 /msg?c=FollowList&u=玩家id&p=最小记录,最大记录
+message RetFollowList
+{
+	repeated RelationUser   Players = 1;    //玩家列表
+	optional double         MyLongi = 2;    //被邀请玩家经度
+	optional double         MyLati  = 3;    //被邀请玩家纬度
+}
+
+// 返回粉丝列表 /msg?c=FansList&u=玩家id&p=最小记录,最大记录
+message RetFansList
+{
+	message FanUser
+	{
+		required uint64 Id        = 1; // 玩家id
+		required string Account   = 2; // 帐号
+		required uint32 Icon      = 3; // 图标
+		required uint32 Sex       = 4; // 性别
+		required uint32 State     = 5; // 状态 0离线1在线2游戏中
+		optional string PassIcon  = 6; // 已审核头像
+		optional uint32 IsNew     = 7; // 是否新粉丝 0非新粉丝，1新粉丝
+		optional uint32 RelType   = 8; // 粉丝状态
+		optional uint32 Level     = 9; // 段位
+		optional uint32 Scores    = 10; // 星数
+		optional uint32 Follows   = 11; // 关注数
+		optional uint32 Fans      = 12; // 粉丝数
+		optional string Sign      = 13; // 签名
+		optional double MyLongi   = 14; // 经度
+		optional double MyLati    = 15; // 纬度
+		optional string Remark    = 18; // 备注信息
+		optional uint32 Distance  = 19; // 距离
+		optional uint32 FollowTime = 20;  // 关注时间
+	}
+	repeated FanUser players = 1; // 玩家列表
+}
+
+// 返回关标识 /msg?c=CheckFollows&u=被关注者id&f=注者id1,注者id2,...
+message RetCheckFollows
+{
+	message FollowFlag
+	{
+		required uint64 Id     = 1; // 玩家id
+		required bool IsFollow = 2; // 是否关注
+		optional uint32 FType  = 3; // 关注类型1无关系,2关注,3粉丝,4好友
+	}
+	repeated FollowFlag Follows = 1; // 关注列表
+}
+
+// 返回坏人列表 /msg?c=BlackList&u=玩家id
+message RetBlackList
+{
+	message BlackUser
+	{
+		required uint64 Id        = 1; // 玩家id
+		required string Account   = 2; // 帐号
+		required uint32 Icon      = 3; // 图标
+		required uint32 Sex       = 4; // 性别
+		required uint32 BeEatNum  = 5; // 吞噬数
+		required uint32 State     = 6; // 状态 0离线1在线2游戏中
+		optional string PassIcon  = 7; // 已审核头像
+		optional uint32 RelType   = 8; // 关系状态
+		optional string Sign      = 9; // 签名
+		optional uint32 IsNew     = 10;// 是否新坏人 0非，1是
+		optional uint32 OrderId   = 11;// 关注顺序ID
+		optional string Remark    = 14; // 备注信息
+		optional uint32 BeEatTime = 15; // 被吃时间
+	}
+	repeated BlackUser players = 1; // 玩家列表
+}
+
+// 坏人数据
+message BlacksData
+{
+	required uint64 Id        = 1; // 玩家id
+	required uint32 BeEatNum  = 2; // 被吃次数
+	required uint32 BeEatTime = 3; // 被吃时间
+}
+
+// 坏人列表
+message BlacksDataList
+{
+	repeated BlacksData Datas = 1; // 坏人列表
+}
+
+
+// 比赛数据
+message MatchData
+{
+	required uint32 Icon     = 1; // 图标
+	required string NickName = 2; // 昵称
+	required uint32 Time     = 3; // 时间
+	required uint32 Rank     = 4; // 排名
+	required uint32 Score 	 = 5; // 分数
+	required uint32 AnimalID = 6; // 动物id
+	required uint32 JiangGuo = 7; // 小浆果
+	required uint32 SceneID  = 8; // 模式id
+	optional string PassIcon = 9; // passsicon
+}
+// 比赛列表
+message MatchDataList
+{
+	repeated MatchData Datas = 1; // 比赛列表
+}
+
+// 荣誉数据
+message HonorData
+{
+	required uint32 Season = 1; // 赛季
+	required uint32 Level  = 3; // 段位
+	required uint32 Scores = 4; // 星数
+	optional uint32 MRound  = 5; //局数
+	optional uint32 KillNum = 6; //击杀数
+	optional uint32 FirstCnt = 7; //第一名次数
+	optional uint32 MaxExp  = 8; // 最高分
+	optional uint32 SceneID = 9; // 最高分模式
+	optional uint32 AnimalID = 10; //最高分动物id
+	optional uint32 Fans 	= 11; //新增粉丝
+}
+
+// 荣誉列表
+message HonorDataList
+{
+	repeated HonorData Datas = 1; // 荣誉列表
+}
+
+
+//奖励信息
+message AwardInfo
+{
+	required uint32 ItemId = 1;
+	required uint32 Num = 2;
+}
+
+message UserInfo 
+{
+	optional uint64 Id 			= 1; // ID
+	optional string Account 	= 2; // 账号
+	optional uint32 Sex 		= 3; // 性别
+	optional string PassIcon 	= 4; // 头像
+	optional uint32 Icon    	= 5; // 图标	
+}
+
+//好友邮件数据
+message FriMailData
+{
+	required string MailId = 1;		//邮件id
+	required uint32 Type = 2;		//邮件类型
+	required string Title = 3;		//邮件标题
+	required string Content = 4;	//邮件内容
+	required UserInfo FromDetail = 5;//赠送玩家信息	
+	repeated AwardInfo Attr = 6;	//附件信息
+	required uint64 CreateTime = 7;	//创建时间
+	required uint32 State = 8;		//邮件状态 0 未读 1 已读
+}
+
+//系统邮件数据
+message SysMailData
+{
+	required string MailId = 1;		//邮件id
+	required uint32 Type = 2;		//邮件类型	
+	required string Title = 3;		//邮件标题
+	required string Content = 4;	//邮件内容
+	repeated AwardInfo Attr = 5;	//附件信息
+	required uint64 CreateTime = 6;	//创建时间
+	required uint32 State = 7;		//邮件状态 0 未读 1 已读
+}
+
+//索要消息
+message ReqMailData
+{
+	required string MailId = 1;			//邮件id
+	required uint32 Type = 2;			//邮件类型
+	required UserInfo FromDetail = 3; //索要玩家的信息
+	required uint32 State = 4;			//邮件状态  0 未读 1 已读
+	required uint32 ItemId = 5;			//索要的道具ID
+	required uint32 RespState = 6;		//索要的状态 0 正常 1 取消 2 已支付
+	required uint64 CreateTime = 7;	//创建时间
+}
+
+// 返回关系统计和红点 /msg?c=RelationStat&u=玩家id
+message RetRelationStat
+{
+	required uint32 FollowNum    = 1; // 关注列表
+	required uint32 FollowAddNum = 2; // 新加的关注
+	required uint32 FansNum      = 3; // 粉丝列表
+	required uint32 FansAddNum   = 4; // 新加的粉丝
+	required uint32 BlackNum     = 5; // 坏人列表
+	required uint32 BlackAddNum  = 6; // 新加的坏人
+	required uint32 StarNum      = 7; // 被赞次数
+	required uint32 StarAddNum   = 8; // 新加的被赞
+	optional uint32 MsgAddNum    = 9; // 新加的留言
+	optional uint32 BansNum      = 10; // 黑名单总数
+	optional uint32 BansAddNum   = 11; // 新加的黑名单
+	optional uint32 FriendNum    = 12; // 好友数量
+	optional SnsDynamicMsg SnsMsg = 13;
+	optional uint32 Reward       = 15;//领取奖励提示
+	optional uint32 NewLeaderFlag = 16;//新队长提醒
+}
+
+
+message SnsDynamicMsg {
+	optional uint32 LoveNum      = 1;//喜欢数量
+	optional uint32 FollowNum    = 2;//关注数量
+	optional uint32 LeaveMsgNum  = 3;//主页留言数量
+	optional uint32 StarPhoneNum = 4;//照片被赞
+	optional uint32 MsgReplyNum  = 5;//留言的回复数量
+}
+
+//////////////////////////////////////////////////////////
+//寻找好友
+
+// 请求修改签名    /msg?c=SetUserSign&s=签名
+
+//更新玩家位置信息 /msg?c=UpdateLocation&longitude=12.111&latitude=23.123&desc=巨人网络&city=上海&citycode=123456
+
+//获取玩家附近的人 /msg?c=GetUsersNearby&Longitude=12.111&Latitude=23.123&City=上海&CityCode=123456&skip=0&limit=10
+
+//返回附近的玩家
+message RetUser{
+	required uint64 Id     = 1; // 玩家id
+	required string Account   = 2; // 帐号	
+	required uint32 Icon      = 3; // 图标	
+	required uint32 Sex       = 4; // 性别
+	optional string Name = 5;//昵称
+	optional uint32 State = 6;//是否在线
+	optional bool IsLeader  = 7;//是否队长
+	optional string PassIcon  = 8; // 已审核头像 
+	optional bool IsNewbie  = 9; // 是否新手true是false否
+	//required double Distance = 10;//距离
+	optional double Longitude = 10;//被邀请玩家经度
+	optional double Latitude = 11;//被邀请玩家纬度	
+	optional uint32 Level   = 12; // 段位
+	optional uint32 Scores  = 13; // 星数
+	optional uint32 RelType  = 14; // 关系类型 1互不关注 2关注 3粉丝 4好友
+	optional uint32 YaoPlay = 15; // 是否可以一起游戏 1是 0否
+	optional uint32 Distance = 18;//距离
+	optional uint32 Age = 19;     //年龄
+	optional bool IsFriend = 20;  //是否是好友
+}
+
+message UsersNearby{
+	required double MyLongi = 1;//我的经度
+	required double MyLati = 2;//我的纬度
+	repeated RetUser Users = 3;//玩家列表
+}
+
+// 返回赛季奖励 /msg?c=CheckSeason
+message RetCheckSeason
+{
+	required uint32 OldSeason = 1; // 赛季编号
+	required uint32 OldLevel  = 2; // 老段位
+	required uint32 OldScores = 3; // 老星数
+	required uint32 NewLevel  = 4; // 新段位
+	required uint32 NewScores = 5; // 新星数
+	repeated ObjNode Objs     = 6; // 道具列表
+}
+
+// 增加黑名单 /msg?c=AddBanList&toid=用户ID&admin=123 如果admin不为空则超管增加黑名单
+message RetBanList
+{
+	optional uint32 Ret = 1;        //错误码
+	optional uint64 Uid = 2;        //玩家ID
+}
+
+// 获取黑名单 /msg?c=GetBanList
+message RetBanInfoList
+{
+	message BanInfoMsg
+	{
+		required string Id         = 1;  // ID
+		required uint64 ToId       = 2;  // 黑名单玩家ID
+		optional string Account    = 3;  // 帐号
+		optional uint32 Sex        = 4;  // 性别
+		optional int64  Time       = 5;  // 增加黑名单时间
+		optional uint32 State      = 6;  // 是否在线
+		optional uint32 Icon       = 7;  // 图标
+		optional string PassIcon   = 8;  // 已审核头像
+		optional string Remark     = 11; // 备注信息
+	}
+	repeated BanInfoMsg Data = 1; // 玩家列表
+}
+
+// 删除黑名单 /msg?c=DelBanList&toid=用户id&admin=123  如果admin不为空则为超管删除黑名单
+message RetDelBanList
+{
+	optional uint32 Ret = 1;        //错误码
+	optional uint64 Uid = 2;        //玩家ID
+}
+
+// 返回粉丝排行榜 /msg?c=FansNumRank&t=天(1)周(2)月(3)&p=1,10
+message RetFansNumRankList
+{
+	message FansUser
+	{
+		required uint32 Rank 	   = 1; // 默认排名(按增加粉丝数)
+		required uint64 Id         = 2; // 玩家id
+		required string Account    = 3; // 帐号	
+		required uint32 Icon       = 4; // 图标	
+		required uint32 Sex        = 5; // 性别
+		required uint32 IncFanNum  = 6; // 增加粉丝数			
+		required uint32 AllFanNum  = 7; // 总吞粉丝数
+		optional string PassIcon   = 8; // 已审核头像 	
+		optional int32  RankChange = 9; // 排行变化
+		optional bool   IsFollow   = 10; // 是否关注
+	}
+	repeated FansUser Players = 1;  	// 玩家列表
+	optional FansUser SelfInfo = 2;  	// 玩家自己
+}
+
+
+
+
+// 添加备注 /msg?c=AddRemark&u=玩家id&t=备注
+//请求检查是否需要重连 /msg?c=CheckConnect
+message RetCheckConnect
+{
+	required bool NeedConn = 1; // 是否需要重连 true是
+	optional uint32 Model  = 2; // 重连模式 0自由模式 4组队模式 5闪电战模式
+	optional uint32 ETime  = 3; // 房间结束时间
+	optional uint32 RoomId = 4; // 房间ID
+	optional uint32 Sceneid = 5; // 场景
+}
+
+
+
+// 返回设置性别
+message RetSetSex
+{
+	required uint32 sex = 1; // 性别
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// 账号绑定,解绑,修改
+
+// 获取验证码 /msg?c=AuthCode&tel=手机号   注册时用
+// 请求验证码 /msg?c=ReqAuthCode&tel=手机号&d=设备号&index=  非注册时用
+// 绑定手机 /msg?c=BindTel&a=帐号&p=密码&tel=手机号&code=验证码
+// 请求设置账号 /msg?c=SetAccount&a=帐号
+// 请求设置密码 /msg?c=SetPasswd&old=密码&new=密码&a=帐号
+// 重置密码 /msg?c=ReqResetPassword&d=设备号&tel=手机号&code=验证码&p=密码
+// 请求换头象 /msg?c=SetIcon&u=玩家id&i=icon对应的id&p=photoid
+// 请求电话是否有被绑定 /msg?c=CheckBindTel&tel=手机号
+// 修改年龄 /msg?c=SetAge&a=帐号&newage=年龄
+// 修改性别 /msg?c=SetSex&a=帐号&newsex=性别
+// 更换绑定手机 /msg?c=ChangeBindTelSubmitCode&tel=手机号&code=验证码
+// 更换绑定手机 /msg?c=ChangeBindTelSubmitOk&tel=手机号&code=验证码
+// 修改密码 /msg?c=ChangePasswd&old=密码&new=密码&a=帐号
+// 检查旧密码 /msg?c=CheckOldPassword&p=密码&a=帐号
+message RetResetPassword
+{
+    required string Account = 1; // 账号
+}
+
+// 查看当天和累计获得的奖励个数 /share?type=3&id=
+message RetShareObject
+{
+    optional uint32 daynum = 1;
+    optional uint32 totalnum = 2;
+}
+
+// 道具信息
+message ObjNode
+{
+	required uint32 Id    = 1; // 道具id
+	required uint32 Num   = 2; // 道具数量
+}
+
+
+// 请求分数排行榜奖励 /msg?c=ReqScoreNumRankGift
+message RetScoreNumRankGift
+{
+	message ScoreUser
+	{
+		optional uint64 Id         = 1; // 玩家id
+		optional string Account    = 2; // 帐号	
+		optional uint32 Icon       = 3; // 图标	
+		optional string PassIcon   = 4; // 验证图标
+		optional uint32 Rank       = 5; // 排名
+		optional uint32 Score      = 6; // 最高分			
+		optional bool   IsFollow   = 7; // 是否关注
+		optional uint32 Kind       = 8; // 类型
+		optional uint32 itemid     = 9;
+		optional uint32 itemnum    = 10;
+	}
+	repeated ScoreUser players = 1;
+}
+
+//上线通知获得奖励	/msg?c=NotifyMoneyMessage
+message RetNotifyMoneyMessage
+{
+	optional uint32 itemid  = 1;
+	optional uint32 itemnum = 2;
+	optional uint32 leftnum = 3; // 还可以获得多少个
+}
+
+// 添加图像 /msg?c=AddIcon&iconid=
+message RetAddIcon
+{
+	repeated uint32 icons = 1;
+}
+
+// 查看有哪些图像	/msg?c=GetIcons
+message RetGetIcons
+{
+	repeated uint32 icons = 1;
+}
+
+// 问卷调查 /msg?c=Questionnaire&type=0,1   0查1领取
+message RetQuestionnaire
+{
+	optional uint32 itemid  = 1;
+	optional uint32 itemnum = 2;
+	optional bool complete = 3; // 是否完成问卷调查
+}
+
+
+// 近期队友列表 /msg?c=PreTeamMemList
+message RetPreTeamMemList 
+{
+	message TeamMem
+	{
+		required uint64 Id       = 1;  // 玩家id
+		required string Account  = 2;  // 帐号	
+		required uint32 Icon     = 3;  // 图标	
+		required uint32 Sex      = 4;  // 性别
+		required uint32 State    = 5;  // 状态 0离线1在线2无限模式,3限时模式
+		optional string PassIcon = 6;  // 头像
+		optional uint32 Level    = 7;  // 段位
+		optional uint32 Scores   = 8;  // 星数
+	}
+	repeated TeamMem TeamMems = 1; // 近期队友
+}
+//获取附近邀请 /msg?c=GetInviteNearby&Longitude=12.111&Latitude=23.123&City=上海&CityCode=123456
+message RetUsersInviteNearby 
+{
+	message InviteMem
+	{
+		required uint64 Id       = 1;  // 玩家id
+		required string Account  = 2;  // 帐号	
+		required uint32 Icon     = 3;  // 图标	
+		required uint32 Sex      = 4;  // 性别
+		required uint32 State    = 5;  // 状态 0离线1在线2无限模式,3限时模式
+		optional string PassIcon = 6;  // 头像
+		optional uint32 Level    = 7;  // 段位
+		optional uint32 Scores   = 8;  // 星数
+	}
+	repeated InviteMem InvMems = 1; // 附近邀请
+}
+
+
+
+// 查看或领取当天的入场券 msg?c=TodayTicketInfo&flag=false, true   false 表示查看  true 表示领取
+message RetTodayTicketInfo
+{
+	optional bool free = 1; // 是否免费领取
+	optional bool exch = 2; // 是否兑换
+	optional bool flag = 3;
+}
+
+
+// 资源信息
+message MsgResInfo {
+	required uint32 Baseid = 1;	//资源id(配置id)
+	required uint32 Num     = 2;	//资源数量
+}
+
+
+// 兑换激活码msg?c=ExchangeActCode&actcode=
+message RetExchangeActCode{
+	optional bool Ret = 1;
+
+}
+//绑定渠道msg?c=BindChannl&openid=&acc=      
+message RetBindChannl
+{
+	optional uint32 code = 1;    // 0 表示成功
+}
+//检查openid是否有绑定 msg?c=CheckBindChannl&openid
+message RetCheckBindChannl
+{
+	optional string acc = 1;      // 如果没有绑定 acc空 反则对应绑定的帐号
+}
+
+message RetCheckAccPwBind
+{
+	optional uint32 code = 1;    // 0 表示成功
+}
+
+//msg?c=CheckIdCard&idcard=&name=
+
+
+//////////////////邮件相关
+//邮件列表msg?c=MailList&t=1,2,3 -- 1 好友 2 系统 3 索求
+message RetMsgFriMailList {
+	repeated FriMailData Datas = 1; // 邮件列表
+}
+
+//系统邮件列表
+message RetMsgSysMailList {
+	repeated SysMailData Datas = 1; // 邮件列表
+}
+
+//索要消息
+message RetMsgReqMailList {
+	repeated ReqMailData Datas = 1; // 邮件列表
+}
+
+//读取邮件msg?c=ReadMail&m=55623&t=1,2,3 -- 1 好友 2 系统 3 索求
+message RetMsgReadMail {
+	required uint32 Ret = 1;   // 错误码 0-成功 1-失败
+	required string Mailid = 2; // 成功返回邮件id
+}
+
+//删除邮件msg?c=DelMail&m=55623	//系统邮件
+//删除所有已读系统邮件信息 msg?c=DelAllSysMail
+//删除所有的索要邮件 msg?c=DelAllReqMail
+message RetMsgDelMail {
+	required uint32 Ret = 1; //错误码 0-成功 1-失败
+}
+
+
+//返回邮件列表
+message MailIdInfo {
+	required string Id = 1; //返回领取的邮件id
+}
+
+//领取邮件msg?c=RecvMail&m=55623&t=1,2 -- 1 好友 2 系统
+//快速领取好友邮件 msg?c=QuickRecvMail&t=1
+//快速领取系统邮件附件msg?c=QuickRecvMail&t=2
+message RetMsgRecvMail {
+	required uint32 Ret = 1; 			//错误码 0-成功 1-失败
+	repeated MailIdInfo MailIds = 2;	//成功返回领取的邮件id列表
+}
+
+//更新索要邮件的反馈状态 msg?c=UpdateReqMail&m=56721&t=1 取消 2支付
+message RetMsgUpdateReqMail {
+	required uint32 Ret = 1; //错误码 0-成功 1-失败
+}
+
+// msg?c=GiftGiving&u=赠送玩家id&a=赠送玩家账号&itemid=赠送的道具id
+message RetGiftGiving
+{
+	required uint32 ret = 2; //0:成功,1:参数不对 2:蘑菇不足,3:已经购买过,4:配置不对,5段位太低
+	required uint32 itemid = 1; //道具配置id
+}
+
+// msg?c=AskingGift&u=索要玩家id&a=索要玩家账号&itemid=索要的道具id
+message RetAskingGift
+{
+	required uint32 ret = 2; //0:成功,1:参数不对 2:已拥有,3:配置不对,4段位太低
+}
+

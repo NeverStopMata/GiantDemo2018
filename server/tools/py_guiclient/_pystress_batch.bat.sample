@@ -1,0 +1,9 @@
+start python _pystress_main.py --cfg=_pystress_cfg.json
+
+ping 127.0.0.1 -n 3 -w 1000 > nul
+
+start python _pystress_main.py --cfg=_pystress_cfg.json
+
+ping 127.0.0.1 -n 3 -w 1000 > nul
+
+start python _pystress_main.py --cfg=_pystress_cfg.json

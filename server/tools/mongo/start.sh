@@ -1,0 +1,1 @@
+docker run -d -v "$PWD"/db:/data/db -p 27017:27017 mongo

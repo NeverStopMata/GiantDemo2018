@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+<!--兔子-->
+<animal id="1" scale="0.3"/>
+<!--狐狸-->
+<animal id="2" scale="0.32"/>
+<!--猪-->
+<animal id="3" scale="0.34"/>
+<!--猴子-->
+<animal id="4" scale="0.36"/>
+<!--穿山甲-->
+<animal id="5" scale="0.38"/>
+<!--斑马-->
+<animal id="6" scale="0.4"/>
+<!--河马-->
+<animal id="7" scale="0.42"/>
+<!--豹子-->
+<animal id="8" scale="0.44"/>
+<!--鳄鱼-->
+<animal id="9" scale="0.46"/>
+<!--犀牛-->
+<animal id="10" scale="0.48"/>
+<!--狮子-->
+<animal id="11" scale="0.5"/>
+<!--大象-->
+<animal id="12" scale="0.52"/>
+<!--熊猫-->
+<animal id="13" scale="0.54"/>
+
+</config>

@@ -1,0 +1,843 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "0096fdd4-5ac1-40f9-a2ed-51c79ce73728",
+  "title": "bbr_attack",
+  "description": "",
+  "root": "afe51874-4947-43a7-8bf0-6404a799c9b6",
+  "properties": {},
+  "nodes": {
+    "afe51874-4947-43a7-8bf0-6404a799c9b6": {
+      "id": "afe51874-4947-43a7-8bf0-6404a799c9b6",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -312,
+        "y": 144
+      },
+      "children": [
+        "4df2aeca-9ffd-4bba-8b78-776786494487",
+        "cafd1608-e8f5-45bf-9f1b-7875db5fc049"
+      ]
+    },
+    "74696593-7bec-4d77-adca-4634c0543ac7": {
+      "id": "74696593-7bec-4d77-adca-4634c0543ac7",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "在攻击范围内三连击",
+      "properties": {},
+      "display": {
+        "x": 768,
+        "y": -768
+      },
+      "children": [
+        "38c5f3a1-90ff-4088-945a-b61bdef10c70",
+        "5acc0ec1-8c04-4a3d-87bf-cc48151e9be9"
+      ]
+    },
+    "5acc0ec1-8c04-4a3d-87bf-cc48151e9be9": {
+      "id": "5acc0ec1-8c04-4a3d-87bf-cc48151e9be9",
+      "name": "Wait",
+      "title": "Wait <milliseconds>ms",
+      "description": "",
+      "properties": {
+        "milliseconds": 1000
+      },
+      "display": {
+        "x": 936,
+        "y": -744
+      }
+    },
+    "38c5f3a1-90ff-4088-945a-b61bdef10c70": {
+      "id": "38c5f3a1-90ff-4088-945a-b61bdef10c70",
+      "name": "BBCastSkill",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": "",
+      "properties": {
+        "skillid": 100,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 984,
+        "y": -816
+      }
+    },
+    "187179f2-be4c-485d-85c3-f5ab91f785b2": {
+      "id": "187179f2-be4c-485d-85c3-f5ab91f785b2",
+      "name": "Random",
+      "title": "Random",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 624,
+        "y": -756
+      },
+      "children": [
+        "74696593-7bec-4d77-adca-4634c0543ac7",
+        "fecb0753-33ed-43e9-91b4-08b6978a6df0"
+      ]
+    },
+    "fecb0753-33ed-43e9-91b4-08b6978a6df0": {
+      "id": "fecb0753-33ed-43e9-91b4-08b6978a6df0",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 792,
+        "y": -636
+      },
+      "children": [
+        "3589b1dd-203f-45a6-8532-3018e7bc0938",
+        "3680c7a1-0cff-4ae7-ad4f-aff1e131964f"
+      ]
+    },
+    "3589b1dd-203f-45a6-8532-3018e7bc0938": {
+      "id": "3589b1dd-203f-45a6-8532-3018e7bc0938",
+      "name": "BBCastSkill",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": "",
+      "properties": {
+        "skillid": 104,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 1008,
+        "y": -672
+      }
+    },
+    "3680c7a1-0cff-4ae7-ad4f-aff1e131964f": {
+      "id": "3680c7a1-0cff-4ae7-ad4f-aff1e131964f",
+      "name": "Wait",
+      "title": "Wait <milliseconds>ms",
+      "description": "",
+      "properties": {
+        "milliseconds": 1000
+      },
+      "display": {
+        "x": 960,
+        "y": -600
+      }
+    },
+    "4df2aeca-9ffd-4bba-8b78-776786494487": {
+      "id": "4df2aeca-9ffd-4bba-8b78-776786494487",
+      "name": "Priority",
+      "title": "Priority",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -180,
+        "y": -96
+      },
+      "children": [
+        "0b2b7cc4-0e88-48d3-87b5-1ec19dae384f",
+        "010e1e2f-f293-4e51-94c8-ddc54e4bde12"
+      ]
+    },
+    "dc226064-84cd-4303-83fa-789a43f075a5": {
+      "id": "dc226064-84cd-4303-83fa-789a43f075a5",
+      "name": "BBCastSkill",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": "",
+      "properties": {
+        "skillid": 103,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 336,
+        "y": -12
+      }
+    },
+    "ac900eb8-60c7-40e5-8c0f-36fe6ede30b4": {
+      "id": "ac900eb8-60c7-40e5-8c0f-36fe6ede30b4",
+      "name": "BBCastSkill",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": "",
+      "properties": {
+        "skillid": 104,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 324,
+        "y": -168
+      }
+    },
+    "aab12068-0de8-424a-80d3-ebc93d30c1d1": {
+      "id": "aab12068-0de8-424a-80d3-ebc93d30c1d1",
+      "name": "BBCastSkill",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": "",
+      "properties": {
+        "skillid": 100,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 144,
+        "y": 120
+      }
+    },
+    "cafd1608-e8f5-45bf-9f1b-7875db5fc049": {
+      "id": "cafd1608-e8f5-45bf-9f1b-7875db5fc049",
+      "name": "Wait",
+      "title": "Wait <milliseconds>ms",
+      "description": "",
+      "properties": {
+        "milliseconds": 1000
+      },
+      "display": {
+        "x": -60,
+        "y": 288
+      }
+    },
+    "afbbbc1f-40c1-4cae-9501-6c42fde6dd75": {
+      "id": "afbbbc1f-40c1-4cae-9501-6c42fde6dd75",
+      "name": "CheckDis2",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": "",
+      "properties": {
+        "dis": 2,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 324,
+        "y": -72
+      }
+    },
+    "bb311789-f2a2-4cba-9795-cda6a8836a4c": {
+      "id": "bb311789-f2a2-4cba-9795-cda6a8836a4c",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 120,
+        "y": -48
+      },
+      "children": [
+        "afbbbc1f-40c1-4cae-9501-6c42fde6dd75",
+        "dc226064-84cd-4303-83fa-789a43f075a5"
+      ]
+    },
+    "5649ac95-7834-4b32-9763-372582284220": {
+      "id": "5649ac95-7834-4b32-9763-372582284220",
+      "name": "CheckDis2",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": "",
+      "properties": {
+        "dis": 2,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 312,
+        "y": -228
+      }
+    },
+    "b9f7b88c-d178-4a40-9741-1de8d4e7e44f": {
+      "id": "b9f7b88c-d178-4a40-9741-1de8d4e7e44f",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 120,
+        "y": -192
+      },
+      "children": [
+        "5649ac95-7834-4b32-9763-372582284220",
+        "ac900eb8-60c7-40e5-8c0f-36fe6ede30b4"
+      ]
+    },
+    "2757bb25-25eb-4b8a-852a-31f8b6ee21d3": {
+      "id": "2757bb25-25eb-4b8a-852a-31f8b6ee21d3",
+      "name": "CheckDis2",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": "",
+      "properties": {
+        "dis": 0.4,
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 144,
+        "y": 72
+      }
+    },
+    "010e1e2f-f293-4e51-94c8-ddc54e4bde12": {
+      "id": "010e1e2f-f293-4e51-94c8-ddc54e4bde12",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -60,
+        "y": 96
+      },
+      "children": [
+        "2757bb25-25eb-4b8a-852a-31f8b6ee21d3",
+        "aab12068-0de8-424a-80d3-ebc93d30c1d1"
+      ]
+    },
+    "0b2b7cc4-0e88-48d3-87b5-1ec19dae384f": {
+      "id": "0b2b7cc4-0e88-48d3-87b5-1ec19dae384f",
+      "name": "Random",
+      "title": "Random",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -36,
+        "y": -96
+      },
+      "children": [
+        "b9f7b88c-d178-4a40-9741-1de8d4e7e44f",
+        "bb311789-f2a2-4cba-9795-cda6a8836a4c"
+      ]
+    }
+  },
+  "display": {
+    "camera_x": 850,
+    "camera_y": 517,
+    "camera_z": 1,
+    "x": -468,
+    "y": 144
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Log",
+      "category": "action",
+      "title": "Log",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "AttrLimit",
+      "category": "condition",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Rand",
+      "category": "action",
+      "title": "Rand[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnIndex",
+      "category": "action",
+      "title": "TurnIndex[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheakBall",
+      "category": "condition",
+      "title": "CheakBall[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTarget",
+      "category": "action",
+      "title": "TurnTarget[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckEnemyNear",
+      "category": "condition",
+      "title": "CheckEnemyNear",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearPlayer",
+      "category": "condition",
+      "title": "CheckNearPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckBool",
+      "category": "condition",
+      "title": "CheckBool",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CastSkill",
+      "category": "action",
+      "title": "CastSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CancelSkill",
+      "category": "action",
+      "title": "CancelSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TargetAttrLess",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FaceToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindUnitByType",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkFarAwayTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "UseSkill",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkTo",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToPoint",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLessInt",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfTrue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfFalse",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Random",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SetValue",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLess",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondEqualValue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Loop",
+      "category": "composite",
+      "title": "Loop(<maxLoop>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKFindAvoidAngle",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindDeadBody",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMidValue",
+      "category": "decorator",
+      "title": "CondMidValue<index> <min>-<max>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMoreValue",
+      "category": "decorator",
+      "title": "CondMoreValue[<index>]><value>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKSpeedUp",
+      "category": "action",
+      "title": "SNKSpeedUp isOn:<IsOn>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "RandSetValue",
+      "category": "action",
+      "title": "RandSetValue[<StoreIndex>]:[<RandMin>-<RandMax>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKTurnIndex",
+      "category": "action",
+      "title": "SNKTurnIndex<AngleIndex>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondBoolTrue",
+      "category": "decorator",
+      "title": "CondBoolTrue <Index>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SubTree",
+      "category": "action",
+      "title": "SubTree(<treeName>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindNearUnit",
+      "category": "action",
+      "title": "FindNearUnit(<index>,<unitKind>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindAttackTarget",
+      "category": "action",
+      "title": "FindAttackTarget(<index>,<range>)",
+      "properties": {
+        "index": "attackTarget",
+        "range": 4
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearAttackPlayer",
+      "category": "condition",
+      "title": "CheckNearAttackPlayer(<index>)",
+      "properties": {
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTargetPlayer",
+      "category": "action",
+      "title": "TurnTargetPlayer(<index>)",
+      "properties": {
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckDis",
+      "category": "condition",
+      "title": "CheckDis(<index>,<dis>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SendFace",
+      "category": "action",
+      "title": "SendFace(<rand>,<face>)",
+      "properties": {
+        "rand": 100,
+        "face": "emo1,emo2,emo3,emo4,emo5"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SpeedUp",
+      "category": "action",
+      "title": "SpeedUp(<isOn>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "EnemyToAttackTarget",
+      "category": "action",
+      "title": "EnemyToAttackTarget(<index1>, <index2>)",
+      "description": null,
+      "properties": {
+        "index1": "enemy",
+        "index2": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "HpMoreThan",
+      "category": "condition",
+      "title": "HpMoreThan(<rate>)",
+      "description": null,
+      "properties": {
+        "rate": 0.5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Parallel",
+      "category": "composite",
+      "title": "Parallel(<fail_cond>, <succ_cond>)",
+      "properties": {
+        "fail_cond": 0,
+        "succ_cond": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionThrowBall",
+      "category": "action",
+      "title": "ActionThrowBall",
+      "description": "投掷一个球(锤子、炸弹等)\nball_type: 球类型\nspeed: 球移动的速度\nball_skill: 球技能",
+      "properties": {
+        "ball_type": 0,
+        "speed": 0,
+        "ball_skill": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckSkill",
+      "category": "condition",
+      "title": "CheckSkill",
+      "description": "检查角色身上 是否有某技能未开始执行",
+      "properties": {
+        "skillid": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack1",
+      "category": "action",
+      "title": "ActionAttack1",
+      "description": "三段式攻击第一段 - 即普通攻击",
+      "properties": {
+        "skillid": 100
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack2",
+      "category": "action",
+      "title": "ActionAttack2",
+      "description": "三段式攻击 - 第二段",
+      "properties": {
+        "skillid": 101
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack3",
+      "category": "action",
+      "title": "ActionAttack3",
+      "description": "三段式攻击 - 第三段",
+      "properties": {
+        "skillid": 102
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "MoveCtrl",
+      "category": "action",
+      "title": "MoveCtrl(<isOn>)",
+      "description": null,
+      "properties": {
+        "isOn": 1
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "MoveBack",
+      "category": "action",
+      "title": "MoveBack(<index>)",
+      "description": null,
+      "properties": {
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckDis2",
+      "category": "action",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": null,
+      "properties": {
+        "dis": 0,
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "BBCastSkill",
+      "category": "action",
+      "title": "BBCastSkill(<skillid>,<index>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindNearUnit2",
+      "category": "action",
+      "title": "FindNearUnit2(<index>,<unitKind>,<dis>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WaitSkillIdle",
+      "category": "action",
+      "title": "WaitSkillIdle",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnAwayTarget",
+      "category": "action",
+      "title": "TurnAwayTarget(<index>)",
+      "properties": {}
+    }
+  ]
+}

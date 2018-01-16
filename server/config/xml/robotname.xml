@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--国家代号参考国家代号表-->
+<Config>
+	<!--国外列表:日、韩、沙特、泰国、菲律宾、马来西亚、新加坡、印度、美、英、法、瑞典、挪威、-->
+	<!--namedefault:默认采用随机名字库-->
+	<foreign countries="156|36|356|360|392|410|458|608|702" namedefault="36"/>
+	
+	<!--中国-->
+	<rname country="156">
+		<item NameKey="新古龙|球球微信号|黑猫警长|炫斗三国志|叫个鸭子|仙侠世界|大主宰|武极天下|新征途口袋|奥斯卡|骷髅|专治各种不服|小怪兽爱上奥特曼|拿着试卷唱忐忑|对着作业唱算你狠|脸到用时方恨丑|中国辣条协会会长|风吹屁屁凉|丢三丢四不丢你|朕今晚翻你牌子|转让半包辣条|总有刁民想害朕|连起wifi壁咚你|作业你又皮痒了吧 |称霸幼稚园╯▽╰|离我远点我有煞气|感情淡了放盐啊|放弃刷作业的学霸|青春太过潦草う|奥特曼暴打小怪兽|快去做作业|时光会咬人|深巷里的少年与猫i|作业写完了吗|考试结束叫家长|我的作业昨晚失窃了|提啥作业，伤感情|卖得一手好萌|上學只是爲看到妳|作业，我跟你拼了|小賣部坑我們dě錢|正宗纯天然学渣ァ|时光催人老|作业是个不可数名词|蒙牛没我牛|爱丶如履薄冰|作业虐我千百遍T_T|祝作业入土为安|指着心脏说不痛|承诺碎了一地|心之所向便是光|在你的世界我称霸|相見不如懷念|骑着蜗牛找妞|冷言冷语冷坚强|轉角ジ撞到蘠′|那年╮沵笑靥如花|长得丑活得久|心已碎、情已断|含个奶嘴闯天下|城已空, 人已散|你这磨人的小妖精|我对爱情过敏|皇上，这是喜脉啊|ㄡ冇誰會吢疼√|獨愛伱一個ヤ|不过一场少年梦|别看了你帅不过我|谁动朕江山|回不去的年少时光|奈何桥上唱小苹果|人生苦短必须性感|泡八喝九说十话|路还长别猖狂|没有钻石的王老五|施主、你的贞节掉了|星期⑧娶你|你是我的生死劫|别低头除非地上有钱|╰朕赦迩无罪╯|月亮是我踹弯的|拿回忆下酒|别闹快吃药|虎背熊腰小蒸包|露了馅的逗包|拯救地球好累|番茄你个西红柿|喜欢天黑却怕鬼i|国民男神经|纯天然野生帅哥|一岁时就很帅|不帅你报警|萌你一脸血|闹钟你别闹|超人不会飞|掉毛的天使|孟婆，来瓶加多宝|闪耀的电灯泡|剩下的盛夏|哥不帅但很坏|心碎谁买单|数学这货太傲娇|你与氧气平起平坐|╭丅輩孒゛续約つ|画个句号给昨天〃|择一城终老|咿呀咿呀哟~|蛋蛋的忧伤|奥特曼的蛋|下个路口，放狗咬你|1.2.3.木头人|你在我心里迷了路|花样作死冠军|喂，放开那帅比|吃素的蚊子|开启作死模式|奇葩哚哚″向阳开|哎呀，你别闹|一回到家就变乖|总有佞臣想篡位|没对象、省流量|请叫我倍儿坚强|疯人院vip用户|趴下ゝ打劫棒棒糖|若.只如初見|时光偷走初心|娇气的小奶包〆|对着月亮说晚安|时间煮雨我煮饭ペ|流年渲染了谁的容颜|打听幸福的下落|被风吹散の约定|散场的拥抱|丅①站-→幸福|海水是鱼的眼泪√|薄荷糖べ微微凉|贪恋゛迩的温柔≈|半城樱花﹌半城雨|初夏ぃ蔷薇花开|蒲公英dě约定ァ|说好〃不沋伤〆|微笑是莪的保护sè|最美不过初遇见|半夏琉璃ソ空人心|１点点Dē小任性|微微一笑〞醉倾城|自找的痛ぃ何必喊疼|偏偏喜欢迩、|一笑倾城ぃ二笑倾心|說好ㄋ吥見面|花未落丶心已亡|一个人的坚强|半颗糖、也甜入心|╭草编の戒指ㄨ|戒不掉尓の味道ゝ|谁能给我一世安稳|尐哭尐闹尐任性|嘴上逞强丶心里落泪|吃醋是最诚实的告白|爱很短ゝ回忆很长|蝶舞﹌櫻婲落|学不会°淑女范℡|你的名字我的故事|棒棒糖╰つ甜到忧伤|冒泡泡的可乐oοО|柠檬味の妹纸|嘟嘟小嘴卖卖萌|心悦君兮君不知|似水往昔浮流年|朋友以上恋人未满|如果云知道|好菇凉光芒万丈|街角的那只喵|街角dē风铃|跟寂寞和好|指尖落樱舞*^_^*|别吵醒了记忆|陪你走到时光尽头|街角的鸢尾花.|ヅ念祢安好ら|兔囡囡(⌒ω⌒)|街角的祝福|采菇凉的小蘑菇|流年里的余温|执手何须问年华|伊人回眸╮泪倾城|人生若只如初见|安゛若兮|只為遇見妳|冷眸笑红尘|じ此生╮不离不弃|暧昧こ乱人心っ|不一样的烟火|无名指の忧伤|驀然回首°浮生若夢|你是风景也是陷阱|那季花落乱了流年|剧情在美终究是戏|爱的保质期有多久|流泪的冰激淋|爱是含笑饮砒霜|浅笑〃掩不了忧伤|一城柳絮吹成雪|指尖花落、已成殇|心要走丶人难留|这么近那么远|褪sè的旧时光|凉城以北深海未眠|心不动丶则不痛|剩下的盛夏〃|乱了夏末蓝了海|承蒙时光不弃|站在北纬30°想你|国民女神经|遇一人白首|倾一世繁华容颜|倾尽时光暖流年|时光清浅、许你心安|淡若轻风绕指柔|以梦为马爱为花|最熟悉旳陌生人|以你为名伴我入梦|荒了流年碎了梦|遇见你是命中注定|冰是睡着的水|这一季，又一寂|嘟嘟小嘴耍任性|走走停停只为等你|新城已无旧少年|也许幸福它没空|←_←逗你玩|℡隔壁老王|朕好萌|~浪哩个浪|℡坟场作戏|╰→迩芣慬|人来狗往|︶举个栗子|べ醉在风里|爱本无罪|闭眼听风|逆游的鱼|孤岛亡鱼|夏殇|你若成疯|灰烬|时间是蛊|思念成灾|维她命|不忘初心|不如独饮|氧气是你|初心不负|喵了个咪|加载中...99%|哎呀，坏人|喂╮別鬧了|旧忆虐心|後會呒期|戰無不勝|九级心震|胸有大痣|情殇|大梦想家|凉城空巷|思念患者|本人略帅|假装不爱|ωǒ︵吥稀罕|年少如歌|手捧阳光|哽住了喉|明天你好|爱妃接旨|瘋言瘋语|那時年少|叽里呱啦|迩芣慬|莂說丶対罘⑦|人去心空|思钱想厚|1+1≠2|我很孬|『祭·爱』|愛侞涳氣|尾戒|帅dē掉渣|沧笙踏歌|听风说你|指尖dě余温℃|明媚dē忧伤|泪ペ已搁浅|淺笑〃如夏|回忆、褪ㄋsè|画骨成沙|╭萢ㄣ沫|眉间点砂|久念成瘾|┈━═擱淺|﹎泪妆|紫云沫雪|樱の舞|╭※如嫣|浅碎时光|泪已成诗|青衫故人|暖若安阳|單曲囙放|云之遥|心岛未晴|终究是梦|不期而遇|听风挽笑|╭〃陌颜|你别皱眉|暮影微凉|簡單ǒ愛|梨窝浅笑|一念执迷|心安勿忘|自然卷|浅笑安然|半夏时光|枯叶蝶|木槿花|尐蛋卷|鼻涕扭扭|泪痣|岁月安好|錯覺|千城暮雪|﹏So丶泡沫之夏|醉相思|凉夏|浅黛梨妆|木槿花開|木槿暖夏|乱了心|萧萧暮雨|︶浅笑ζ嫣然|静若安然|水墨青杉|青纱挽妆|恋雪|空白|烟花巷陌|繁花、梦影|心凉怎暖|是梦终空|幽竹烟雨|云想衣裳|若有来生|想和你闹|念念不忘|浅暮流殇|任心荒芜|♀淺淺笑|柠夏初开|半盏流年|訫洳訨氺|樱花飞|多啦ā梦|浅夏〆淡殇|ΩωΩ喵喵|ロ觜角よ揚|心悦君兮|清风挽心|陪你听风|墨城烟柳|且聼凨吟|听弦断|陌然浅笑|几许情愁|囚心|盏茶浅抿|心的开始|吢巳丄鎖|盏茶浅抿|心的开始|吢巳丄鎖|靜侯ゞ輪徊|︶︿︶不想长大|〆雨落倾城|べ隨風輕舞" />
+		<item NameKey="吃个球球|毛毛smile|JoooooL|O______O|飞翔|泡泡终结者|胖纸别跑|隔壁王大叔|寂寞好男人|o(*￣▽￣*)ブ|熊独行侠|任性的快车|有品味的龙王|虐清|赵若余|大烧饼nb|北北020223|i东邪|天蝎座_|月神之眸|博女神是我宝贝|TF简单|忆暖情_|Oscar，|青青了|小鱼崽子|Tesiro君|羊剑|十分幽默|looper12|遇见你是不朽|22cm|南瓜阿酱|東眠|请叫我颜博士|娇纵美少女|叙白_|ChinaRose|记得背单词|女神晶|斗鱼糖果主播|噢_逆酱i|QAQ疼疼思密达|偏要放手|难忘_|爱薄荷糖的女孩|孤島_|顾青迟|晨念初梦|初晴c|Minecraft_jc|陌mm|元气呀|伐大神|可爱姐姐_|疯疯枫枫|94222i|香蕉先生ii|挚七|顾缘|ocelot_cyy|无法脱身|夔夔夔夔宝宝|恋丶小米|Panda_du|爱多肉的小菇凉|懒癌少女汪|凯蒂|韩允oba|叶良辰10|myrna|MengSan13|亡遇|祸害苍生y|薄雾胧月光|花花的熊|庐山大瀑布|声声慢|PANPAN1229|不萌大大|时间煮雨add|1个千泷_|Woshi郭碧婷|范小西|Wampire|1个天明_|酸奶鹿七七|女神熙|猫爪小可爱|MQ1314|MQ520|就是水水啊|诗瑶酱噢|二十四桥夜月明|软萌少女林燃|肉肉肉典|T0BU|进击的乔巴|沐如岚|風影|一只西瓜|않는다|55小丸子|权夫人aj|一阿然|Dj_Eason|東呆西萌|啊啊嚏|鲤鱼大大|帅比阿聪|戴wen|Givenchy小红豆|爱人舒|Totry|舒呀|Goddess_Dxy|坂田银时Sama|听风_|可爱猫仙人|仙女晴阿|大白狠抠脚i|木木夕|文文艺|英大侠|Mis杜|Se7en董|下个世纪|冰糖标点|猫咪吃小鱼|止宠|13072158486|i振华|燕凌姣|李da大|小香蕉jj|大众女神c|萌萌哒老糙|ll柠栀|Pangroro|阳阳。|辰ヾ|逆天人渣|RETreat丶露露|一桨寒鱼|大黑天丶|苏格兰关羽|三颗大白菜|陆大大。|帅气zxl|你傻还是我傻|zyl的小囡囡|陪囡囡|淑女靖|小饿狼|糖果朱|MENTHANAM|ferguo|大脸萌Face|人帅就是累|大眼萌Eye|太子妃生直器|Y旋转木马Y|卖萌霖|momomommm|纪允|我是颜值帝|已卸游戏|呦呦奶茶|亦浅|文慌慌|丑态w|药切克闹|一只仓鼠调调|mwj320925|霸道棋|13259472948j|坤坤坤good|Jay醉|浮羽志华|永爱兮|喵喵喵__|回绕记忆|清艳学姐|胡映宇|我是眼镜盒|非洲人卖扣姐|张张张123456|杨嘻嘻屁|eerty89|阿敏_起风了|低调的灑脱|程总带超神|姜小芽|土土baby|大麦茶2333|唤我无言欧尼酱|EdisonXu|温情烈女|雪灬宝|jpgfcc|非肥|南魁|晴晴大魔王|泡泡的肥噜噜|wuli雯宝|追光_|张国荣19|Maaman|蜉蝣Z|piajidiaole|几许宝宝|小小小叶纸|上海8888|heroterryvan|黄瓜战士|西瓜仙女|旧言欢笑|灵魂百度i|1415868764|张全蛋O|超可爱的薯条|喵了个mini|阿鹏70|Q啊萌|小寝|江澈|我是丸子啊|侬夫三拳|柒丶7y|三年怎么够|烙印Mint|灵祭c|跟我回江南|爱白白|青風c|生炸椰子汁|一半澄清的忧伤|oneopondo|呀哒呀哒|舒竹听书|千因栀|郝以良|雨竹听语|七凉柠檬|葡萄你个歌瑞普|橘子你个凹润汁|海绵宝宝hhh|EKU6|爱宝Niko|七年不见的天空|姬如嫣然|Sugar__|Candy__|sweet__|久情涵婷|diudiu1993|嗑瓜子的超超酱|朕三岁030|时间不急慢点走|牛牛包子|还卿|一人i|10th|梓杨丶|小蘑菇0627|万能阿曼|沫已成殇|可爱小恐龙|叹败君|嘿嘿大人|一个果冻|虫子丘比特|我是77哟|小姨妈阿i|琛zi|Somnus欣|诗怀|小杰唲_|耿直的葫芦娃|sangrong|鹿空|夜夜夜夜夜夜Y|野你马楽个鼻|顾忌啊|lee！|小菊花花花_|逗我灬|最帅的王小喵喵|CircleYang|CrrCJEmJ|语中人|陆生1999|looper12|金鱼萌酱sea|流年很乖|小紫灬汐|呜呜呜丶|小菊花诶|凉梦v|小风很萌|ZOU123|卖西瓜的小火柴|ChloeJo|狷狂|岛樱|椿桜|橙橙哥哎|浪骨_|Chang腿老头|稚冷男神|pwy|萌黑呀|一只萌新阿|瞳哞|菜菜ccj|盈盈小可爱|浪浪懒货|灰喵君|吃我就怀孕|铨心铨意too|美凯瑞|神呵呵了|飞哥5|米粒莉|北漂丶|邱邱邱哟|CcccSsssYyyy|LlllXxxxHhhh|茫茜|微微甜|大宜兴|吕安琪|lzy97521|卡布琪诺1997|pretty眠|一丢丢zx|微光o|未央眠|张盐酸|lalalab|大吊州|请叫我颜博士|Mof丶半夏|两点水马|克里斯汀丶|bubblepuuu|bluebluered|清风浮云|Y木槿花Y|厉害的小雨|触手TV丶珞珞|gdpjmdgp|zly694022|世界的初恋|村长哟|路飞飞飞飞i|女神露|招财进宝宝宝|xue96111|帅_比|冥轩i|scratchbao|诺兮i|li0106|寒萧北决|噜噜笨|文文傻|美个屁|泡泡糖请问你|轰你Boom|栀子Flower|龙七呀|毒奶恨霸王太多|MMM丶HJ|小可爱啾|糖果图图|孤岛与你丶|陌路j|岛屿大本命|信仰阿|吉他与烟|梨酱|阿三呀|O哇咔咔_O|啾啾LILI6|金文亮|雨落冰瀧|内田有纪|王太太太|时间shi蛊毒|彼岸倾城|搁浅1234|青岛老白|李慢慢|涵一世|羊少女|可心王|人贩子syk|Enuma|大雷的雪儿|那吉吉|苍衣宝宝|爱薄荷糖的女孩|只是再见|鸭梨吧唧|萌星涵|leonxb|劣性九浪|沧沧沧|伊佐Boy|KevinLiu111102|yanhaodaye|麻里奥|合子2016|RanchoChou|Yuotal|TNMK|54469379ZC|kido444|0怪兽怪兽怪兽0|moooou|tassels_V|六七七七|emonxu|昔去冷雨夜|小骷髅Sun|政默|zjlanne|hello|海绵宝宝吐泡泡|毛毛虫的小弟弟|墨墨黑黑|Candyfloss10|VAECNautumnL|PTOne大米|大呆喵|ybycarl|乌拉里苏|之之之之酱|孟孟大作战|听说你是个宋盼|CuteTheE|shiyijiang|yc23333|任性老羊|没有TP|小乖猪|白猪猪|wangqi8828|无为无为|小孽baby|釷釷|howser|狩魔霸主|jovianzy|马蚤年WiggLe|13559445595|煎包７|vinsliu|sunshine817|寤寐思服l|以西为贝|小心boss|别吃我啦嘤|zy15811330211|浩哥的战斗|美少女ysh|奈奈笙|hyc哈哈哈|萌萌七丶|许韵七|反正人山人海彡|Cindy0924|大白兔奶糖o0|塘桥一枝花|最强王者奶牛|贝锅虾|樱花酱少女|宋闵浩|祝君发财|牛牛发财|蛋蛋发财|danvstcl|懒货儿|方啸龙|芊屿|懒懒的高贵001|范F范|Confused丿|想和你笑丶|小兔子a|淼淼发财|麦麦籽|主宰彬哥i|冬米|咖喱Cc|一个宝宝罢了|YoKozan|King'Mok|吃豆巨人"/>
+	</rname>
+	
+	<!--澳大利亚-->
+	<rname country="36">
+		<item NameKey="Soerensen|Lutzhoeft|Kullenberg|Halgaard|Svendsen|skz|kurandus|fez|athsbane|davio|Parrocel|MusambaN1|Fragmaster|Ryderholm|Sattermon|Orwall|Ekdala|destruct|Titus|ametti|Holyman|reCtor|bloodR|natu|tihOp|NicoustiR|Guardian|apathy|pyro|squad|hades|omiKroN|patyojon|betray|Struggle|stray|pizazz|Formerly|Subsequently|Geek|Archer|Barbed|Garbage|Faded|sake|Esacpe|Sadness|Chowhound|Precipitation|liquor|elemeNt|Mangiacapra|aKuJii|GoodFella|ruloN|Neo|zibi|TAZ|LUq|Yoke|Monologue|Guilty|amoureux|Iraqis|unravel|Nigori|Tattoo|Shouting°|scum|Lethe|Krystal|Ambition|"/>
+	</rname>
+	
+	<!--印度-->
+	<rname country="356">
+		<item NameKey="Soerensen|Lutzhoeft|Kullenberg|Halgaard|Svendsen|skz|kurandus|fez|athsbane|davio|Parrocel|MusambaN1|Fragmaster|Ryderholm|Sattermon|Orwall|Ekdala|destruct|Titus|ametti|Holyman|reCtor|bloodR|natu|tihOp|NicoustiR|Guardian|apathy|pyro|squad|hades|omiKroN|patyojon|betray|Struggle|stray|pizazz|Formerly|Subsequently|Geek|Archer|Barbed|Garbage|Faded|sake|Esacpe|Sadness|Chowhound|Precipitation|liquor|elemeNt|Mangiacapra|aKuJii|GoodFella|ruloN|Neo|zibi|TAZ|LUq|Yoke|Monologue|Guilty|amoureux|Iraqis|unravel|Nigori|Tattoo|Shouting°|scum|Lethe|Krystal|Ambition|"/>
+	</rname>
+	
+		<!--印度尼西亚-->
+	<rname country="360">
+		<item NameKey="Soerensen|Lutzhoeft|Kullenberg|Halgaard|Svendsen|skz|kurandus|fez|athsbane|davio|Parrocel|MusambaN1|Fragmaster|Ryderholm|Sattermon|Orwall|Ekdala|destruct|Titus|ametti|Holyman|reCtor|bloodR|natu|tihOp|NicoustiR|Guardian|apathy|pyro|squad|hades|omiKroN|patyojon|betray|Struggle|stray|pizazz|Formerly|Subsequently|Geek|Archer|Barbed|Garbage|Faded|sake|Esacpe|Sadness|Chowhound|Precipitation|liquor|elemeNt|Mangiacapra|aKuJii|GoodFella|ruloN|Neo|zibi|TAZ|LUq|Yoke|Monologue|Guilty|amoureux|Iraqis|unravel|Nigori|Tattoo|Shouting°|scum|Lethe|Krystal|Ambition|"/>
+	</rname>
+	
+		<!--日本-->
+	<rname country="392">
+		<item NameKey="終わらない夢|ひぁかあ|ゆきな|ィんgふでびあ|耳を倾|けて季节の花|空に飛んでいく|すずらん|ほもの|悲しい心|すずみ|残忍な悲しい结末|しはる|みゆき|なつこ|風のように|风をした|ふりをしている|プリンセス|じょうわ|せいしゅん|はつこい|あなたが见つからない|うてん|ひんしゅく|ハグ|なくすことのかつて|花咲き乱れ|あなた|など|别れ|何も言うことない|いじ|おうじゃ|ロマンチック|のが|ちょうあい|やさしい|笑いと目を|爱のために|もつれ|ニコチン|ぽつねんとした姿|さようなら|ぜいたく鬼|心が厳しくなっ|何もない|シンデレラ|くち|きずな|リトルエンジェルス|そこには爱がある|アビス|ストーリー|旧ゴーストタウン|私に口づけをしてください|めそめそ负けること|ホッと|ケア|タバコの臭いが|あなたはどこにいる|うそ|一度です|あの日からあなたを思う|あなたのすべての古い恋人|私はあなたの愛と心で|人はいつも目の時だ|無緒|白い菖蒲と凧|月の上の孤独な恋人|あなたはずっと私の心の中の急所|随云消風になって|素人花あなた|相思のために|字を煮る薬|今のあなたは過ごしやすいかどうか|私は夢と隣り合わせになって|あなたに季節の風のバラ|ぼんやりと街燈の角|あなたが恋しい思いの中でもがく|彼女の故郷|平凡の付き添うことほど|両方で向かい合っている|恐ろしい疑い深い癖|言わない愛|あなたに会いたくない見て眉ロック|貴方は誰を殘さない|綜漫|心の中に住んでいる|無人の境|滯在|蝶の肋骨|愛と好きは区別がある|人は孤独を好む|木登り|毎日が怒る時の知能指数は0|塗炭の苦しみを思い出したくない愛の|顧遅れ|長いないで"/>
+	</rname>
+	
+		<!--韩国-->
+	<rname country="410">
+		<item NameKey="집합단수명사|단수명사|접속사|불가산명사|복수|고유명사|가변명사|감탄사|조동사|한정사|호격명사|집합|불멸의찜빵 |하늘들어|그것|딸ㄱl맛|릴리|사랑한다|접속사|우지파춘야|우주의|가벼운|여름향기|겨울|재스민빙남|내|만남의|내가|사랑의|영난|내가|얼음이없는|종○l|때때로!|키요|미러|생활|오른쪽|싱크대|포기해|모호한|기수|당신이|장소|혼란마음|미러월드|기수|릴리종소리|하늘들어|우주의작은별|장소느낌|때때로|우지파춘야|장소느낌|우지파춘야|불멸의찜빵|사랑한다|재스민빙남|딸ㄱl맛샴푸|내삶을결정한다|서수|사랑의얼음-멩|만남의죽음|생활사건|키요타카|오른쪽측면|길이밤휘장|내가행하는것이곧|부정|내가행하는것이곧|얼음이없는레몬슬라이스|접속사|당신이가자|영난파스타|눈웃음|사실|아름다운|당신은|닿지않는다|간단하다|소녀|남자|모든|가끔|옳고|울지|허락|서서히|추억|사랑|사랑해요|사랑을|아마|내가|떠나가다|우리사랑|족쇄|작은정서|잊포옹"/>
+	</rname>
+	
+		<!--马来西亚-->
+	<rname country="458">
+		<item NameKey="YoKozan|King'Mok|Cindy0924|CuteTheE|shiyijiang|yc23333|Jack|Rose|Rodman|Flowers|Lilei|Candy|Honey|Sevar|Kediraria|Taekon|Onalithien|Paewin|Daulian|Adwomach|Zoerien|Mirielith|Thulian|Piemond|Yirarwen|Acendamond|Aseissi|Ybugan|Olerrasien|Auhan|Ethendarien|Crerath|Aelinna|Galilap|Qaren|Gwaliw|Ybausien|Qigoc|Craleniel|Carol|Cherry|Christine|Clara|Cora|Dana|Elsa|Emma|Elva|Tommy|Rikey|Poss|Tomato|Nash|Ben|Chad"/>
+	</rname>
+	
+		<!--菲律滨-->
+	<rname country="608">
+		<item NameKey="YoKozan|King'Mok|Cindy0924|CuteTheE|shiyijiang|yc23333|Jack|Rose|Rodman|Flowers|Lilei|Candy|Honey|Sevar|Kediraria|Taekon|Onalithien|Paewin|Daulian|Adwomach|Zoerien|Mirielith|Thulian|Piemond|Yirarwen|Acendamond|Aseissi|Ybugan|Olerrasien|Auhan|Ethendarien|Crerath|Aelinna|Galilap|Qaren|Gwaliw|Ybausien|Qigoc|Craleniel|Carol|Cherry|Christine|Clara|Cora|Dana|Elsa|Emma|Elva|Tommy|Rikey|Poss|Tomato|Nash|Ben|Chad"/>
+	</rname>
+
+			<!--新加坡-->
+	<rname country="702">
+		<item NameKey="YoKozan|King'Mok|Cindy0924|CuteTheE|shiyijiang|yc23333|Jack|Rose|Rodman|Flowers|Lilei|Candy|Honey|Sevar|Kediraria|Taekon|Onalithien|Paewin|Daulian|Adwomach|Zoerien|Mirielith|Thulian|Piemond|Yirarwen|Acendamond|Aseissi|Ybugan|Olerrasien|Auhan|Ethendarien|Crerath|Aelinna|Galilap|Qaren|Gwaliw|Ybausien|Qigoc|Craleniel|Carol|Cherry|Christine|Clara|Cora|Dana|Elsa|Emma|Elva|Tommy|Rikey|Poss|Tomato|Nash|Ben|Chad"/>
+	</rname>
+	
+</Config>

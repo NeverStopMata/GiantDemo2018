@@ -1,0 +1,74 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "a2335de4-1140-4695-899a-3751f2925c0c",
+  "title": "skill_103",
+  "description": "",
+  "root": "512029c9-8192-4c07-8d07-19c3d58e8daf",
+  "properties": {
+    "skillid": 103,
+    "skillcost": 5
+  },
+  "nodes": {
+    "512029c9-8192-4c07-8d07-19c3d58e8daf": {
+      "id": "512029c9-8192-4c07-8d07-19c3d58e8daf",
+      "name": "CompositeSkillMemSeq",
+      "title": "CompositeSkillMemSeq",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 48,
+        "y": -12
+      },
+      "children": [
+        "b64e3dd4-9989-421e-bcef-78711b4d2708"
+      ]
+    },
+    "b64e3dd4-9989-421e-bcef-78711b4d2708": {
+      "id": "b64e3dd4-9989-421e-bcef-78711b4d2708",
+      "name": "ActionThrowBall",
+      "title": "ActionThrowBall",
+      "description": "投掷一个球(锤子、炸弹等)\nball_type: 球类型\nspeed: 球移动的速度\nball_skill: 球技能",
+      "properties": {
+        "ball_type": 31,
+        "speed": 0.2,
+        "ball_skill": 105
+      },
+      "display": {
+        "x": 300,
+        "y": -12
+      }
+    }
+  },
+  "display": {
+    "camera_x": 455.5,
+    "camera_y": 306,
+    "camera_z": 1,
+    "x": -132,
+    "y": -12
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionThrowBall",
+      "category": "action",
+      "title": "ActionThrowBall",
+      "description": "投掷一个球(锤子、炸弹等)\nball_type: 球类型\nspeed: 球移动的速度\nball_skill: 球技能",
+      "properties": {
+        "ball_type": 0,
+        "speed": 0,
+        "ball_skill": 0
+      }
+    }
+  ]
+}

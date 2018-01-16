@@ -1,0 +1,111 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "3019b466-e98a-49bb-884c-8b1f80e69f07",
+  "title": "gethit_200",
+  "description": "",
+  "root": "67ba41ae-6b74-4cfe-9ee5-63fc77ea9590",
+  "properties": {
+    "skillid": 200
+  },
+  "nodes": {
+    "67ba41ae-6b74-4cfe-9ee5-63fc77ea9590": {
+      "id": "67ba41ae-6b74-4cfe-9ee5-63fc77ea9590",
+      "name": "CompositeSkillMemSeq",
+      "title": "CompositeSkillMemSeq",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -96,
+        "y": 12
+      },
+      "children": [
+        "3b8b223f-c351-4f87-bede-b206676dfeab",
+        "03aac1e3-2cdf-49bb-8c8c-5d6e6db6744f"
+      ]
+    },
+    "3b8b223f-c351-4f87-bede-b206676dfeab": {
+      "id": "3b8b223f-c351-4f87-bede-b206676dfeab",
+      "name": "ActionMoveLine",
+      "title": "ActionMoveLine",
+      "description": "直线移动\nd: 在n中帧移动的距离\ndir_type: \n  1朝玩家方向\n  2从黑板中，source_pos_x、source_pos_y与自己的圆心确定",
+      "properties": {
+        "d": 0.8,
+        "n": 4,
+        "dir_type": 2
+      },
+      "display": {
+        "x": 156,
+        "y": 12
+      }
+    },
+    "03aac1e3-2cdf-49bb-8c8c-5d6e6db6744f": {
+      "id": "03aac1e3-2cdf-49bb-8c8c-5d6e6db6744f",
+      "name": "ActionNextSceneRander5",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 1
+      },
+      "display": {
+        "x": 180,
+        "y": 72
+      }
+    }
+  },
+  "display": {
+    "camera_x": 610,
+    "camera_y": 329.5,
+    "camera_z": 1,
+    "x": -288,
+    "y": 12
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "DecoratorRepeater",
+      "category": "decorator",
+      "title": "DecoratorRepeater <maxLoop>x",
+      "description": "重复 maxLoop 次, 每一个Tick执行一次。",
+      "properties": {
+        "maxLoop": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionMoveLine",
+      "category": "action",
+      "title": "ActionMoveLine",
+      "description": "直线移动\nd: 在n中帧移动的距离\ndir_type: \n  1朝玩家方向\n  2从黑板中，source_pos_x、source_pos_y与自己的圆心确定",
+      "properties": {
+        "d": 0,
+        "n": 0,
+        "dir_type": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 1
+      }
+    }
+  ]
+}

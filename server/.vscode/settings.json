@@ -1,0 +1,12 @@
+{
+    "goproject.projects": [
+        {
+            "project_dir":"src/roomserver",     //指定一个项目目录 绝对路径或相对打开目录（使用工作区时相对工作区目录）
+            "build_outdir":"bin/",  //指定编译输出目录 绝对路径或相对打开目录（使用工作区时相对工作区目录）
+            "run_args":"",           //运行参数
+            "run_delay":10000
+        }
+
+    ],
+    "go.gopath": "E:\\work\\mope\\server"
+}

@@ -1,0 +1,442 @@
+syntax = "proto2";
+
+package usercmd;
+
+enum CmdType {
+	Login          = 1;  // 登录
+	TSerUserNum    = 2;  // 组队人数
+	ChkReLogin     = 3;  // 检查重复登录
+	S2S            = 6;  // 转发给服务器
+	InviteList     = 8;  // 队伍列表
+	DelTeamList    = 9;  // 队伍中删除
+	DoTeamInv      = 10; // 处理队伍邀请
+	LChangeName    = 11; // 玩家改名
+	LStartGame     = 12; // 加入游戏
+	LJoinTeam      = 13; // 加入队伍
+	LInviteGame    = 14; // 邀请加入游戏
+	TSendNotice    = 15; // 发送公告
+	MemInvite      = 16; // 队员邀请
+	AddRoom        = 17; // 添加房间
+	RemoveRoom     = 18; // 删除房间
+	UpdateRoom     = 19; // 更新房间
+	EndGame        = 20; // 结束闪电战
+	UpdateServer   = 21; // 更新人数
+	LoadConfig     = 22; // 动态加载配置
+	GetMLevel      = 23; // 请求匹配规则
+	UpdateMLevel   = 24; // 更新匹配规则
+	UpdateTMatchs  = 25; // 更新匹配表
+	TRoomTeamList  = 26; // 房间队伍列表
+	TRoomInvite    = 27; // 房间邀请
+	TDoRoomInvite  = 28; // 处理邀请
+	TRChgName      = 29; // 修改名字
+	TChangeTeam    = 30; // 修改队伍
+	TSetTeamName   = 31; // 修改队伍名
+	TJoinTRoom     = 32; // 加入房间
+	TDoDelUser     = 33; // 删除玩家
+	TJoinTTRoom    = 34; // 中途中加入
+
+	WatcherServerReg = 100;//观看服务器注册
+	AddWatcherServer = 101;//通知观看服务器新建观看房间
+	WatcherRoomEnd   = 102;//观看房间结束
+	UpdateBanLimit   = 103;//更新黑名单大小限制
+	UpdateBanBarrageTTL = 104;//更新禁言时间
+	UpdateWathcerNum = 105;//更新观战人数限制
+	
+	MgrLogin          = 201;  // MGR登录
+	MgrAdd            = 202;  // 节点加入集群
+	MgrOtherLogin     = 203;  // 其他节点登录
+};
+
+
+
+message ReqUpdateBanLimit
+{
+	required int32 BanLimit = 1;//黑名单个数限制
+}
+
+// 服务器间连接验证
+message ReqServerLogin {
+	required string Address = 1; // 外网连接的地址
+	required string Key     = 2; // 验证密钥
+	required uint32 SerType = 3; // 服务器名(room/team)
+	optional string WAddress= 4; // 内网连接的观看地址
+}
+
+// 返回验证结果和id
+message RetServerLogin {
+	required uint32 Id = 1; // 唯一id
+}
+
+// 更新组队人数
+message ReqTSerUserNum
+{
+	required uint32 UserNum  = 1; // 真实在线
+	required uint32 TUserNum = 2; // 包括超时的
+}
+
+// 重复登录检查
+message ReqCheckRelogin
+{
+	required string Key = 1; // 玩家key
+	required uint64 Id  = 2; // 玩家id
+}
+
+// 转发给其它服的客户端
+message S2SClientCmd
+{
+	required uint32 ServerId = 1; // 服务器id
+	required uint64 UserId   = 2; // 玩家id
+	required uint32 Flag     = 3; // 压缩标识
+	required bytes Data      = 4; // 数据
+}
+
+// 转发给其它服
+message S2SCmd
+{
+	required uint32 ServerId = 1; // 服务器id
+	required uint32 Flag     = 2; // 压缩标识
+	required bytes Data      = 3; // 数据
+}
+
+// 转发给其它服
+message S2STypeCmd
+{
+	required uint32 Type = 1; // 服务器类型
+	required uint32 Flag = 2; // 压缩标识
+	required bytes Data  = 3; // 数据
+}
+
+// 队伍列表
+message ReqInviteList
+{
+	required uint64 UserId   = 1; // 玩家id
+	required uint64 LeaderId = 2; // 队长id
+}
+
+// 从队伍中删除
+message ReqDelTeamList
+{
+	required uint64 UserId   = 1; // 玩家id
+	required uint64 LeaderId = 2; // 队长id
+}
+
+// 队长处理邀请
+message ReqLeaderDoInv
+{
+	required uint64 UserId   = 1; // 玩家id
+	required string UserName = 2; // 玩家名
+	required uint64 LeaderId = 3; // 队长id
+	required uint32 Options  = 4; // 1同意2拒绝
+	required bool IsNewbie   = 5; // 新手
+	required uint32 InvType  = 8; // 类型
+	required string QrCode   = 9; // 随机二维码
+	required uint32 CNet     = 10; // 网络类型
+}
+
+// 玩家改名
+message ReqLChangeName
+{
+	required uint64 UserId   = 1; // 玩家id
+	required string UserName = 2; // 玩家名
+	required uint64 LeaderId = 3; // 队长id
+}
+
+// 加入游戏
+message ReqLStartGame
+{
+	message MemData
+	{
+		required uint64 Id     = 1; // 玩家id
+		required bool IsNewbie = 2; // 是否新手
+		required uint32 CNet   = 3; // 网络类型
+	}
+	message InvData
+	{
+		required uint64 Id   = 1; // 玩家id
+		required uint32 Time = 2; // 时间
+	}
+	required uint64 UserId   = 1; // 玩家id
+	required uint32 City     = 2; // 城市
+	required uint32 CNet     = 3; // 网络类型
+	repeated MemData MemIds  = 4; // 队员列表
+	repeated InvData InvIds  = 5; // 邀请列表
+	required uint32 THScores = 6; // 团队隐藏分
+}
+
+// 加入队伍
+message ReqLJoinTeam
+{
+	required uint64 UserId = 1; // 玩家id
+	required uint32 RoomId = 2; // 房间id
+	required uint32 CNet   = 3; // 网络类型
+}
+
+// 邀请加入游戏
+message ReqLInviteGame
+{
+	required uint64 UserId = 1; // 玩家id
+	required uint32 CNet   = 2; // 网络类型
+	required uint32 RoomId = 3; // 房间id
+	required uint32 TeamId = 4; // 队伍id
+	required bool IsNewbie = 5; // 是否新手
+}
+
+// 成员发送邀请
+message ReqMemInvite
+{
+	required uint64 LeaderId    = 1; // 队长id
+	required uint64 InvId       = 2; // 邀请者id
+	required uint32 InvType     = 8; // 邀请类型
+	repeated uint64 FIds        = 9; // 好友列表
+}
+
+// 添加房间
+message ReqAddRoom
+{
+	required uint32 RoomType = 1;
+	required uint32 RoomId   = 2;
+	required uint32 EndTime  = 3;
+	required bool IsCoop     = 4;
+	required uint32 HScores  = 5;
+	required uint32 UnCoop   = 6;
+	optional uint32 Robot    = 7;
+	optional bool   isNew    = 8;  //是否是新手房间
+	optional uint32 SceneId  = 9;//场景id
+	optional uint32 Level    = 10;
+}
+
+// 删除房间
+message ReqRemoveRoom
+{
+	required uint32 RoomType = 1;
+	required uint32 RoomId   = 2;
+}
+	
+// 更新房间
+message ReqUpdateRoom
+{
+	required uint32 RoomType = 1;
+	required uint32 RoomId   = 2;
+	required int32 UserNum   = 3;
+	required int32 UState    = 4;
+	required bool IsCoop     = 5;
+	required uint32 HScores  = 6;
+	optional uint32 Robot    = 7;
+}
+	
+// 结束闪电战
+message ReqEndGame
+{
+	required uint32 RoomId = 1;
+	required uint64 UserId = 2;
+}
+
+// 更新人数
+message ReqUpdateServer
+{
+	required uint32 RoomNum = 1;
+	required uint32 UserNum = 2;
+	optional uint64 WatchedId = 3;//被观战玩家id
+	optional uint32 WatcherNum = 4;//实际观战人数
+	optional uint32 RoomId = 5;//房间id
+}
+
+//更新观战人数限制
+message ReqUpdateWathcerNum
+{
+	required int32 Num = 1;
+}
+
+// 加载配置
+message ReqLoadConfig
+{
+	
+}
+
+// 请求更新匹配规则
+message ReqGetMLevel
+{
+	required uint32 ServerId = 1; // 服务器id
+}
+
+// 返回更新匹配规则
+message RetUpdateMLevel
+{
+	message LeveLData
+	{
+		required uint32 Level   = 1; // 档位
+		required uint32 UserNum = 2; // 人数
+	}
+	required uint32 ServerId = 1; // 服务器id
+	repeated LeveLData Datas = 2; // 段位列表
+}
+
+// 更新配置表
+message RetUpdateTMatchs
+{
+	message TMatchData
+	{
+		required uint32 MinLevel = 1; // 最低档位
+		required uint32 MaxLevel = 2; // 最高档位
+	}
+	required uint32 TotalNum  = 1; // 总人数
+	repeated TMatchData Datas = 2; // 段位列表
+}
+
+// 房间队伍列表
+message ReqTRoomTeamList
+{
+	required uint64 OwnerId = 1;
+	required uint64 UserId  = 2;
+}
+
+// 房间邀请
+message ReqTRoomInvite
+{
+	required uint64 OwnerId = 1;
+	required uint64 UserId  = 2;
+	repeated uint64 UIds    = 3;
+	required uint32 InvType = 4;	
+}
+
+// 处理房间邀请
+message ReqTDoRoomInvite
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+	required string UserName = 3;
+	required uint32 Options  = 4;
+	required uint32 CNet     = 5;
+}
+
+// 房间中修改昵称
+message ReqTRChgName
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+	required string UserName = 3;
+}
+
+// 修改队伍 
+message ReqTChangeTeam
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+	required uint32 NewTId   = 3;
+}
+
+// 修改队伍名
+message ReqTSetTeamName
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+	required uint32 TeamId   = 3; 
+	required string TName    = 4;
+}
+
+// 加入房间
+message ReqTJoinTRoom
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+	required string UserName = 3;
+	required uint64 FriendId = 4;
+	required string Passwd   = 5;
+	required string QrCode   = 6;
+	required uint32 CNet     = 7;
+}
+
+// 删除玩家
+message ReqTDoDelUser
+{
+	required uint64 OwnerId  = 1;
+	required uint64 UserId   = 2;
+}
+
+// 中途加入
+message ReqTJoinTTRoom
+{
+	required uint32 RoomId   = 1; 
+	required uint64 UserId   = 2;
+	required string UserName = 3; 
+	required uint64 FUserId  = 4;
+	required uint32 Priv     = 5;
+	required uint32 CNet     = 6;
+}
+
+
+
+//房间服务器标示符
+message GameRoomInfo {
+	required string Addr = 1;//房间服务器地址
+	required uint32 RoomId = 2;//房间服务器ID
+	optional uint64 UID = 3;//被观战玩家IDs
+}
+
+//观看服务器地址
+message WatcherServerInfo {
+	required string Address = 1;//观看服务器地址
+	optional int32 BanLimit = 2;//弹幕黑名单个数
+	optional int32 BanLimitTTL = 3;//禁言时间
+	optional int32 WatcherLimit = 4;//观战人数限制
+}
+
+message AddNewWatcherServerReq {
+	required string RoomAddress = 1;//游戏房间服务器地址
+	required uint64 Seq = 2;//新建观看房间编号
+}
+
+//--------------------配置管理服务器---------------------------
+// 配置管理服务器服务器间连接验证
+message ReqMgrLogin
+{
+	required string Address 	= 1; // 连接的地址
+	required string Key     	= 2; // 验证密钥
+	required int32 	SerType 	= 3; // 服务器类型
+	required bool 	NeedRetAddr = 4; // 是否需要返回同类型其他节点地址
+}
+
+message RetMgrLogin
+{
+	repeated string AddressList = 1; // 剩余需要连接的地址
+}
+
+// 配置管理服务器服务器间连接验证
+message ReqMgrAdd
+{
+	required string Address 	= 1; // 节点地址
+	required int32 	SerType 	= 2; // 服务器类型
+}
+
+message RetMgrAdd
+{
+}
+
+// 其他节点连接验证
+message ReqMgrOtherLogin {
+	required string Address 	= 1; // 连接的地址
+	required string Key     	= 2; // 验证密钥
+	required int32 	SerType 	= 3; // 服务器类型
+	repeated uint32 ReqTypeList = 4; // 需要分配节点列表
+}
+
+message RetMgrOtherLogin {
+	message AddrData
+	{
+		required int32 SerType	= 1; // 服务器类型
+		required uint32 Addr 	= 2; // 服务器地址
+	}
+	repeated AddrData AddList 	= 1; // 剩余需要连接的地址
+}
+
+message ReqMaintainNotice 
+{
+	optional uint32 year = 1;  	// 时间参数
+	optional uint32 month = 2;
+	optional uint32 day = 3;
+	optional uint32 starthour = 4;
+	optional uint32 startminute = 5;
+	optional uint32 endhour = 6;
+	optional uint32 endminute = 7;
+	optional bool 	flag = 8;
+}

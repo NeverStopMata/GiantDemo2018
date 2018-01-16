@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+<food mapid="1002">
+	<!--id:食物id size:半径大小 mapnum：大地图随机分布数量-->
+	<!--type: 11 食物；12 食物(锤子)； 13 食物(炸弹)； 21 动态障碍物（如名字可以叫木箱之类的）-->
+    <!--type: 31 技能球(锤子)； 32 技能球(炸弹)；-->
+    <!--birthTime: 吃掉后多久刷新，单位秒-->
+	<item id="1" type="11" size="0.1" birthTime="5" mapnum="400"/>
+    <item id="2" type="12" size="0.25" birthTime="10" mapnum="50"/>
+    <item id="3" type="13" size="0.25" birthTime="10" mapnum="50"/>
+	<item id="4" type="14" size="0.25" birthTime="0" mapnum="0"/>
+    <item id="5" type="21" size="0.25" birthTime="5" mapnum="200"/>
+    <item id="31" type="31" size="0.2" birthTime="0" mapnum="0"/>
+    <item id="32" type="32" size="0.2" birthTime="0" mapnum="0"/>
+</food>
+
+</config>

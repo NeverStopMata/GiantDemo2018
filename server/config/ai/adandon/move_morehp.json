@@ -1,0 +1,777 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "e070be8d-26a4-426e-8c1d-0a6698006454",
+  "title": "move_morehp",
+  "description": "",
+  "root": "6cc270a6-f232-46d9-8841-bd44510001c1",
+  "properties": {},
+  "nodes": {
+    "0fa79e3f-1069-4ddf-8e3c-2dad9a2d45f3": {
+      "id": "0fa79e3f-1069-4ddf-8e3c-2dad9a2d45f3",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "rand_move.json"
+      },
+      "display": {
+        "x": 60,
+        "y": 264
+      }
+    },
+    "1bfad076-ff88-4a3a-8c19-cf5001318d92": {
+      "id": "1bfad076-ff88-4a3a-8c19-cf5001318d92",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -72,
+        "y": -96
+      },
+      "children": [
+        "7b31a591-e245-428b-83cb-47ba3d9a76a4",
+        "fd1842a5-d7a4-44d1-b42d-20341ebd9c11",
+        "fde5954a-5d45-4910-87b1-126dab9d1149",
+        "8f45887b-aa36-4aba-96e0-130271512630",
+        "1a6aa173-5c8b-4202-8ed6-9c08a746a5c5",
+        "85a95c59-e57b-4b49-87ab-235533a0398d"
+      ]
+    },
+    "a552a70a-d2e3-4359-ba31-ebcae92ef89f": {
+      "id": "a552a70a-d2e3-4359-ba31-ebcae92ef89f",
+      "name": "SpeedUp",
+      "title": "SpeedUp(<isOn>)",
+      "description": "",
+      "properties": {
+        "isOn": 1
+      },
+      "display": {
+        "x": 504,
+        "y": -132
+      }
+    },
+    "1a6aa173-5c8b-4202-8ed6-9c08a746a5c5": {
+      "id": "1a6aa173-5c8b-4202-8ed6-9c08a746a5c5",
+      "name": "Wait",
+      "title": "Wait <milliseconds>ms",
+      "description": "",
+      "properties": {
+        "milliseconds": 100
+      },
+      "display": {
+        "x": 108,
+        "y": 24
+      }
+    },
+    "85a95c59-e57b-4b49-87ab-235533a0398d": {
+      "id": "85a95c59-e57b-4b49-87ab-235533a0398d",
+      "name": "SpeedUp",
+      "title": "SpeedUp(<isOn>)",
+      "description": "",
+      "properties": {
+        "isOn": 0
+      },
+      "display": {
+        "x": 108,
+        "y": 84
+      }
+    },
+    "6cc270a6-f232-46d9-8841-bd44510001c1": {
+      "id": "6cc270a6-f232-46d9-8841-bd44510001c1",
+      "name": "Priority",
+      "title": "Priority",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -240,
+        "y": 0
+      },
+      "children": [
+        "1bfad076-ff88-4a3a-8c19-cf5001318d92",
+        "77c318eb-882e-4410-a22e-5360ec5983e5",
+        "0fa79e3f-1069-4ddf-8e3c-2dad9a2d45f3"
+      ]
+    },
+    "fd1842a5-d7a4-44d1-b42d-20341ebd9c11": {
+      "id": "fd1842a5-d7a4-44d1-b42d-20341ebd9c11",
+      "name": "CheckNearAttackPlayer",
+      "title": "CheckNearAttackPlayer(<index>)",
+      "description": "",
+      "properties": {
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 192,
+        "y": -300
+      }
+    },
+    "fde5954a-5d45-4910-87b1-126dab9d1149": {
+      "id": "fde5954a-5d45-4910-87b1-126dab9d1149",
+      "name": "TurnTargetPlayer",
+      "title": "TurnTargetPlayer(<index>)",
+      "description": "",
+      "properties": {
+        "index": "attackTarget",
+        "target": "attackTarget"
+      },
+      "display": {
+        "x": 168,
+        "y": -240
+      }
+    },
+    "dce3726a-1e0d-4fc6-ba14-812630206246": {
+      "id": "dce3726a-1e0d-4fc6-ba14-812630206246",
+      "name": "CheckDis",
+      "title": "CheckDis(<index>,<dis>)",
+      "description": "",
+      "properties": {
+        "index": "attackTarget",
+        "dis": 3
+      },
+      "display": {
+        "x": 624,
+        "y": -192
+      }
+    },
+    "0fad45e8-0fe3-48b3-8dc1-5cfed73e5d4b": {
+      "id": "0fad45e8-0fe3-48b3-8dc1-5cfed73e5d4b",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 240,
+        "y": -156
+      },
+      "children": [
+        "573ad570-553c-4f44-85db-cfa6d6835805",
+        "a552a70a-d2e3-4359-ba31-ebcae92ef89f"
+      ]
+    },
+    "573ad570-553c-4f44-85db-cfa6d6835805": {
+      "id": "573ad570-553c-4f44-85db-cfa6d6835805",
+      "name": "Inverter",
+      "title": "Inverter",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 408,
+        "y": -192
+      },
+      "child": "dce3726a-1e0d-4fc6-ba14-812630206246"
+    },
+    "77c318eb-882e-4410-a22e-5360ec5983e5": {
+      "id": "77c318eb-882e-4410-a22e-5360ec5983e5",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "eat_food.json"
+      },
+      "display": {
+        "x": 60,
+        "y": 204
+      }
+    },
+    "8f45887b-aa36-4aba-96e0-130271512630": {
+      "id": "8f45887b-aa36-4aba-96e0-130271512630",
+      "name": "Priority",
+      "title": "Priority",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 72,
+        "y": -132
+      },
+      "children": [
+        "0fad45e8-0fe3-48b3-8dc1-5cfed73e5d4b",
+        "3cc0700b-41c8-4771-8339-78d844e3aca0",
+        "a7cc7f51-a44b-45d7-ba6f-7928c95a7170"
+      ]
+    },
+    "a7cc7f51-a44b-45d7-ba6f-7928c95a7170": {
+      "id": "a7cc7f51-a44b-45d7-ba6f-7928c95a7170",
+      "name": "Succeeder",
+      "title": "Succeeder",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 360,
+        "y": 12
+      }
+    },
+    "7b31a591-e245-428b-83cb-47ba3d9a76a4": {
+      "id": "7b31a591-e245-428b-83cb-47ba3d9a76a4",
+      "name": "MoveCtrl",
+      "title": "MoveCtrl(<isOn>)",
+      "description": "",
+      "properties": {
+        "isOn": 1
+      },
+      "display": {
+        "x": 108,
+        "y": -384
+      }
+    },
+    "3cc0700b-41c8-4771-8339-78d844e3aca0": {
+      "id": "3cc0700b-41c8-4771-8339-78d844e3aca0",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 396,
+        "y": -60
+      },
+      "children": [
+        "68495c3c-6b37-4952-8dd9-621fd10f92f6",
+        "24712004-db4a-414a-8fb5-493bc39b2d84"
+      ]
+    },
+    "24712004-db4a-414a-8fb5-493bc39b2d84": {
+      "id": "24712004-db4a-414a-8fb5-493bc39b2d84",
+      "name": "MoveCtrl",
+      "title": "MoveCtrl(<isOn>)",
+      "description": "",
+      "properties": {
+        "isOn": 0
+      },
+      "display": {
+        "x": 588,
+        "y": -24
+      }
+    },
+    "68495c3c-6b37-4952-8dd9-621fd10f92f6": {
+      "id": "68495c3c-6b37-4952-8dd9-621fd10f92f6",
+      "name": "CheckDis2",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": "",
+      "properties": {
+        "index": "attackTarget",
+        "dis": 0
+      },
+      "display": {
+        "x": 636,
+        "y": -84
+      }
+    }
+  },
+  "display": {
+    "camera_x": 727,
+    "camera_y": 472,
+    "camera_z": 1,
+    "x": -444,
+    "y": 0
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Log",
+      "category": "action",
+      "title": "Log",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "AttrLimit",
+      "category": "condition",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Rand",
+      "category": "action",
+      "title": "Rand[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnIndex",
+      "category": "action",
+      "title": "TurnIndex[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheakBall",
+      "category": "condition",
+      "title": "CheakBall[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTarget",
+      "category": "action",
+      "title": "TurnTarget[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckEnemyNear",
+      "category": "condition",
+      "title": "CheckEnemyNear",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnAwayTarget",
+      "category": "action",
+      "title": "TurnAwayTarget",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearPlayer",
+      "category": "condition",
+      "title": "CheckNearPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckBool",
+      "category": "condition",
+      "title": "CheckBool",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CastSkill",
+      "category": "action",
+      "title": "CastSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CancelSkill",
+      "category": "action",
+      "title": "CancelSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TargetAttrLess",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FaceToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindUnitByType",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkFarAwayTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "UseSkill",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkTo",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToPoint",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLessInt",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfTrue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfFalse",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Random",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SetValue",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLess",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondEqualValue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Loop",
+      "category": "composite",
+      "title": "Loop(<maxLoop>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKFindAvoidAngle",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindDeadBody",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMidValue",
+      "category": "decorator",
+      "title": "CondMidValue<index> <min>-<max>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMoreValue",
+      "category": "decorator",
+      "title": "CondMoreValue[<index>]><value>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKSpeedUp",
+      "category": "action",
+      "title": "SNKSpeedUp isOn:<IsOn>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "RandSetValue",
+      "category": "action",
+      "title": "RandSetValue[<StoreIndex>]:[<RandMin>-<RandMax>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKTurnIndex",
+      "category": "action",
+      "title": "SNKTurnIndex<AngleIndex>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondBoolTrue",
+      "category": "decorator",
+      "title": "CondBoolTrue <Index>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SubTree",
+      "category": "action",
+      "title": "SubTree(<treeName>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindNearUnit",
+      "category": "action",
+      "title": "FindNearUnit(<index>,<unitKind>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindAttackTarget",
+      "category": "action",
+      "title": "FindAttackTarget(<index>,<range>)",
+      "properties": {
+        "index": "attackTarget",
+        "range": 4
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearAttackPlayer",
+      "category": "condition",
+      "title": "CheckNearAttackPlayer(<index>)",
+      "properties": {
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTargetPlayer",
+      "category": "action",
+      "title": "TurnTargetPlayer(<index>)",
+      "properties": {
+        "index": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckDis",
+      "category": "condition",
+      "title": "CheckDis(<index>,<dis>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SendFace",
+      "category": "action",
+      "title": "SendFace(<rand>,<face>)",
+      "properties": {
+        "rand": 100,
+        "face": "emo1,emo2,emo3,emo4,emo5"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SpeedUp",
+      "category": "action",
+      "title": "SpeedUp(<isOn>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "BBCastSkill",
+      "category": "action",
+      "title": "BBCastSkill(<skillid>)",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "EnemyToAttackTarget",
+      "category": "action",
+      "title": "EnemyToAttackTarget(<index1>, <index2>)",
+      "description": null,
+      "properties": {
+        "index1": "enemy",
+        "index2": "attackTarget"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "HpMoreThan",
+      "category": "condition",
+      "title": "HpMoreThan(<rate>)",
+      "description": null,
+      "properties": {
+        "rate": 0.5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Parallel",
+      "category": "composite",
+      "title": "Parallel(<fail_cond>, <succ_cond>)",
+      "properties": {
+        "fail_cond": 0,
+        "succ_cond": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionThrowBall",
+      "category": "action",
+      "title": "ActionThrowBall",
+      "description": "投掷一个球(锤子、炸弹等)\nball_type: 球类型\nspeed: 球移动的速度\nball_skill: 球技能",
+      "properties": {
+        "ball_type": 0,
+        "speed": 0,
+        "ball_skill": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckSkill",
+      "category": "condition",
+      "title": "CheckSkill",
+      "description": "检查角色身上 是否有某技能未开始执行",
+      "properties": {
+        "skillid": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack1",
+      "category": "action",
+      "title": "ActionAttack1",
+      "description": "三段式攻击第一段 - 即普通攻击",
+      "properties": {
+        "skillid": 100
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack2",
+      "category": "action",
+      "title": "ActionAttack2",
+      "description": "三段式攻击 - 第二段",
+      "properties": {
+        "skillid": 101
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionAttack3",
+      "category": "action",
+      "title": "ActionAttack3",
+      "description": "三段式攻击 - 第三段",
+      "properties": {
+        "skillid": 102
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "MoveCtrl",
+      "category": "action",
+      "title": "MoveCtrl(<isOn>)",
+      "description": null,
+      "properties": {
+        "isOn": 1
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckDis2",
+      "category": "action",
+      "title": "CheckDis2(<index>, <dis>)",
+      "description": null,
+      "properties": {
+        "dis": 0
+      }
+    }
+  ]
+}

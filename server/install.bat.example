@@ -1,0 +1,18 @@
+set GOPATH=E:\\mope\\server
+
+go install chatdbserver
+go install chatserver
+go install dbserver
+go install gatewayserver
+go install gmserver
+go install loginserver
+go install mgrserver
+go install qiniuuploadserver
+go install rcenterserver
+go install roomserver
+REM go install -race roomserver
+go install tcenterserver
+go install teamserver
+go install voiceserver
+
+pause

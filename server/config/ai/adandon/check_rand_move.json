@@ -1,0 +1,586 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "d4daa9b9-914c-4733-91c9-733308a5df6d",
+  "title": "check_rand_move",
+  "description": "",
+  "root": "2a7b5a73-29df-41a1-b8c2-bc6055f4a067",
+  "properties": {},
+  "nodes": {
+    "9ea30c95-b440-4ac1-b1c0-ea9700735f63": {
+      "id": "9ea30c95-b440-4ac1-b1c0-ea9700735f63",
+      "name": "CheckBool",
+      "title": "CheckBool",
+      "description": "",
+      "properties": {
+        "keyname": "isStop"
+      },
+      "display": {
+        "x": -924,
+        "y": -900
+      }
+    },
+    "044ae087-7d84-4fc5-a814-9359a1a7e3f4": {
+      "id": "044ae087-7d84-4fc5-a814-9359a1a7e3f4",
+      "name": "Rand",
+      "title": "Rand[<index>]",
+      "description": "随机，结果值设置到index",
+      "properties": {
+        "index": "randAngle",
+        "min": "",
+        "max": 360
+      },
+      "display": {
+        "x": -924,
+        "y": -852
+      }
+    },
+    "f5876cc6-415d-4375-8666-b532af7abd61": {
+      "id": "f5876cc6-415d-4375-8666-b532af7abd61",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "没有移动时，随机一个方向移动",
+      "properties": {},
+      "display": {
+        "x": -1104,
+        "y": -804
+      },
+      "children": [
+        "9ea30c95-b440-4ac1-b1c0-ea9700735f63",
+        "044ae087-7d84-4fc5-a814-9359a1a7e3f4",
+        "16388dc0-d79c-4fe9-b8cd-a0cf06b1df9a",
+        "5dee26e7-23d6-4523-b9fd-d2409e8b345c"
+      ]
+    },
+    "16388dc0-d79c-4fe9-b8cd-a0cf06b1df9a": {
+      "id": "16388dc0-d79c-4fe9-b8cd-a0cf06b1df9a",
+      "name": "TurnIndex",
+      "title": "TurnIndex[<index>]",
+      "description": "转向",
+      "properties": {
+        "index": "randAngle"
+      },
+      "display": {
+        "x": -948,
+        "y": -804
+      }
+    },
+    "5dee26e7-23d6-4523-b9fd-d2409e8b345c": {
+      "id": "5dee26e7-23d6-4523-b9fd-d2409e8b345c",
+      "name": "Wait",
+      "title": "Wait <milliseconds>msfree",
+      "description": "",
+      "properties": {
+        "milliseconds": 3000
+      },
+      "display": {
+        "x": -912,
+        "y": -756
+      }
+    },
+    "aa639cac-0024-4f66-847e-37f3b4769633": {
+      "id": "aa639cac-0024-4f66-847e-37f3b4769633",
+      "name": "CheckBool",
+      "title": "CheckBool",
+      "description": "",
+      "properties": {
+        "keyname": "isStop"
+      },
+      "display": {
+        "x": -876,
+        "y": -852
+      }
+    },
+    "5b6c5a81-4c50-4d68-86ce-0076a9d90c39": {
+      "id": "5b6c5a81-4c50-4d68-86ce-0076a9d90c39",
+      "name": "Rand",
+      "title": "Rand[<index>]",
+      "description": "随机，结果值设置到index",
+      "properties": {
+        "index": "randAngle",
+        "min": "",
+        "max": 360
+      },
+      "display": {
+        "x": -876,
+        "y": -804
+      }
+    },
+    "6ed9e210-b447-4010-ae7b-7869d85c0284": {
+      "id": "6ed9e210-b447-4010-ae7b-7869d85c0284",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "没有移动时，随机一个方向移动",
+      "properties": {},
+      "display": {
+        "x": -1056,
+        "y": -756
+      },
+      "children": [
+        "aa639cac-0024-4f66-847e-37f3b4769633",
+        "5b6c5a81-4c50-4d68-86ce-0076a9d90c39",
+        "a0c4ff3a-102a-450d-adf7-7a0b10736b6d",
+        "98e81f8b-1708-4643-8584-364f87ee6f30"
+      ]
+    },
+    "a0c4ff3a-102a-450d-adf7-7a0b10736b6d": {
+      "id": "a0c4ff3a-102a-450d-adf7-7a0b10736b6d",
+      "name": "TurnIndex",
+      "title": "TurnIndex[<index>]",
+      "description": "转向",
+      "properties": {
+        "index": "randAngle"
+      },
+      "display": {
+        "x": -900,
+        "y": -756
+      }
+    },
+    "98e81f8b-1708-4643-8584-364f87ee6f30": {
+      "id": "98e81f8b-1708-4643-8584-364f87ee6f30",
+      "name": "Wait",
+      "title": "Wait <milliseconds>msfree",
+      "description": "",
+      "properties": {
+        "milliseconds": 3000
+      },
+      "display": {
+        "x": -864,
+        "y": -708
+      }
+    },
+    "2a7b5a73-29df-41a1-b8c2-bc6055f4a067": {
+      "id": "2a7b5a73-29df-41a1-b8c2-bc6055f4a067",
+      "name": "MemSequence",
+      "title": "MemSequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -252,
+        "y": -156
+      },
+      "children": [
+        "651b9ae6-bde8-4a0d-81ca-f273c66e0b6e",
+        "b473c168-75ce-4e41-8bbc-0c770ca37f7c",
+        "154a2ec2-9bd4-4d21-810e-ecab849ffd60",
+        "e6daca47-4e3a-4e6c-8ed9-6f52adaad05c"
+      ]
+    },
+    "b473c168-75ce-4e41-8bbc-0c770ca37f7c": {
+      "id": "b473c168-75ce-4e41-8bbc-0c770ca37f7c",
+      "name": "Rand",
+      "title": "Rand[<index>,<min>,<max>]",
+      "description": "",
+      "properties": {
+        "index": "randAngle",
+        "min": 0,
+        "max": 360
+      },
+      "display": {
+        "x": -36,
+        "y": -228
+      }
+    },
+    "154a2ec2-9bd4-4d21-810e-ecab849ffd60": {
+      "id": "154a2ec2-9bd4-4d21-810e-ecab849ffd60",
+      "name": "TurnIndex",
+      "title": "TurnIndex[<index>]",
+      "description": "",
+      "properties": {
+        "index": "randAngle"
+      },
+      "display": {
+        "x": -36,
+        "y": -156
+      }
+    },
+    "e6daca47-4e3a-4e6c-8ed9-6f52adaad05c": {
+      "id": "e6daca47-4e3a-4e6c-8ed9-6f52adaad05c",
+      "name": "Wait",
+      "title": "Wait <milliseconds>ms",
+      "description": "",
+      "properties": {
+        "milliseconds": 3000
+      },
+      "display": {
+        "x": -48,
+        "y": -84
+      }
+    },
+    "651b9ae6-bde8-4a0d-81ca-f273c66e0b6e": {
+      "id": "651b9ae6-bde8-4a0d-81ca-f273c66e0b6e",
+      "name": "CheckBool",
+      "title": "CheckBool(<keyname>)",
+      "description": "",
+      "properties": {
+        "keyname": "isStop"
+      },
+      "display": {
+        "x": -60,
+        "y": -324
+      }
+    }
+  },
+  "display": {
+    "camera_x": 929,
+    "camera_y": 495,
+    "camera_z": 1,
+    "x": -348,
+    "y": -156
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Log",
+      "category": "action",
+      "title": "Log",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "AttrLimit",
+      "category": "condition",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Rand",
+      "category": "action",
+      "title": "Rand[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnIndex",
+      "category": "action",
+      "title": "TurnIndex[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheakBall",
+      "category": "condition",
+      "title": "CheakBall[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTarget",
+      "category": "action",
+      "title": "TurnTarget[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindNearUnit",
+      "category": "action",
+      "title": "FindNearUnit[<index>]<unitKind>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckEnemyNear",
+      "category": "condition",
+      "title": "CheckEnemyNear",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnAwayTarget",
+      "category": "action",
+      "title": "TurnAwayTarget",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SpeedUp",
+      "category": "action",
+      "title": "SpeedUp",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearPlayer",
+      "category": "condition",
+      "title": "CheckNearPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindAttackTarget",
+      "category": "action",
+      "title": "FindAttackTarget",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearAttackPlayer",
+      "category": "condition",
+      "title": "CheckNearAttackPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTargetPlayer",
+      "category": "action",
+      "title": "TurnTargetPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckBool",
+      "category": "condition",
+      "title": "CheckBool",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SendFace",
+      "category": "action",
+      "title": "SendFace",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CastSkill",
+      "category": "action",
+      "title": "CastSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CancelSkill",
+      "category": "action",
+      "title": "CancelSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TargetAttrLess",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FaceToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindUnitByType",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkFarAwayTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "UseSkill",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkTo",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToPoint",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLessInt",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfTrue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfFalse",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Parallel",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Random",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SetValue",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLess",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondEqualValue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Loop",
+      "category": "composite",
+      "title": "Loop(<maxLoop>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKFindAvoidAngle",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindDeadBody",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMidValue",
+      "category": "decorator",
+      "title": "CondMidValue<index> <min>-<max>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMoreValue",
+      "category": "decorator",
+      "title": "CondMoreValue[<index>]><value>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKSpeedUp",
+      "category": "action",
+      "title": "SNKSpeedUp isOn:<IsOn>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "RandSetValue",
+      "category": "action",
+      "title": "RandSetValue[<StoreIndex>]:[<RandMin>-<RandMax>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKTurnIndex",
+      "category": "action",
+      "title": "SNKTurnIndex<AngleIndex>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondBoolTrue",
+      "category": "decorator",
+      "title": "CondBoolTrue <Index>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SubTree",
+      "category": "action",
+      "title": "SubTree(<treeName>)",
+      "description": null,
+      "properties": {}
+    }
+  ]
+}
