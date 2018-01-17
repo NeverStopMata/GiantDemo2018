@@ -1,0 +1,350 @@
+syntax = "proto2";
+
+package usercmd;
+
+enum ChatCmd 
+{
+	//负载均衡
+    Create          = 1;  // 创建房间
+	Syn				= 2;  // 同步离线储存消息
+	Report			= 3;  // 举报
+	Set				= 4;  // 群设置
+	PersonalSet		= 5;  // 个人设置
+    Friend			= 6;  // 成为互关好友
+	Private			= 7;  // 私聊
+	Power			= 8;  // 权限
+	Close           = 9;  // 房间关闭
+	Error			= 10;  // 返回错误码
+	FansClose       = 21;  // 关闭粉丝聊天
+	WorldChat       = 22;  // 世界聊天(称之为 “附近聊天” 更为合适，实际上是同一个gateway上的玩家聊天)
+	TeamChat        = 23;  // 团战聊天
+
+	//带房间号
+	Delete          = 11;  // 解散房间
+	Join            = 12;  // 加入房间
+	Leave           = 13;  // 离开房间
+	Talk            = 14;  // 群聊
+	Kick			= 15;  // 踢人
+	GetRoom			= 16;  // 获取房间详细信息
+	ChangeName		= 17;  // 修改群名称
+	RedSend			= 18;  // 发红包
+	RedReceive		= 19;  // 领取红包
+	RedSee			= 20;  // 查看红包
+}
+
+// 请求创建聊天房间 --接入
+message ReqChatCreate 
+{
+	message NickName 
+	{
+		required uint64 Id 			= 1; // ID
+		optional string Name 		= 2; //玩家昵称
+	}
+	required int32  Type 	 		= 1; // 房间类型
+	required string Name 	 		= 2; // 房间名称	
+	required uint32 LastTime 		= 3; // 房间结束时间
+	required string OnlyStr 	 	= 4; // 房间比赛记录唯一ID
+	repeated uint64 UserList 		= 5; // 玩家ID列表
+	repeated NickName NickNameList 	= 6; // 玩家昵称列表
+}
+
+message RetChatCreate 
+{
+	message UserDetail 
+	{
+		required uint64 Id 			= 1; // ID
+		required string Account 	= 2; // 账号
+		required uint32 Sex 		= 3; // 性别
+		optional string PassIcon 	= 4; // 头像
+		required uint32 Icon    	= 5; // 图标
+		optional string NickName 	= 6; // 备注
+	}
+	optional string 	RoomId 	 = 1; // 房间ID
+	optional int32  	Type 	 = 2; // 房间类型
+	optional string 	Name 	 = 3; // 房间名称	
+	optional uint32 	EndTime  = 4; // 房间结束时间
+	optional string 	OnlyStr  = 5; // 房间比赛记录唯一ID
+	repeated UserDetail UserList = 6; // 玩家列表
+	optional uint64 	Owner  	 = 7; // 房主ID
+}
+
+// 获取房间详细信息--接入
+message ReqChatChangeName
+{
+	required string RoomId 	= 1; //房间ID
+	required string Name 	= 2; //房间名称	
+}
+
+// 举报--接入
+message ReqChatReport
+{
+	required uint64 Id 		= 1; // 玩家ID
+	required string RoomId 	= 2; // 房间ID
+	required int32 	Type 	= 3; // 举报类型	
+	required string PicUrl 	= 4; // 图片地址	
+}
+
+message RetChatReport
+{
+	required bool Succ 	 	= 1; // 是否成功
+}
+
+// 群设置--接入
+message ReqChatSet
+{
+	required uint64 Id 		= 1; // 玩家ID
+	required string RoomId 	= 2; // 房间ID
+	required int32 	Type 	= 3; // 类型 1置顶2消息免打扰
+	required bool 	IsOpen 	= 4; // 是否开启
+}
+
+message RetChatSet
+{
+	required int32 	Type 	= 1; // 类型 1置顶2消息免打扰
+	required bool 	IsOpen 	= 2; // 是否开启
+}
+
+// 个人设置--接入
+message ReqChatPersonalSet
+{
+	required int32 	Type 	= 1; // 类型 0是否只接受互关好友私聊 1是否开启快捷私聊
+	required bool 	IsOpen 	= 2;
+}
+
+message RetChatPersonalSet
+{
+	required int32 	Type 	= 1; // 类型 0是否只接受互关好友私聊 1是否开启快捷私聊
+	required bool 	IsOpen 	= 2; // 是否开启
+}
+
+// 获取房间详细信息--接入
+message ReqChatGetRoom
+{
+	required string RoomId 	= 1; //房间ID
+}
+
+message RetChatGetRoom 
+{
+	required string 		RoomId 	 = 1; // 房间ID
+	required int32  		Type 	 = 2; // 房间类型
+	optional string 		Name 	 = 3; // 房间名称	
+	optional uint32 		EndTime  = 4; // 房间结束时间
+	optional string 		OnlyStr  = 5; // 房间比赛记录唯一ID
+	repeated MsgChatUser 	UserList = 6; // 玩家列表
+	optional uint64 		Owner  	 = 7; // 房主ID
+	optional bool 			Succ 	 = 8; // 成功失败
+}
+
+// 请求解散聊天房间--接入
+message ReqChatDelete 
+{
+	required string RoomId 	= 1; //房间ID
+}
+
+message RetChatDelete 
+{
+    required string RoomId 	= 1; //房间ID
+}
+
+message MsgChatUser
+{
+	required uint64 Id 			= 1; // ID
+	required string Account 	= 2; // 账号
+	required uint32 Sex 		= 3; // 性别
+	optional string PassIcon 	= 4; // 头像
+	required uint32 Icon    	= 5; // 图标
+	optional string NickName 	= 6; // 玩家昵称
+}
+
+// 请求加入聊天房间--接入
+message ReqChatJoin 
+{
+	required string RoomId 	 = 1; //房间ID
+	repeated uint64 UserList = 2; //玩家ID列表
+}
+
+// 请求离开聊天房间--接入
+message ReqChatLeave 
+{
+	required string RoomId 	 = 1; //房间ID
+}
+
+// 群聊--接入
+message ReqChatTalk
+{
+	required string RoomId 	 = 1; //房间ID
+	required string Text 	 = 2; //内容
+}
+
+message RetChatTalk 
+{
+    required uint64 UserId   = 1; //玩家ID
+	required string RoomId 	 = 2; //房间ID
+	required string Text 	 = 3; //内容 sys=1修改群名称 2踢人 3离开聊天房间 4加入聊天房间 ID|账号|性别|头像|图标|玩家昵称 5成为互关好友 语言ID  6红包 类型;数量;总额;祝福语
+	required uint32 Time 	 = 4; //时间
+	required uint64 TalkId 	 = 5; //聊天ID
+}
+
+// 私聊--接入
+message ReqChatPrivate
+{
+	required uint64 ToUserId = 1; //接收方玩家
+	required uint64 FromUserId = 2;//发送方玩家
+	required string Text 	 = 3; //内容
+	required uint32 TypeId 	 = 4; //私聊类型0互关私聊 1快捷私聊 4粉丝私聊
+}
+
+message UserDetail 
+{
+	optional uint64 Id 			= 1; // ID
+	optional string Account 	= 2; // 账号
+	optional uint32 Sex 		= 3; // 性别
+	optional string PassIcon 	= 4; // 头像
+	optional uint32 Icon    	= 5; // 图标
+	optional uint32 State       = 6;  // 状态 0离线1在线2无限模式,3限时模式
+}
+	
+message RetChatPrivate 
+{
+	required uint64 UserId   = 1;
+	required string Text 	 = 2; //内容
+	required uint32 Time 	 = 3; //时间
+	required uint64 TalkId 	 = 4; //聊天ID
+	required uint32 TypeId 	 = 5; //私聊类型1快捷私聊2关注私聊 4粉丝私聊
+	optional UserDetail ToDetail = 6;//接收方玩家信息
+	optional UserDetail FromDetail = 7;//发送方玩家信息
+}
+
+// 私聊--接入
+message ReqChatFansClose
+{
+	required uint64 ToUserId = 1; //指定发送玩家
+}
+
+message RetChatFansClose 
+{
+    required bool 	Succ 	 = 1; //是否成功
+	required uint64 ToUserId = 2; //指定发送玩家
+}
+// 房间关闭--接入
+message RetChatClose 
+{
+	required string RoomId 	 = 1; //房间ID
+}
+
+// 返回统一错误码
+message RetChatError
+{
+	required uint32 RetCode = 1; // 错误码
+}
+
+// 踢人--接入
+message ReqChatKick
+{
+	required string RoomId 	 	= 1; //房间ID
+	repeated uint64 UserIdList 	= 2; //被踢玩家ID列表
+}
+
+// 成为互关好友--接入
+message ReqChatFriend
+{
+	required uint64 ToUserId = 1; //好友ID
+}
+
+message MsgChatSynSet
+{
+	required string RoomId		= 1; //房间ID
+	required uint64 UserId 		= 2; //玩家ID
+	required bool 	Top 		= 3; //置顶
+	required bool 	Disturb 	= 4; //消息免打扰
+}
+
+message MsgChatPersonalSet
+{
+	required bool FriendTalk	= 1; //是否开启互关好友才能聊天
+	required bool QuickTalk		= 2; //是否开启快捷聊天
+	optional bool BatchPush		= 3; //是否开启批量互关推送
+	optional bool UnReadTalk	= 4; //是否开启未读接收消息
+}
+
+message MsgChatTalk 
+{
+	message Talk
+	{
+		required uint64 UserId   = 1; //玩家ID
+		required string Text 	 = 2; //内容
+		required uint32 Time 	 = 3; //时间
+		required uint64 TalkId 	 = 4; //聊天ID
+	}	
+	optional string RoomId 	 = 1; //房间ID
+	optional uint64 UserId 	 = 2; //玩家ID
+	repeated Talk 	Talks 	 = 3; //内容
+}
+
+// 同步离线储存消息--接入
+message ReqChatSyn
+{
+}
+
+message RetChatSyn 
+{
+	repeated uint64 			Rooms 			= 1; // 拥有房间ID列表
+	repeated MsgChatTalk		Talks			= 2; // 聊天信息
+	repeated MsgChatSynSet		Sets			= 3; // 群设置
+	required MsgChatPersonalSet	PersonalSet		= 4; // 个人设置
+	optional uint32 			SendTime 	 	= 5; // 发送时间
+	repeated UserDetail         Detail          = 6; //
+}
+
+// 私聊权限--接入
+message ReqChatPower
+{
+	required uint64 ToUserId 	= 1; //玩家ID
+	required uint32 TypeId 	 	= 2; //私聊类型1快捷私聊2关注私聊
+}
+
+message RetChatPower 
+{
+    required bool Succ   		= 1; //是否有权限
+}
+
+//----------------------------红包--------------------------------
+// 发送红包--接入
+message ReqChatRedSend
+{
+	required string RoomId 	= 1; //接收红包房间ID
+	required uint32 TypeId 	= 2; //类型 1彩豆包 2蘑菇包
+	required uint32 Nums 	= 3; //红包数量
+	required uint32 Total 	= 4; //红包总额
+	required string Text 	= 5; //内容
+}
+
+message MsgRedDetail
+{
+	required uint64 UserId 	= 1; //玩家ID
+	required uint32 Loves 	= 2; //爱心数	
+	required uint32 Time 	= 3; //时间
+}
+
+// 领取红包--接入
+message ReqChatRedReceive
+{
+	required string RoomId 	= 1; //房间ID
+	required uint64 TalkId 	= 2; //聊天ID
+}
+
+// 查看红包--接入
+message ReqChatRedSee
+{
+	required string RoomId 	= 1; //房间ID
+	required uint64 TalkId 	= 2; //聊天ID
+}
+
+message RetChatRedSee
+{
+	required bool 	  	  Succ 		= 1; //是否存在爱心包 false提示已过24小时红包已失效
+	required string 	  RoomId 	= 2; //房间ID
+	required uint64 	  TalkId 	= 3; //聊天ID
+	repeated MsgRedDetail Receives  = 4; //抢到的人列表
+	required uint32 	  EndTime 	= 5; //抢光时间 0表示没抢光
+}

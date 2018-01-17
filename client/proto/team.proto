@@ -1,0 +1,671 @@
+syntax = "proto2";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+option (gogoproto.sizer_all) = true;
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+package usercmd;
+
+enum TeamCmd 
+{
+    Login          = 1;  // 登录
+	FriendList     = 2;  // 好友列表
+	TeamInvite     = 3;  // 队伍邀请
+	DoInvite       = 4;  // 处理队伍邀请
+	InviteList     = 5;  // 返回队伍列表
+	StartGame      = 6;  // 请求开始游戏
+	ChangeName     = 7;  // 玩家改名
+	DissTeam       = 8;  // 解散队伍
+	ErrorCmd       = 9;  // 组队错误码
+	HeartBeat      = 10; // 心跳包
+	JoinTeam       = 11; // 加入队伍游戏
+	SendNotice     = 12; // 发送公告
+	PushMsgCmd     = 13; // 推送消息
+	CreateTeam     = 14; // 创建组队
+	NewbieList     = 15; // 新手列表
+	CreateRoom     = 16; // 创建房间
+	SetRoomData    = 17; // 设置房间
+	RoomTeamList   = 18; // 房间数据
+	RoomInvite     = 19; // 发送邀请
+	DoRoomInvite   = 20; // 回复邀请
+	DissRoom       = 21; // 解散房间
+	RChgName       = 22; // 修改昵称
+	IntoRoom       = 23; // 加入房间
+	ExitRoom       = 24; // 离开房间
+	ChangeTeam     = 25; // 切换队伍
+	SetTeamName    = 26; // 设置队伍名
+	StartRGame     = 27; // 开始游戏
+	TReConnect     = 29; // 自建房间重连数据
+	JoinTRoom      = 30; // 加入自建房间列表
+	JoinUserTeam   = 31; // 加入团战队伍
+	LeaveTeam 	   = 32; // 离开团战队伍
+	TKickUser      = 40; // 自建房间踢人
+	SetTMemPriv    = 43; // 自建房间设置队员权限
+	RandomUserNum  = 45; // 自建房间随机分配人数
+	TeamKickUser   = 46; // 团队模式踢人
+	StopNotice     = 48; // 终止公告
+	MaintainNotice = 49; // 维护公告
+	ChooseSyncTeam = 50; // 选择自动加入
+	WaitTeamList   = 51; // 队伍列表
+	RefreshWaitTeamList = 52; //刷新团战队伍列表
+	RefreshName 	= 53; // 刷新名字
+	
+
+	BReConnect     = 207; // 返回重连
+	AddFriendNotify = 208;  // 添加好友请求
+	PushAgreeFriend = 209;  // 同意添加好友
+	UpdateShake     = 210;  // 更新摇一摇时间
+	AddFollow       = 211;  // 关注好友
+	TeamToGateRoomUserList = 212; // 组队服同步房间人到网关
+	UpdateUserInfo  = 213; // 更新玩家在网关的信息
+}
+
+// 请求登录队伍服务器
+message ReqTeamLogin 
+{
+    required string Name = 1; // 昵称
+    required string Key  = 2; // 验证的密钥
+	optional string ClientVer    = 3; // 客户端版本
+}
+
+// 返回登录成功
+message RetTeamLogin 
+{
+    required uint32 RetCode = 1; // 0登录成功,1邀请按键灰掉
+	optional uint32 RemTime = 2; // 结束时间
+	optional bool Season    = 3; // 是否切换赛季
+}
+
+// 组队统一错误码
+message RetErrorCmd
+{
+	required uint32 RetCode = 1; // 错误码
+	optional uint32 Params  = 2; // 参数
+}
+
+// 心跳包(原样返回)
+message ReqHeartBeat
+{
+}
+
+// 发送公告
+message RetSendNotice
+{
+	message Award
+	{
+		required uint32 GoodId 	= 1; // 道具ID
+		required uint32 Nums 	= 2; // 刷量
+	}
+	required uint32 MsgType 	= 1; // 消息类型1滚屏公告2系统消息3弹出公告
+	required uint32 LastTm  	= 2; // 持续时间(秒)
+	repeated uint32 Params  	= 3; // 参数列表
+	optional string Text  		= 4; // 公告内容
+	repeated Award  Awards  	= 5; // 奖励列表
+	optional uint64 NoticeId 	= 6; // 公告ID
+	optional uint32 STime 		= 7; // 公告发送时间
+	optional uint32 RTime  		= 8; // 间隔频率(秒)
+	optional string TextVer  	= 9; // 内容版本
+}
+
+// 终止公告
+message RetStopNotice
+{
+	required uint32 MsgType 	= 1; // 消息类型1滚屏公告2系统消息3弹出公告
+	required uint64 NoticeId 	= 2; // 公告ID
+}
+
+
+message RetMaintainNotice
+{
+	required uint32 MsgType 	= 1; // 消息类型0:没有公告内容,1滚屏公告2取消滚屏3弹出公告
+	optional string Text  		= 2; // 公告内容
+}
+
+////////////////////////////////// 组队模式 开始 /////////////////////////////////////
+/** 返回创建组队 */
+message RetCreateTeam
+{
+}
+
+/** 请求创建组队 */
+message ReqCreateTeam
+{
+}
+
+/** 返回解散队伍 */
+message RetDissolveTeam 
+{
+}
+
+/** 请求解散队伍 */
+message ReqDissolveTeam 
+{
+}
+
+/** 返回收到邀请信息 */
+message RetTeamInvite
+{
+	required uint64 LeaderId    = 1; // 队长id
+	required string InvName     = 2; // 邀请者名
+	optional uint32 InvIcon     = 3; // 图标
+	optional string InvPassIcon = 4; // 头象
+	optional uint64 InvId       = 5; // 邀请者id
+	optional uint32 InvType     = 6; // 邀请类型 0队长邀请 1队员邀请 2邀请新手 3队长附近的人 4队员附近的人
+}
+
+/** 请求邀请好友 */
+message ReqTeamInvite
+{
+	repeated uint64 Ids     = 1; // 好友id列表
+	optional uint32 InvType = 2; // 邀请类型 0队长邀请 1队员邀请 2邀请新手 3队长附近的人 4队员附近的人
+}
+
+/** 请求回复邀请 */
+message ReqDoInvite
+{
+	required uint64 LeaderId = 1; // 队长id
+	required uint32 Options  = 2; // 1同意2拒绝
+}
+
+/** 加入队长所在的队伍 */
+message ReqJoinUserTeam
+{
+	required uint64 LeaderId = 1; // 队长id
+}
+
+// 请求好友列表
+message ReqOnlineFriendList 
+{
+}
+
+/** 返回好友列表 */
+message RetOnlineFriendList
+{
+	message FriendData
+	{
+		required uint64 Id       = 1;  // 玩家id
+		required string Account  = 2;  // 帐号	
+		required uint32 Icon     = 3;  // 图标	
+		required uint32 Sex      = 4;  // 性别
+		required uint32 State    = 5;  // 状态 
+		optional string PassIcon = 6;  // 头像
+		optional uint32 Level    = 7;  // 段位
+		optional uint32 Scores   = 8;  // 星数
+	}
+	repeated FriendData Players = 1; // 玩家列表
+}
+
+/** 请求邀请列表 */
+message ReqTeamInviteList
+{
+}
+
+/** 返回队伍列表 */
+message RetTeamInviteList
+{
+	message MemberData
+	{
+		required uint64 Id       = 1; // 玩家id
+		required string Account  = 2; // 帐号	
+		required uint32 Icon     = 3; // 图标	
+		required uint32 Sex      = 4; // 性别
+		required string Name     = 5; // 昵称
+		required uint32 State    = 6; // 在线状态 
+		required bool IsLeader   = 7; // 是否队长
+		optional string PassIcon = 8; // 头像
+		optional bool IsNewbie   = 9; // 是否新手true是false否
+		optional uint32 Level 	 = 10;// 段位
+		optional uint32 Scores 	 = 11;// 星星
+	}
+	repeated MemberData Players = 1; // 玩家列表
+	optional string QrCode      = 2; // 二维随机码
+}
+
+// 请求开始游戏
+message ReqStartGame 
+{
+}
+
+// 返回开始游戏
+message RetStartGame 
+{
+    required string Address = 1; // 房间服地址
+	required string Key     = 2; // 验证密钥
+}
+
+message RetRoomUserListToGate
+{
+	optional uint64 teamid  = 1;
+	repeated uint64 userids = 2; // 房间里的人数 
+}
+
+/** 请求改名 */
+message ReqChangeName
+{
+	required string Name = 1; // 新昵称
+}
+
+/** 返回改名成功 */
+message RetChangeName 
+{
+	required uint32 RetCode = 1; // 0成功
+}
+
+message RetRefreshName
+{
+	required uint32 RetCode = 1; // 0成功
+}
+message ReqRefreshName
+{
+	required string Name = 1; // 新昵称
+}
+
+message RetChooseSyncTeam
+{
+	optional bool ChooseType = 1;
+}
+
+/** 请求勾选所有人可加入 */
+message ReqChooseSyncTeam
+{
+	optional bool ChooseType = 1;  	// true:勾选, false:取消勾选
+}
+
+/** 返回请求等待队伍列表 */
+message RetWaitTeamList
+{
+	message TeamData
+	{
+		required uint64 TId    = 1; // 队伍id
+		optional string Name   = 2; // 名字
+		optional string Account = 3;// 队长账号
+		optional uint32 Sex    = 4; // 性别
+		optional uint32 Icon   = 5; // 图标
+		optional string PassIcon = 6; // passicon
+		optional uint32 Level  = 7; // 平均段位
+		optional uint32 Scores = 8; // 
+		optional uint32 MemNum = 9; // 队伍人数
+
+	}
+	repeated TeamData Waitlist = 1;
+}
+/** 请求等待队伍列表 */
+message ReqWaitTeamList
+{
+	optional bool ChangeType = 1; // true:换一批
+}
+
+// 通过房间id加入队伍游戏,返回开始游戏
+message ReqJoinTeamGame 
+{
+	required uint32 RoomId = 1; // 房间id
+}
+
+// 请求新手列表
+message ReqNewbieList
+{
+}
+
+// 返回新手列表
+message RetNewbieList
+{
+	message NewbieData
+	{
+		required uint64 Id       = 1; // 玩家id
+		required string Account  = 2; // 帐号
+		required uint32 Icon     = 3; // 图标
+		required uint32 Sex      = 4; // 性别
+		required string PassIcon = 5; // 头像
+		required uint32 Location = 6; // 位置
+	}
+	repeated NewbieData Players = 1; // 玩家列表
+}
+
+/** 返回离开队伍 */
+message RetLeaveTeam
+{
+}
+
+// 组队踢人
+message ReqTeamKickUser
+{
+	required uint64 Id = 1; // 玩家id
+}
+
+// 返回被踢 (被踢玩家)
+message RetTeamKickUser
+{
+	required uint64 Id = 1; // 被踢者id
+}
+
+////////////////////////////////// 组队模式 结束 /////////////////////////////////////
+
+////////////////////////////////// 自建房间 开始 /////////////////////////////////////
+// 请求创建房间 (返回错误码)
+message ReqCreateRoom
+{
+	required string Name   = 1; // 房间名
+	required uint32 Model  = 2; // 模式 0自由模式 1组队模式 2闪电战模式
+	required uint32 Priv   = 3; // 权限 0只有邀请可以进入 1所有人可以进入 2输入密码可以进入
+	optional string Passwd = 4; // 进入密码
+}
+
+// 返回创建房间
+message RetCreateRoom
+{
+	required uint32 RetCode = 1; // 0成功
+} 
+	
+// 请求设置房间
+message ReqSetRoomData
+{
+	required string Name    = 1; // 房间名
+	required uint32 Model   = 2; // 模式 0自由模式 1组队模式 2闪电战模式
+	required uint32 Priv    = 3; // 权限 0只有邀请可以进入 1所有人可以进入 2输入密码可以进入
+	optional uint32 GTime   = 4; // 游戏时间
+	optional bool CanJoin   = 5; // 是否允许中途加入
+	optional string Passwd  = 6; // 进入密码
+	optional uint32 TeamNum = 7; // 队伍数量
+	optional uint32 MemNum  = 8; // 队伍人数
+}
+
+// 广播房间信息
+message RetSetRoomData
+{
+	required string Name    = 1; // 房间名
+	required uint32 Model   = 2; // 模式 0自由模式 1组队模式 2闪电战模式
+	required uint32 Priv    = 3; // 权限 0只有邀请可以进入 1所有人可以进入 2输入密码可以进入
+	optional uint32 GTime   = 4; // 游戏时间
+	optional bool CanJoin   = 5; // 是否允许中途加入
+	optional uint32 TeamNum = 6; // 队伍数量
+	optional uint32 MemNum  = 7; // 队伍人数
+}
+
+// 请求房间数据
+message ReqRoomTeamList
+{
+}
+
+// 玩家数据
+message UserData
+{
+	optional uint64 UId      = 1; // 玩家id
+	optional string Account  = 2; // 帐号	
+	optional uint32 Icon     = 3; // 图标	
+	optional string PassIcon = 4; // 头像	
+	optional uint32 Sex      = 5; // 性别
+	optional uint32 Level    = 6; // 段位
+	optional uint32 Scores   = 7; // 星数
+	optional string Name     = 8; // 昵称
+	optional uint32 Priv     = 9; // 队员权限 0没权限 1邀请权限
+}
+
+// 返回房间数据
+message RetRoomTeamList
+{
+	message TeamData
+	{
+		required uint32 TId    = 1; // 队伍id
+		optional string Name   = 2; // 队伍名
+		repeated UserData Mems = 3; // 队员列表
+	}
+	required uint64 LeaderId = 1;  // 房主id
+	required string Name     = 2;  // 房间名
+	required uint32 Model    = 3;  // 模式 0自由模式 1组队模式 2闪电战模式
+	required uint32 Priv     = 4;  // 权限 0只有邀请可以进入 1所有人可以进入 2输入密码可以进入
+	repeated TeamData Teams  = 5;  // 队伍列表(团队模式)
+	optional uint32 GTime    = 6;  // 游戏时间
+	optional bool CanJoin    = 7;  // 是否允许中途加入
+	optional uint32 TeamNum  = 8;  // 队伍数量 (组队模式)
+	optional uint32 MemNum   = 9;  // 队伍人数 (组队模式)
+	optional string QrCode   = 10; // 二维随机码
+}
+
+// 请求自建房间邀请
+message ReqRoomInvite
+{
+	repeated uint64 Ids     = 1; // 玩家id列表
+	optional uint32 InvType = 2; // 邀请类型 0队长邀请 1队员邀请 2邀请新手 3队长附近的人 4队员附近的人
+}
+
+// 收到自建房间邀请
+message RetRoomInvite
+{
+	required uint64 LeaderId    = 1; // 房主id
+	optional uint64 InvId       = 2; // 邀请者id	
+	optional string InvName     = 3; // 邀请者名
+	optional uint32 InvIcon     = 4; // 图标
+	optional string InvPassIcon = 5; // 头象
+	optional uint32 InvLevel    = 6; // 等级
+	optional uint32 Model       = 7; // 模式 0自由模式 1组队模式 2闪电战模式
+	optional uint32 InvScores   = 8; // 星
+	optional uint32 InvType     = 11; // 邀请类型 0队长邀请 1队员邀请 2邀请新手 3队长附近的人 4队员附近的人
+}
+
+// 处理自建房间邀请 (返回错误码)
+message ReqDoRoomInvite
+{
+	required uint64 LeaderId = 1; // 队长id
+	required uint32 Options  = 2; // 1同意2拒绝(离开)
+}
+
+// 返回自建房间邀请
+message RetDoRoomInvite
+{
+	required uint32 RetCode = 1; // 0成功
+}
+
+// 请求队长解散房间
+message ReqDissRoom
+{
+}
+
+// 广播解散房间
+message RetDissRoom 
+{
+}
+
+// 请求改名
+message ReqRChgName
+{
+	required string Name = 1; // 新昵称
+}
+
+// 广播改名
+message RetRChgName
+{
+	required uint64 UId  = 1; // 玩家id
+	required string Name = 2; // 新昵称
+}
+
+// 返回加入房间
+message RetIntoRoom
+{
+	required uint32 TeamId  = 1; // 队伍id 0自由
+	required UserData UData = 2; // 玩家数据	
+} 
+	
+// 返回离开房间
+message RetExitRoom
+{
+	required uint32 TeamId = 1; // 队伍id 0自由
+	required uint64 UId    = 2; // 玩家id	
+}
+
+// 请求切换队伍
+message ReqChangeTeam
+{
+	required uint32 OldTId = 1; // 旧队伍id
+	required uint32 NewTId = 2; // 新队伍id	
+	optional uint64 UserId = 3; // 移动玩家ID
+}
+	
+// 广播切换队伍
+message RetChangeTeam
+{
+	required uint32 OldTId = 1; // 旧队伍id
+	required uint32 NewTId = 2; // 新队伍id
+	required uint64 UId    = 3; // 玩家id		
+}
+
+// 设置队伍名
+message ReqSetTeamName
+{
+	required uint32 TeamId = 1; // 队伍id 
+	required string TName  = 2; // 队伍名
+}
+
+// 广播队伍名
+message RetSetTeamName
+{
+	required uint32 TeamId = 1; // 队伍id 
+	required string TName  = 2; // 队伍名
+}
+
+// 请求开始游戏
+message ReqStartRGame
+{
+}
+
+// 返回开始重连
+message RetTReConnect
+{
+	required uint32 Model    = 1; // 模式
+	required string RoomName = 2; // 房间名
+	required uint32 UserNum  = 3; // 总人数
+	required uint32 EndTime  = 4; // 结束时间(秒)
+}
+
+// 请求加入创建房间列表
+message ReqJoinTRoom
+{
+	required uint64 UserId = 1; // 目标玩家id
+	optional string Passwd = 2; // 进入密码
+	optional string QrCode = 3; // 二维随机码
+}
+
+// 请求踢人 (房主)
+message ReqTKickUser
+{
+	required uint64 UId = 1; // 玩家id	
+}
+
+// 返回被踢 (被踢玩家)
+message RetTKickUser
+{
+}
+
+// 请求设置队员权限
+message ReqSetTMemPriv
+{
+	required uint64 UId  = 1; // 玩家id
+	required uint32 Priv = 2; // 队员权限 0没权限 1邀请权限
+}
+
+// 广播设置权限
+message RetSetTMemPriv
+{
+	required uint64 UId  = 1; // 玩家id
+	required uint32 Priv = 2; // 队员权限 0没权限 1邀请权限
+}
+
+// 请求随机分配人数 (返回房间数据)
+message ReqRandomUserNum
+{
+	required uint32 RType = 1; // 1:按顺序填满；2:平均分
+}
+
+////////////////////////////////// 自建房间 结束 /////////////////////////////////////
+
+
+
+
+// 广播改名
+message RetBChgName
+{
+	required uint64 UId  = 1; // 玩家id
+	required string Name = 2; // 新昵称
+}
+
+
+// 返回开始重连
+message RetBReConnect
+{
+	required uint32 RType   = 1; // 1团战 2战队战
+	required uint32 EndTime = 2; // 结束时间(秒)
+	required uint32 RoomId 	= 3; // 房间id
+}
+
+message ReqBReConnect
+{
+}
+
+////////////////////////////////// 战队房间 结束 /////////////////////////////////////
+
+//================
+//	好友系统
+//================
+// 添加好友请求
+message AddFriendRequest
+{
+	required uint64 FromId    = 1;	// 发起请求者userid
+	required string Account   = 2;  // 帐号
+	required uint32 Sex       = 3;  // 性别
+	optional uint32 Age       = 4;  // 年龄
+	required uint32 Icon      = 5;  // 图标
+	required uint32 Location  = 6;  // 位置
+	optional uint32 PrizeCup  = 7;  // 奖杯
+}
+
+//对方已同意添加好友
+message PushAgreeAddFriend
+{
+	required uint64 FriendId  = 1;	// userid
+	required string Account   = 2;  // 帐号
+	required uint32 Sex       = 3;  // 性别
+	optional uint32 Age       = 4;  // 年龄
+	required uint32 Icon      = 5;  // 图标
+	required uint32 Location  = 6;  // 位置
+}
+
+message RetMessageAddFollow
+{
+	optional uint64 FriendId  = 1;	// userid
+	optional string Account   = 2;  // 帐号
+	optional uint32 Sex       = 3;  // 性别
+	optional uint32 Age       = 4;  // 年龄
+	optional uint32 Icon      = 5;  // 图标
+	optional uint32 Location  = 6;  // 位置
+	optional bool   type      = 7;  // 是否互相关注
+	optional string passicon  = 8;
+	optional uint32 status    = 9;
+}
+
+message UpUserMessage
+{
+	optional uint64 userid    = 1;	// userid
+	optional string Account   = 2;  // 帐号
+	optional uint32 Sex       = 3;  // 性别
+	optional uint32 Age       = 4;  // 年龄
+	optional uint32 Icon      = 5;  // 图标
+	optional string passicon  = 6;
+}
+//////////////////////////////////////////////////////////////////////
+
+message RedPointData
+{
+	required uint32 RedType = 1; 	// 红点类型: 1:新加的粉丝
+	optional uint32 RedNum = 2; 	// 显示数量
+	optional bool 	IsShow = 3; 	// 是否显示(true:是, false:否)
+}
+// 推送消息
+message RetPushMsgCmd
+{
+	repeated RedPointData Infos = 1; 	// 红点信息
+}
+
+// 更新摇一摇时间
+message UpdateShakeTime
+{
+};
