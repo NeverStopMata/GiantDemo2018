@@ -1,4 +1,4 @@
-set GOPATH=E:\\GitLab\\mope;E:\\GitLab\\mope\\base;E:\\GitLab\\mope\\server;D:\\gopath
+set GOPATH=E:\\GitLab\\mope;E:\\GitLab\\mope\\base;E:\\GitLab\\mope\\server;D:\\gopath;D:\project\Giant\_DEMO_PROJECT\GiantDemo2018\server
 
 cd src\chatdbserver
 go build -o ..\..\bin\chatdbserver.exe

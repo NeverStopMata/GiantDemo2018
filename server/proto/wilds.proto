@@ -39,7 +39,15 @@ enum MsgTypeCmd {
 	PlayerAnchor      = 504;// 直播消息
 	PlayerUnAnchor    = 505;// 取消直播消息
 	GetPlayerList     = 507;// 拉取本房间玩家列表
+	DoNothing		  = 701;
 };
+
+
+message MsgDoNothing
+{
+	optional uint64 id    = 1; // 参数
+	optional string hello = 2; // 参数
+}
 
 // 返回统一错误码
 message BanBarrageMsg

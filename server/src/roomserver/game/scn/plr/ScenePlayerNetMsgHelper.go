@@ -33,6 +33,16 @@ func (this *ScenePlayerNetMsgHelper) RegCmds() {
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_Move, this.OnNetMove)
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ReLife, this.OnNetReLife)
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ToSpeak, this.OnNetToSpeak)
+	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_DoNothing, this.OnNetDoNothing)
+}
+
+func (this *ScenePlayerNetMsgHelper) OnNetDoNothing(data []byte, flag byte) {
+	op, ok := common.DecodeCmd(data, flag, &usercmd.MsgDoNothing{}).(*usercmd.MsgDoNothing)
+	if !ok {
+		glog.Error("DecodeCmd error: OnNetDoNothing")
+		return
+	}
+	glog.Info("player ", op.Id, " Says ", op.Hello)
 }
 
 //收到玩家消息

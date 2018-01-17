@@ -47,6 +47,12 @@ type Scene struct {
 	Pool                  *MsgPool                    // 球、协议等对象分配池
 	Players               map[uint64]*plr.ScenePlayer // 玩家对象
 	scenePhysic           *physic.ScenePhysic         // 场景物理
+	
+	
+	
+	
+	
+	
 }
 
 // NewSceneAIPlayer = ai.NewSceneAIPlayer

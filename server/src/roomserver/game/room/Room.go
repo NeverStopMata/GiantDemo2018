@@ -136,7 +136,7 @@ func (this *Room) Start() bool {
 	if !atomic.CompareAndSwapInt32(&this.isclosed, -1, 0) {
 		return false
 	}
-
+	glog.Info("hello fucker")
 	// 按大小初始化房间大小
 	this.Scene.Init(this)
 

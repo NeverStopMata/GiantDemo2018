@@ -226,6 +226,7 @@ func DecodeCmd(buf []byte, flag byte, pb proto.Message) proto.Message {
 		mbuff = buf[CmdHeaderSize:]
 	}
 	err := proto.Unmarshal(mbuff, pb)
+
 	if err != nil {
 		glog.Error("[协议] 生成protobuf数据错误 ", err)
 		return nil
