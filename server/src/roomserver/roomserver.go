@@ -123,6 +123,7 @@ func (this *RoomServer) Init() bool {
 func (this *RoomServer) MainLoop() {
 	conn, err := this.roomser.Accept()
 	if err != nil {
+		//glog.Error("roomser not Accept")
 		return
 	}
 	tcptask.NewPlayerTask(conn).Start()

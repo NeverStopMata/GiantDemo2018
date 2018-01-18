@@ -73,6 +73,7 @@ func (this *TcpTask) Stop() bool {
 
 func (this *TcpTask) Start() {
 	if !atomic.CompareAndSwapInt32(&this.closed, -1, 0) {
+		glog.Error(("一开始就错了"))
 		return
 	}
 	glog.Info("[连接] 收到连接 ", this.Conn.RemoteAddr())

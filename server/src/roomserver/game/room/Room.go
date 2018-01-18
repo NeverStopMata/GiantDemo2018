@@ -199,7 +199,7 @@ func (this *Room) Loop() {
 		case <-timeTicker.C:
 			this.IncreaseFrame()
 			this.Scene.Render()
-			//100ms
+			//100ms 4frame一次
 			if tloop%consts.FrameCountBy100MS == 0 {
 				this.Render5()
 			}

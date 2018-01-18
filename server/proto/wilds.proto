@@ -43,6 +43,7 @@ enum MsgTypeCmd {
 };
 
 
+
 message MsgDoNothing
 {
 	optional uint64 id    = 1; // 参数
@@ -111,6 +112,7 @@ message MsgSceneTCP {
 message MsgSceneUDP {
 	repeated BallMove  moves   = 1; // 更新所有球移动
 	required uint32    frame   = 2; // 当前帧
+	repeated uint32    mapDetails   = 3;//更新地图方块的高低
 }
 
 message MsgBindTCPSession {

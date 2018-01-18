@@ -59,7 +59,7 @@ func (this *RCenterClient) Connect() bool {
 	}
 
 	this.Conn = conn
-
+	glog.Info("准备打开room")
 	this.Start()
 
 	if env.Get("global", "useoldwatcher") != "true" && env.Get("room", "wlocal") == "" {

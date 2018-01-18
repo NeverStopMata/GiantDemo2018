@@ -42,7 +42,7 @@ enum MsgTypeCmd {
 	DoNothing		  = 701;
 };
 
-
+// juest for test
 message MsgDoNothing
 {
 	optional uint64 id    = 1; // 参数
@@ -98,7 +98,7 @@ message MsgTop {
 	optional uint32 Rank       = 4; // 自己排名
 	optional uint32 KillNum    = 5; // 自己击杀分数
 }
-
+//返回所有玩家的属性
 message MsgSceneTCP {
 	repeated BallEat   eats    = 1; // 吃的球
 	repeated MsgBall   adds    = 2; // 添加的球
@@ -385,7 +385,9 @@ message MsgPlayerBall {
 	required int32   x     = 5;  // 坐标x
 	required int32   y     = 6;  // 坐标y
     optional int32 angle = 7;  // 球朝向（angle、face是互斥的，优先face。face值为0，使用angle。angle值范围为0-360）
-    optional uint32 face = 8;  // 球朝向的目标球ID(注意是球ID，不是玩家ID)
+	int32 gunLevel;
+	int32 bulletNum;
+	int32 armorLevel;
 }
 
 // 移动数据

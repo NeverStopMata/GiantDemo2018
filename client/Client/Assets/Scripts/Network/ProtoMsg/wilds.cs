@@ -10,6 +10,32 @@
 // Generated from: wilds.proto
 namespace usercmd
 {
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"MsgDoNothing")]
+  public partial class MsgDoNothing : global::ProtoBuf.IExtensible
+  {
+    public MsgDoNothing() {}
+    
+    private ulong _id = default(ulong);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(ulong))]
+    public ulong id
+    {
+      get { return _id; }
+      set { _id = value; }
+    }
+    private string _hello = "";
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"hello", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
+    public string hello
+    {
+      get { return _hello; }
+      set { _hello = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"BanBarrageMsg")]
   public partial class BanBarrageMsg : global::ProtoBuf.IExtensible
   {
@@ -1797,7 +1823,10 @@ namespace usercmd
       PlayerUnAnchor = 505,
             
       [global::ProtoBuf.ProtoEnum(Name=@"GetPlayerList", Value=507)]
-      GetPlayerList = 507
+      GetPlayerList = 507,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"DoNothing", Value=701)]
+      DoNothing = 701
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"SystemMsgType")]

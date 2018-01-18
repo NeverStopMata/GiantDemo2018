@@ -16,11 +16,11 @@ enum MsgTypeCmd {
 	AsyncPlayerAnimal = 14; // 同步玩家形态
 	HeartBeat         = 16; // 心跳包
 	SceneChat	      = 20; // 场景内聊天
-	ActCloseSocket    = 21; //主动退游戏
+	ActCloseSocket    = 21; // 主动退游戏
 	ErrorMsg          = 25; // 错误消息
-	SceneTCP          = 31;  // 更新场景数据(TCP)
-	SceneUDP          = 32;  // 更新场景数据(UDP)
-	BindTCPSession	  = 33;	 // 绑定现有的TCP连接（通过UDPSession发送）
+	SceneTCP          = 31; // 更新场景数据(TCP)
+	SceneUDP          = 32; // 更新场景数据(UDP)
+	BindTCPSession	  = 33;	// 绑定现有的TCP连接（通过UDPSession发送）
 	
 	TeamRankList      = 40; // 队伍排行榜
 	TeamMemPos        = 41; // 队员位置
@@ -36,10 +36,18 @@ enum MsgTypeCmd {
 	ToSpeak           = 37; // 请求抢麦
 	SpeakUser         = 38; // 麦上玩家
 	UpdateTeamInfo    = 77; // 更新队伍消息
-	PlayerAnchor      = 504; // 直播消息
-	PlayerUnAnchor    = 505; // 取消直播消息
-	GetPlayerList     = 507; // 拉取本房间玩家列表
+	PlayerAnchor      = 504;// 直播消息
+	PlayerUnAnchor    = 505;// 取消直播消息
+	GetPlayerList     = 507;// 拉取本房间玩家列表
+	DoNothing		  = 701;
 };
+
+
+message MsgDoNothing
+{
+	optional uint64 id    = 1; // 参数
+	optional string hello = 2; // 参数
+}
 
 // 返回统一错误码
 message BanBarrageMsg

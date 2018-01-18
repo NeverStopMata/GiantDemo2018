@@ -19,6 +19,8 @@ import (
 	"usercmd"
 )
 
+const no_face uint32 = 0
+
 type ScenePlayer struct {
 	MoveHelper                                        // 检查移动消息包的辅助类
 	ScenePlayerViewHelper                             // 玩家视野相关辅助类
@@ -118,7 +120,8 @@ func (this *ScenePlayer) Move(power, angle float64, face uint32) {
 		power = 1 // power恒为1,减少移动同步影响因素
 	}
 	this.Power = power
-	this.Face = face
+	//this.Face = face
+	this.Face = no_face //mata:
 	if power != 0 {
 		this.Angle = angle
 	}
@@ -414,10 +417,13 @@ func (this *ScenePlayer) SendSceneMsg() {
 		this.SendCmd(usercmd.MsgTypeCmd_SceneTCP, msg)
 	}
 
+	//usercmd.MsgSceneUDP.MapDetails
 	if len(Moves) != 0 {
 		msg := &this.msgPool.MsgSceneUDP
 		msg.Moves = Moves
 		msg.Frame = this.GetScene().Frame()
+		var tmp = [256]uint32{0}
+		msg.MapDetails = tmp[:]
 		if this.Sess != nil {
 			// 优先采用可丢包的原生UDP信道发送
 			this.Sess.SendUDPCmd(usercmd.MsgTypeCmd_SceneUDP, msg)

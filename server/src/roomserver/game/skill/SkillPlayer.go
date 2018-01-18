@@ -69,9 +69,9 @@ func (this *SkillPlayer) CastSkill(skillid uint32, targetId uint32) bool {
 
 	if skillid == SKILL_ID_BOMB {
 		if this.player.SelfAnimal.GetAttr(bll.AttrBombNum) == 0 {
-			return false
+			//return false  //mata: no limit of bombNum
 		}
-		this.player.SelfAnimal.SetAttr(bll.AttrBombNum, 0)
+		//this.player.SelfAnimal.SetAttr(bll.AttrBombNum, 0)//mata: never loose ur bomb
 	} else if skillid == SKILL_ID_HAMMER {
 		if this.player.SelfAnimal.GetAttr(bll.AttrHammerNum) == 0 {
 			return false
@@ -81,7 +81,7 @@ func (this *SkillPlayer) CastSkill(skillid uint32, targetId uint32) bool {
 
 	this.nextSkillId = skillid
 	this.nextSkillTargetId = targetId
-	this.player.SetIsRunning(false)
+	//this.player.SetIsRunning(false)
 	return true
 }
 

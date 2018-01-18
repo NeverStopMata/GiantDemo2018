@@ -486,7 +486,7 @@ func (this *FindAttackTarget) OnTick(tick *b3core.Tick) b3.Status {
 		tick.Blackboard.Set(this.index, id, "", "")
 		var currTime int64 = time.Now().UnixNano() / 1000000
 		tick.Blackboard.Set("attackTime", currTime, "", "")
-		//		glog.Info("FindAttackTarget:", player.id, " id:", id)
+		//glog.Info("FindAttackTarget:", player.id, " id:", id)
 		player.Face = id
 		return b3.SUCCESS
 	}
