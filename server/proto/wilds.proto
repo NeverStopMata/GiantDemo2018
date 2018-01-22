@@ -40,10 +40,23 @@ enum MsgTypeCmd {
 	PlayerUnAnchor    = 505;// 取消直播消息
 	GetPlayerList     = 507;// 拉取本房间玩家列表
 	DoNothing		  = 701;
+	ChangeCubeHeight  = 702;//added:
 };
+//added: 玩家按键触发体态的改变，从而改变所在方块的上下位置
+message MsgChangeCubeHeight
+{
+	optional bool UporDown	  = 1; //true:up,false:down
+}
 
 
-
+ //added: 服务器通过MsgSceneUDP这个包，包含该信息，在方块移动过程中实时地告诉客户端某方块仍然需要上/下移的距离
+message CubeReDst 
+{
+	optional uint32 cubeIndex      = 1;//0-255 方块的索引
+	optional uint32 remainDistance = 2;//+1000表示方块需要向上移动1000的距离，1000在服务器端就是一个格子的高度
+									   //-1000表示方块需要向下移动1000的距离，1000在服务器端就是一个格子的高度
+	
+}
 message MsgDoNothing
 {
 	optional uint64 id    = 1; // 参数
@@ -107,12 +120,13 @@ message MsgSceneTCP {
 	repeated HitMsg   hits    = 4;  // 攻击
 	repeated MsgPlayerBall   addPlayers = 5; // 添加的玩家球
 	repeated uint32	   removePlayers = 6; // 删除玩家球
+	
 }
 
 message MsgSceneUDP {
 	repeated BallMove  moves   = 1; // 更新所有球移动
 	required uint32    frame   = 2; // 当前帧
-	repeated uint32    mapDetails   = 3;//更新地图方块的高低
+	repeated CubeReDst changingInf = 3;//added
 }
 
 message MsgBindTCPSession {

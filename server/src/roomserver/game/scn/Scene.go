@@ -31,8 +31,14 @@ import (
 const (
 	MAX_TEAM_NUM      = 5
 	MAX_TEAM_USER_NUM = 5 // 队伍最大人数
+	CUBE_X_NUM        = 16
+	CUBE_Y_NUM        = 16
 )
 
+type Cube struct {
+	state          int
+	remainDistance int
+}
 type Scene struct {
 	SceneBallHelper                                   // 分配球相关的辅助类
 	SceneBirthPointHelper                             // 出生点辅助类
@@ -47,12 +53,8 @@ type Scene struct {
 	Pool                  *MsgPool                    // 球、协议等对象分配池
 	Players               map[uint64]*plr.ScenePlayer // 玩家对象
 	scenePhysic           *physic.ScenePhysic         // 场景物理
-	
-	
-	
-	
-	
-	
+	cubeNum               uint32
+	CubeInf               []*Cube
 }
 
 // NewSceneAIPlayer = ai.NewSceneAIPlayer
@@ -72,6 +74,17 @@ func (this *Scene) Init(room IRoom) {
 	this.LoadMap()
 	for i := 0; i < this.cellNumX*this.cellNumY; i++ {
 		this.cells = append(this.cells, cll.NewCell(i))
+	}
+	for i := 0; i < this.cellNumX*this.cellNumY; i++ {
+		this.cells = append(this.cells, cll.NewCell(i))
+	}
+	//mata:初始化cube表，高度状态都为0，待移动高度都为0
+	this.cubeNum = CUBE_X_NUM * CUBE_Y_NUM
+	for i := uint32(0); i < this.cubeNum; i++ {
+		this.CubeInf = append(this.CubeInf, &Cube{
+			state:          0,
+			remainDistance: 0,
+		})
 	}
 	this.reset()
 }

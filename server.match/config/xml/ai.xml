@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<ai>
+		<initdata>
+			<level id="1">
+				<animal id="1"/>
+			</level>
+			<level id="2">
+				<animal id="5"/>
+			</level>
+		</initdata>
+		<behave>
+			<bev id="1" aifile="player.json"/>
+			<bev id="2" aifile="bbr_fool.json"/>
+			<bev id="3" aifile="bbr_niubility.json"/>
+		</behave>
+		<sc2data>
+			<data id="1"  min="0" max="99" speedrate="0.5"  initdata="1" behave="1,2,3" power="30,18,2"/>
+			<data id="2"  min="100" max="999" speedrate="0.8"  initdata="1" behave="1,2,3" power="30,18,2"/>
+			<data id="3"  min="1000" max="9999" speedrate="1"  initdata="2" behave="1,2,3" power="30,18,2"/>
+		</sc2data>
+	</ai>
+</config>

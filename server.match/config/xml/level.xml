@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+<level mapid="1002">
+	<item id="1" nextexp="5" />
+	<item id="2" nextexp="20" />
+	<item id="3" nextexp="40" />
+	<item id="4" nextexp="60" />
+	<item id="5" nextexp="80" />
+	<item id="6" nextexp="100" />	
+	<item id="7" nextexp="120" />
+	<item id="8" nextexp="140" />
+	<item id="9" nextexp="160" />
+	<item id="10"  nextexp="180" />
+	<item id="11"  nextexp="200" />
+	<item id="12"  nextexp="220" />
+	<item id="13"  nextexp="240" />
+</level>
+</config>

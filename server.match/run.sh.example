@@ -1,0 +1,101 @@
+#!/bin/sh
+
+startwork()
+{
+	#rm -rf /log/*
+	for ((i=1;i<=1;i++))
+	do
+		nohup $PWD/bin/mgrserver -config=./bin/config$i.json &
+		sleep 1
+	done
+	nohup $PWD/bin/timerserver -config=./bin/config.json &
+	nohup $PWD/bin/wcenterserver -config=./bin/config.json &
+	nohup $PWD/bin/geoserver -config=./bin/config.json &
+	nohup $PWD/bin/dbserver -config=./bin/config.json &
+	nohup $PWD/bin/chatdbserver -config=./bin/config.json &
+	nohup $PWD/bin/gmserver -config=./bin/config.json &
+	nohup $PWD/bin/shareserver -config=./bin/config.json &
+	nohup $PWD/bin/voiceserver -config=./bin/config.json &
+	nohup $PWD/bin/presenceserver -config=./bin/config.json &
+
+	sleep 1
+	nohup $PWD/bin/watcherserver -config=./bin/config.json &
+	nohup $PWD/bin/tcenterserver -config=./bin/config.json &
+
+	for ((i=1;i<=1;i++))
+	do
+		nohup $PWD/bin/rcenterserver -config=./bin/config$i.json &
+	done
+
+	#nohup $PWD/bin/presenceserver -config=./bin/config.json &
+
+	sleep 1
+	
+	for ((i=1;i<=1;i++))
+	do
+		nohup $PWD/bin/chatserver -config=./bin/config$i.json &
+	done
+	
+	sleep 1
+
+	for ((i=1;i<=2;i++))
+	do
+		nohup $PWD/bin/loginserver -config=./bin/config$i.json &
+	done
+
+	sleep 1
+
+	for ((i=1;i<=1;i++))
+	do
+		nohup $PWD/bin/teamserver -config=./bin/config$i.json &
+	done
+
+	sleep 1
+
+	for ((i=1;i<=3;i++))
+	do
+		nohup $PWD/bin/roomserver -config=./bin/config$i.json &
+	done
+
+	echo "ps x | grep \"server\""
+	ps x|grep "server"   
+}
+
+stopwork()
+{
+	SERVERLIST='roomserver teamserver loginserver chatserver uploadserver presenceserver wcenterserver rcenterserver scenterserver voiceserver gmserver dbserver watcherserver geoserver shareserver timerserver'
+
+	for serv in $SERVERLIST
+	do
+		echo "stop $serv"
+		ps aux|grep "/$serv"|sed -e "/grep/d"|awk '{print $2}'|xargs kill 2&>/dev/null
+        while test -f run.sh
+        do
+            count=`ps x|grep -w $serv|sed -e '/grep/d'|wc -l`
+            if [ $count -eq 0 ]; then
+                break
+            fi
+            sleep 1
+        done
+	done
+    echo "running server:"`ps x|grep "server -c"|sed -e '/grep/d'|wc -l`
+}
+
+echo "-------------------start-----------------------"
+
+case $1 in
+stop)
+    stopwork
+;;
+start)
+    startwork
+;;
+*)
+    stopwork
+    sleep 1
+    startwork
+;;
+esac
+
+echo "-------------------end-----------------------"
+

@@ -118,3 +118,15 @@ func IsSameDir(dir, pos1, pos2 *Vector2) bool {
 	}
 	return false
 }
+
+func IsSameDirTotally(dir, pos1, pos2 *Vector2) bool {
+	if dir != nil {
+		tmpVec2 := &Vector2{pos1.X - pos2.X, pos1.Y - pos2.Y}
+		tmpVec2.NormalizeSelf()
+		dir.NormalizeSelf()
+		if Dot2D(dir, tmpVec2) > 0.98 {
+			return true
+		}
+	}
+	return false
+}

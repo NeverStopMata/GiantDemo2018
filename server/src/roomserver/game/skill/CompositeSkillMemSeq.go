@@ -26,8 +26,9 @@ func (this *CompositeSkillMemSeq) OnOpen(tick *Tick) {
 
 	// 扣蓝
 	player := tick.Blackboard.Get("player", "", "").(*plr.ScenePlayer)
-	if v, ok := cfg.Properties["skillcost"]; ok {
-		d := int32(v.(float64))
+	if _, ok := cfg.Properties["skillcost"]; ok {
+		//d := int32(v.(float64))
+		d := int32(0)
 		curmp := int32(player.SelfAnimal.GetMP()) - d
 		if d > 0 && curmp >= 0 {
 			player.SelfAnimal.SetMP(float64(curmp))

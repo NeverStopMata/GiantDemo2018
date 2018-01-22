@@ -1,0 +1,25 @@
+{
+    "addr": "127.0.0.1",
+    "port": 8123,
+    "ver": "1.2.0",
+    "login": {
+        "account": "",
+        "password": "",
+        "dev": "4730d114e32c13359a112ce6cc17eebbd2073944",
+        "device": "android",
+        "r": 1,
+        "m": 0
+    },
+    "room": {
+        "scene": 1002,
+		"usedelay": 0,
+		"delaymin": 20,
+		"delaymax": 120,
+		"synctype": 1,
+		"udp_enable":1,
+		"kcp_enable":0,
+		"mouse_move":0
+    },
+    "terrain": "../../config/terrain/",
+    "xml": "../../config/xml/"
+}

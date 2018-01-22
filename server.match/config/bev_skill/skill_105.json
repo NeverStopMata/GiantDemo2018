@@ -1,0 +1,144 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "53deb90b-25b0-45c9-8228-0a5889a7259d",
+  "title": "skill_105",
+  "description": "",
+  "root": "6a70c646-f894-469c-8496-240476a5264b",
+  "properties": {
+    "skillid": 105
+  },
+  "nodes": {
+    "6a70c646-f894-469c-8496-240476a5264b": {
+      "id": "6a70c646-f894-469c-8496-240476a5264b",
+      "name": "CompositeSkillMemSeq",
+      "title": "CompositeSkillMemSeq",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -204,
+        "y": 48
+      },
+      "children": [
+        "5c1b5d6d-adf7-40b8-ad1e-b3bb8b76193c",
+        "a89c4358-40f6-4d4a-91dc-462f17adc071",
+        "dac28637-ab5a-484e-a40c-87d3b94f8055"
+      ]
+    },
+    "2459e4a2-4819-4602-87d7-c4476e6e8ed0": {
+      "id": "2459e4a2-4819-4602-87d7-c4476e6e8ed0",
+      "name": "ActionHammerTryHit",
+      "title": "ActionHammerTryHit",
+      "description": "试图对碰到的玩家造成伤害\nscale：球半径乘以scale 是 球攻击范围\ngethit：目标受击ID",
+      "properties": {
+        "scale": 0,
+        "gethit": 200
+      },
+      "display": {
+        "x": 312,
+        "y": 48
+      }
+    },
+    "5c1b5d6d-adf7-40b8-ad1e-b3bb8b76193c": {
+      "id": "5c1b5d6d-adf7-40b8-ad1e-b3bb8b76193c",
+      "name": "DecoratorRepeater",
+      "title": "DecoratorRepeater <maxLoop>x",
+      "description": "重复 maxLoop 次, 每一个Tick执行一次。",
+      "properties": {
+        "maxLoop": 45
+      },
+      "display": {
+        "x": 60,
+        "y": 48
+      },
+      "child": "2459e4a2-4819-4602-87d7-c4476e6e8ed0"
+    },
+    "dac28637-ab5a-484e-a40c-87d3b94f8055": {
+      "id": "dac28637-ab5a-484e-a40c-87d3b94f8055",
+      "name": "ActionNextSceneRander5",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 1
+      },
+      "display": {
+        "x": 60,
+        "y": 204
+      }
+    },
+    "a89c4358-40f6-4d4a-91dc-462f17adc071": {
+      "id": "a89c4358-40f6-4d4a-91dc-462f17adc071",
+      "name": "ActionBallSkillStopMove",
+      "title": "ActionBallSkillStopMove",
+      "description": "让技能球停止移动",
+      "properties": {},
+      "display": {
+        "x": 60,
+        "y": 132
+      }
+    }
+  },
+  "display": {
+    "camera_x": 610,
+    "camera_y": 329.5,
+    "camera_z": 0.75,
+    "x": -384,
+    "y": 48
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "DecoratorRepeater",
+      "category": "decorator",
+      "title": "DecoratorRepeater <maxLoop>x",
+      "description": "重复 maxLoop 次, 每一个Tick执行一次。",
+      "properties": {
+        "maxLoop": 0
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionBallSkillStopMove",
+      "category": "action",
+      "title": "ActionBallSkillStopMove",
+      "description": "让技能球停止移动",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionHammerTryHit",
+      "category": "action",
+      "title": "ActionHammerTryHit",
+      "description": "试图对碰到的玩家造成伤害\nscale：球半径乘以scale 是 球攻击范围\ngethit：目标受击ID",
+      "properties": {
+        "scale": 1,
+        "gethit": 200
+      }
+    }
+  ]
+}

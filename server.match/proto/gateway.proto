@@ -1,0 +1,193 @@
+syntax = "proto2";
+
+package usercmd;
+
+
+enum GatewayCmd 
+{
+	ServiceReg            = 1;  // 服务器节点注册
+	ServiceReady          = 2;  // 服务器节点已经准备完成
+	ServiceAdd            = 3;  // 节点添加
+	ServiceLeave          = 4;  // 服务器节点离开
+	ServiceNodeAdd        = 5;  // 服务器子服务注册
+	ServiceNodeDel        = 6;  // 服务器子服务注册
+	Server2Client         = 7;  // 服务器消息转发              |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- body --|
+	Client2Server         = 8;  // 玩家消息转发                |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- body --|
+	Server2Server         = 9;  // 转发给指定ID服务器           |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- body --|
+	Server2ServerWithUser = 10; // 转发给指定ID并带用户ID服务器  |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- 4byte id --|-- body --|
+	Server2UserServer     = 11; // 转发给玩家默认服务器         |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- body --|
+	Server2CBatch         = 12; // 批量服务器消息转发
+	ServerRecall          = 13; // 服务器发送消息失败，回溯到原服务器
+	ServerRecallBatch     = 14; // 服务器发送消息失败，批量回溯到原服务器
+	UserLogin             = 15; // 用户登陆
+	UserLogout            = 16; // 玩家离开
+	ServiceSyncMsg        = 17; // 强同步获取消息
+	ServiceWeight         = 18; // 更新服务器权重
+	ServiceNodeAddBatch   = 19; // 批量服务器子服务注册
+	S2SBest               = 20; // 转发给最小负载的节点        |--4byte len--|-- 1byte servercmd --|-- 8byte id --|-- body --|
+	S2CNotice             = 21; // 转发通知消息
+	SendNotice            = 22; // 转发全服通知
+	S2CNoticeBatch        = 23; // 批量转发通知消息
+	UserBeTick            = 24; // 玩家被T出去
+	SendStopNotice        = 25; // 转发终止全服通知
+	AccBeBaned            = 26; // 账号被封
+	ReadNotice            = 27; // 转发全服读取公告内容
+	MaintainNotice 		  = 28; // 维护公告
+	Server2AllClients     = 29; // 发送给所有玩家
+	UpdateServerRoomid    = 30; // 更新玩家所在的房间ID
+	Server2TeamClient     = 31; // 发送给同一个队的玩家
+	S2ServerUpdateInfo    = 32; // 更新网关玩家信息	
+	S2CSystemMail		  = 33;	// 转发全服系统邮件
+}
+
+message UserBeBaned{
+	required uint64 UserId  = 1; //
+}
+
+message ReqNullMsg {
+}
+
+// 服务器间连接验证
+message ReqServiceReg {
+	required string Key         = 1; // Key
+	required uint32 ServerType  = 2; // 服务器类型
+	required uint32 ServerId    = 3; // 服务器ID
+	optional string Address     = 4; // 服务器IP:Port
+	optional string InAddress   = 5; // 服务器内部地址
+}
+
+message RetServiceReg {
+	required uint32 Id       = 1; // 服务器ID
+	repeated uint32 NodeIds  = 2; // 节点ID
+}
+
+// 添加服务节点
+message RetServiceAdd {
+	required uint32 Id       = 1; // 服务器ID
+	required string Address  = 2; // 服务器IP:Port
+	required uint32 Type     = 3; // 服务器类型
+}
+
+// 删除服务节点
+message RetServiceLeave {
+	required uint32 Id       = 1; // 服务器ID
+	required uint32 Type     = 2; // 服务器类型
+}
+// 添加子服务
+message ReqServiceNodeAdd {
+	required uint64 NodeId    = 1; // 子服务ID，比如聊天组ID
+	required uint64 UserId    = 2; // 玩家ID
+	required uint32 ServerId  = 3; // 服务器ID
+}
+
+// 删除子服务
+message ReqServiceNodeDel {
+	required uint64 NodeId      = 1; // 子服务ID，比如聊天组ID
+	required uint64 UserId      = 2; // 玩家ID
+}
+
+// 批量添加子服务
+message ReqServiceNodeAddBatch {
+	message ChatServerNode {
+		required uint32 ServerId  = 1;
+		required uint64 NodeId    = 2;
+		required uint64 UserId    = 3; // 玩家ID
+	}
+	repeated ChatServerNode NodeIds  = 1; // 子服务ID，比如聊天组ID
+}
+
+// 玩家登录上线
+message ReqUserLogin {
+	required uint64 UserId    = 1;  // 玩家ID
+	required string Account   = 2;  // 账号
+	required uint32 Icon      = 3;  // 头像
+	required uint32 Sex       = 4;  // 性别
+	required string Name      = 5;  // 名字
+	required string PassIcon  = 6;  // 头像
+	required uint32 Location  = 7;  // 位置
+	required uint32 CNet      = 8;  // 网络类型
+	required string RegDev    = 9;  // 注册设备 ios/android
+	required string ClientVer = 10; // 客户端版本
+	required uint32 Cnet      = 11; // 网络类型
+}
+
+// 玩家下线
+message ReqUserLogout {
+	required uint64 UserId   = 1; // 玩家ID
+}
+
+// 转向默认服务器转发消息
+message ReqServer2TypeServer {
+	required uint32 ServeType = 1; // 服务器组
+	required uint32 ServerId  = 2; // 服务器ID
+	required bytes  Data      = 3; // 数据
+	required uint32 Flag      = 4; // 压缩标识
+}
+
+message ReqServer2CBatch {
+	repeated uint64 Ids    = 1; // 批量玩家ID
+	required bytes  Data   = 2; // 消息数据
+	required uint32 Flag   = 3; // 压缩标识
+	required bool   ReCall = 4; // 是否需要回滚
+}
+
+message RetServerRecallBatch {	
+	repeated uint64 Ids  = 1; // 批量玩家ID
+	required bytes  Data = 2; // 消息数据
+	required uint32 Flag = 3; // 压缩标识
+}
+
+// 更新服务器权重
+message ReqServiceWeight {	
+	required uint32 UserNum   = 1; // 人数或权重
+	optional uint32 TUserNum  = 2; // 10分钟内被T掉的人数
+}
+
+// 批量转发消息
+message ReqS2CNoticeBatch {
+	repeated uint64 UserIds  = 1; // 玩家ID
+	required bytes  Data     = 2; // 数据
+	required uint32 Flag     = 3; // 数据压缩标识
+}
+
+//批量转发系统邮件
+message ReqS2CSystemMail{
+	required bytes  Data     = 2; // 数据
+	required uint32 Flag     = 3; // 数据压缩标识
+}
+
+
+// 玩家被T出去
+message ReqUserBeTick {
+	required uint64 UserId  = 1; // 玩家ID
+	required uint32 GID     = 2; // 网关ID
+}
+
+// 请求发送公告
+// 公告 /notice?type=消息类型1系统公告&time=持续时间(秒)&params=&text=公告内容&systype=系统android和ios&version=版本
+//				&betuserid=玩家ID区间(1,1000包含1和1000)&userids=玩家ID列表&accounts=玩家账号列表(二取一多个逗号隔开)
+//				&award=奖励(道具ID1,数量1;道具2,数量2)
+message ReqSendNotice
+{
+	required uint64 NoticeId 	= 1; // 消息ID
+}
+
+message ReqReadNotice
+{
+	required uint64 NoticeId 	= 1; // 消息ID
+}
+
+message ReqSendStopNotice
+{
+	required uint64 NoticeId 	= 1; // 消息ID
+}
+
+// http请求数据
+message ReqHttpArgData {
+	message KeyVal {
+		required string Key = 1; // Key
+		required string Val = 2; // 值
+	}
+	repeated KeyVal Args    = 1; // 参数
+	required uint32 Cmd     = 2; // 
+}

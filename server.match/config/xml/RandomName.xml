@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by wt (zt) -->
+<config>
+	<!-- 
+字段顺序必与结构中定义的一样
+name 字段名字
+type 字段类型：（缺省 int ）
+	string	字符串(size 缺省 16); 
+	int		整数（根据size决定其位数,缺省 4，base：进制，缺省 10）;
+	float	浮点数（size = 4 单精度，size = 8 双精度,缺省 4）
+default 缺省值
+-->
+	<table name="randomName" ExcelFile="随机名字.xlsx" type="client">
+		<fields>
+			<field codename="FirstName" name="名字1" type="string" size="48"/>
+			<field codename="SecondName" name="名字2" type="string" size="32"/>
+			<field codename="FaceName" name="是否颜文字" type="int"/>
+		</fields>
+	</table>
+</config>

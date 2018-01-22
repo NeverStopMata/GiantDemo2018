@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<data>
+	<server>
+		<rcenter zone="1" max="600000" addr="localhost:10001" name="北京IDC" />
+		<tcenter zone="1" addr="localhost:12001" name="北京IDC" />
+		<!--wcenter zone="1" addr="localhost:11001" name="北京IDC" /-->
+	</server>
+	<scheduler type="free">
+		<area city="0">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="11,12,13,14,15,21,22,23,37,41,61,62,63,64,65" info="北方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="31,32,33,34,35,36,42,43,44,45,46,50,51,52,53,54" info="南方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+	</scheduler>
+	<scheduler type="team">
+		<area city="0">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="11,12,13,14,15,21,22,23,37,41,61,62,63,64,65" info="北方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="31,32,33,34,35,36,42,43,44,45,46,50,51,52,53,54" info="南方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+	</scheduler>
+	<scheduler type="quick">
+		<area city="0">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="11,12,13,14,15,21,22,23,37,41,61,62,63,64,65" info="北方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="31,32,33,34,35,36,42,43,44,45,46,50,51,52,53,54" info="南方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+	</scheduler>
+	<scheduler type="robot">
+		<area city="0">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="11,12,13,14,15,21,22,23,37,41,61,62,63,64,65" info="北方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+		<area city="31,32,33,34,35,36,42,43,44,45,46,50,51,52,53,54" info="南方用户">
+			<node cnet="0,1,2,3,4,5,6" zone="1" backup="1" />
+		</area>
+	</scheduler>
+</data>

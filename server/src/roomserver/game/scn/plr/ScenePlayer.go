@@ -200,7 +200,7 @@ func (this *ScenePlayer) GetRelifeMsg() *usercmd.MsgS2CRelife {
 	return msg
 }
 
-// 复活
+//// 复活
 func (this *ScenePlayer) Relife() {
 	// 分身机器人不会复活
 	if true == this.IsRobot {
@@ -288,7 +288,6 @@ func (this *ScenePlayer) ResetMsg() {
 }
 
 func (this *ScenePlayer) SendSceneMsg() {
-
 	var (
 		Eats          []*usercmd.BallEat
 		Adds          []*usercmd.MsgBall
@@ -300,17 +299,19 @@ func (this *ScenePlayer) SendSceneMsg() {
 	)
 
 	//feed的添加删除消息单独处理
-	addfeeds, delfeeds := this.UpdateVeiwFeeds()
-	Adds = append(Adds, addfeeds...)
-	Removes = append(Removes, delfeeds...)
 
+	//	addfeeds, delfeeds := this.UpdateVeiwFeeds()
+	//	Adds = append(Adds, addfeeds...)
+	//	Removes = append(Removes, delfeeds...)
+
+	//技能的释放与消亡
 	adds, dels := this.UpdateVeiwBallSkill()
 	Adds = append(Adds, adds...)
 	Removes = append(Removes, dels...)
 
-	addfoods, delfoods := this.UpdateVeiwFoods()
-	Adds = append(Adds, addfoods...)
-	Removes = append(Removes, delfoods...)
+	//	addfoods, delfoods := this.UpdateVeiwFoods()
+	//	Adds = append(Adds, addfoods...)
+	//	Removes = append(Removes, delfoods...)
 
 	addplayers, delplayers := this.updateViewBallPlayer()
 	AddPlayers = append(AddPlayers, addplayers...)
@@ -422,8 +423,13 @@ func (this *ScenePlayer) SendSceneMsg() {
 		msg := &this.msgPool.MsgSceneUDP
 		msg.Moves = Moves
 		msg.Frame = this.GetScene().Frame()
-		var tmp = [256]uint32{0}
-		msg.MapDetails = tmp[:]
+		//		tmp := [8]*usercmd.MsgChangingCubeHeight{}
+		//		for i := 0; i < 8; i++ {
+		//			tmp[i] = &usercmd.MsgChangingCubeHeight{}
+		//			tmp[i].CubeIndex = uint32(i)
+		//			tmp[i].Height = 1
+		//		}
+		//		msg.ChangingCubeList = tmp[:]
 		if this.Sess != nil {
 			// 优先采用可丢包的原生UDP信道发送
 			this.Sess.SendUDPCmd(usercmd.MsgTypeCmd_SceneUDP, msg)
@@ -512,8 +518,10 @@ func (this *ScenePlayer) UpdateMove(perTime float64, frameRate float64) {
 		ball.ResetRect()
 
 		if this.isRunning {
-			cost := frameRate * float64(consts.FrameTimeMS) * consts.DefaultRunCostMP
+			//cost := frameRate * float64(consts.FrameTimeMS) * consts.DefaultRunCostMP
+			cost := float64(0)
 			diff := ball.GetMP() - cost
+
 			if diff <= 0 {
 				this.isRunning = false
 			} else {

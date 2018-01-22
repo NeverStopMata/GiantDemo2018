@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<teamsearch MulTA="1;1;1;1;1" MulTB="1;1;1;1;1">
+		<item tleft="0" tright="1000" floatwide="500"/>
+		<item tleft="1001" tright="10000" floatwide="5000"/>
+		<item tleft="10001" tright="9999999" floatwide="8888888"/>
+	</teamsearch>
+</config>

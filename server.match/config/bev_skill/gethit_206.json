@@ -1,0 +1,165 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "53deb90b-25b0-45c9-8228-0a5889a7259d",
+  "title": "gethit_206",
+  "description": "",
+  "root": "6a70c646-f894-469c-8496-240476a5264b",
+  "properties": {
+    "skillid": 206
+  },
+  "nodes": {
+    "6a70c646-f894-469c-8496-240476a5264b": {
+      "id": "6a70c646-f894-469c-8496-240476a5264b",
+      "name": "CompositeSkillMemSeq",
+      "title": "CompositeSkillMemSeq",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -204,
+        "y": 48
+      },
+      "children": [
+        "991bfca4-82ac-45ac-bce4-6df7c0eecfb0",
+        "a89c4358-40f6-4d4a-91dc-462f17adc071",
+        "dac28637-ab5a-484e-a40c-87d3b94f8055",
+        "b2d1d7c3-f51e-463c-b53b-e8dbfb35815f"
+      ]
+    },
+    "dac28637-ab5a-484e-a40c-87d3b94f8055": {
+      "id": "dac28637-ab5a-484e-a40c-87d3b94f8055",
+      "name": "ActionNextSceneRander5",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 1
+      },
+      "display": {
+        "x": 72,
+        "y": 192
+      }
+    },
+    "a89c4358-40f6-4d4a-91dc-462f17adc071": {
+      "id": "a89c4358-40f6-4d4a-91dc-462f17adc071",
+      "name": "ActionBallSkillStopMove",
+      "title": "ActionBallSkillStopMove",
+      "description": "让技能球停止移动",
+      "properties": {},
+      "display": {
+        "x": 72,
+        "y": 120
+      }
+    },
+    "b2d1d7c3-f51e-463c-b53b-e8dbfb35815f": {
+      "id": "b2d1d7c3-f51e-463c-b53b-e8dbfb35815f",
+      "name": "ActionBombTryHit",
+      "title": "ActionBombTryHit",
+      "description": "试图对碰到的玩家造成伤害\nscale：球半径加上scale 是 球攻击范围\ngethit：目标受击ID",
+      "properties": {
+        "scale": 0.5,
+        "gethit": 200
+      },
+      "display": {
+        "x": 48,
+        "y": 264
+      }
+    },
+    "991bfca4-82ac-45ac-bce4-6df7c0eecfb0": {
+      "id": "991bfca4-82ac-45ac-bce4-6df7c0eecfb0",
+      "name": "DecoratorRepeater",
+      "title": "DecoratorRepeater <maxLoop>x",
+      "description": "重复 maxLoop 次, 每一个Tick执行一次。",
+      "properties": {
+        "maxLoop": 12
+      },
+      "display": {
+        "x": 72,
+        "y": 48
+      },
+      "child": "178beea1-82f4-4eb8-8c50-e4796c7b6c4b"
+    },
+    "178beea1-82f4-4eb8-8c50-e4796c7b6c4b": {
+      "id": "178beea1-82f4-4eb8-8c50-e4796c7b6c4b",
+      "name": "Succeeder",
+      "title": "Succeeder",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 312,
+        "y": 48
+      }
+    }
+  },
+  "display": {
+    "camera_x": 610,
+    "camera_y": 329.5,
+    "camera_z": 0.75,
+    "x": -384,
+    "y": 48
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CompositeSkillMemSeq",
+      "category": "composite",
+      "title": "CompositeSkillMemSeq",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionNextSceneRander5",
+      "category": "action",
+      "title": "ActionNextSceneRander5",
+      "description": "等待，直到n个Scene::rander5()被执行",
+      "properties": {
+        "canAttack": 0,
+        "n": 5
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionBallSkillStopMove",
+      "category": "action",
+      "title": "ActionBallSkillStopMove",
+      "description": "让技能球停止移动",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionBombTryHit",
+      "category": "action",
+      "title": "ActionBombTryHit",
+      "description": "试图对碰到的玩家造成伤害\nscale：球半径加上scale 是 球攻击范围\ngethit：目标受击ID",
+      "properties": {
+        "scale": 1,
+        "gethit": 200
+      }
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "ActionBallSkillStartMove",
+      "category": "action",
+      "title": "ActionBallSkillStartMove",
+      "description": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "DecoratorRepeater",
+      "category": "decorator",
+      "title": "DecoratorRepeater <maxLoop>x",
+      "description": "重复 maxLoop 次, 每一个Tick执行一次。",
+      "properties": {
+        "maxLoop": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,777 @@
+{
+  "version": "0.3.0",
+  "scope": "tree",
+  "id": "4c02aeff-9f7c-483b-97af-7679c6f383c1",
+  "title": "mop",
+  "description": "",
+  "root": "2cc4a19b-394a-46d5-b073-0175f1825fd6",
+  "properties": {},
+  "nodes": {
+    "2cc4a19b-394a-46d5-b073-0175f1825fd6": {
+      "id": "2cc4a19b-394a-46d5-b073-0175f1825fd6",
+      "name": "Priority",
+      "title": "Priority",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -804,
+        "y": 72
+      },
+      "children": [
+        "9e5e109a-ce41-4a11-88fc-9918147cfab6",
+        "ad0a9299-d6f5-457c-b35b-6c371df4b1ac",
+        "1bd1d935-85f5-4ed5-8d95-d153d55edd10",
+        "dc02bd61-9742-4e11-88bf-a00736005785",
+        "65abb298-0716-47d5-b0e2-b069c224af81"
+      ]
+    },
+    "fcfc4890-001e-4511-8fa9-a423401d4acb": {
+      "id": "fcfc4890-001e-4511-8fa9-a423401d4acb",
+      "name": "AttrLimit",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "description": "属性小于固定值",
+      "properties": {
+        "limit": 80,
+        "attr": 2
+      },
+      "display": {
+        "x": 12,
+        "y": -120
+      }
+    },
+    "c9054f92-0a55-4b30-8ef5-c148bb75f5ea": {
+      "id": "c9054f92-0a55-4b30-8ef5-c148bb75f5ea",
+      "name": "FindNearUnit",
+      "title": "FindNearUnit[<index>]<unitKind>w",
+      "description": "寻找附近单位",
+      "properties": {
+        "index": "foodTarget",
+        "unitKind": 2
+      },
+      "display": {
+        "x": -144,
+        "y": 288
+      }
+    },
+    "cccbc462-caef-4c16-8bd7-8b564d0eb9d5": {
+      "id": "cccbc462-caef-4c16-8bd7-8b564d0eb9d5",
+      "name": "FindNearUnit",
+      "title": "FindNearUnit[<index>]<unitKind>all",
+      "description": "寻找附近单位",
+      "properties": {
+        "index": "foodTarget",
+        "unitKind": 6
+      },
+      "display": {
+        "x": -24,
+        "y": 192
+      }
+    },
+    "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e": {
+      "id": "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e",
+      "name": "Sequence",
+      "title": "SequenceMogu",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -216,
+        "y": 24
+      },
+      "children": [
+        "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9",
+        "d68931ea-8d3c-4ba5-822a-86f44bf65d8f"
+      ]
+    },
+    "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3": {
+      "id": "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3",
+      "name": "AttrLimit",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "description": "",
+      "properties": {
+        "limit": 3,
+        "attr": 6
+      },
+      "display": {
+        "x": 120,
+        "y": 12
+      }
+    },
+    "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9": {
+      "id": "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9",
+      "name": "Inverter",
+      "title": "Inverter",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -84,
+        "y": 12
+      },
+      "child": "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3"
+    },
+    "d68931ea-8d3c-4ba5-822a-86f44bf65d8f": {
+      "id": "d68931ea-8d3c-4ba5-822a-86f44bf65d8f",
+      "name": "FindNearUnit",
+      "title": "FindNearUnit[<index>]<unitKind>mg",
+      "description": "",
+      "properties": {
+        "index": "foodTarget",
+        "unitKind": 8
+      },
+      "display": {
+        "x": 24,
+        "y": 72
+      }
+    },
+    "37338e6a-9166-4561-8f19-e0102b882ceb": {
+      "id": "37338e6a-9166-4561-8f19-e0102b882ceb",
+      "name": "MemSequence",
+      "title": "MemSequenceAttack",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 252,
+        "y": -96
+      },
+      "children": [
+        "b880321b-5e51-4f8d-835b-911c5606e963",
+        "0fafb726-56d6-4174-845f-cfbd89c10d9b",
+        "f55951df-c3f8-48bd-8565-efd9ee70a216",
+        "2a581443-37d2-47ca-bba3-edcbd3a81c67",
+        "b2e1f546-759c-4f54-8f5c-29d2b9e7f965"
+      ]
+    },
+    "11060050-06ab-4cd8-8c83-7ee75e0d4cb8": {
+      "id": "11060050-06ab-4cd8-8c83-7ee75e0d4cb8",
+      "name": "FindAttackTarget",
+      "title": "FindAttackTarget",
+      "description": "",
+      "properties": {
+        "index": "attackTarget",
+        "range": 4
+      },
+      "display": {
+        "x": 300,
+        "y": -36
+      }
+    },
+    "862fce3e-5800-4e07-8170-bf0e69724075": {
+      "id": "862fce3e-5800-4e07-8170-bf0e69724075",
+      "name": "SpeedUp",
+      "title": "SpeedUp",
+      "description": "",
+      "properties": {
+        "isOn": 1
+      },
+      "display": {
+        "x": 732,
+        "y": -132
+      }
+    },
+    "b2e1f546-759c-4f54-8f5c-29d2b9e7f965": {
+      "id": "b2e1f546-759c-4f54-8f5c-29d2b9e7f965",
+      "name": "SpeedUp",
+      "title": "SpeedUp",
+      "description": "",
+      "properties": {
+        "isOn": ""
+      },
+      "display": {
+        "x": 624,
+        "y": 0
+      }
+    },
+    "2a581443-37d2-47ca-bba3-edcbd3a81c67": {
+      "id": "2a581443-37d2-47ca-bba3-edcbd3a81c67",
+      "name": "Wait",
+      "title": "Wait",
+      "description": "",
+      "properties": {
+        "milliseconds": 500
+      },
+      "display": {
+        "x": 624,
+        "y": -36
+      }
+    },
+    "b880321b-5e51-4f8d-835b-911c5606e963": {
+      "id": "b880321b-5e51-4f8d-835b-911c5606e963",
+      "name": "CheckNearAttackPlayer",
+      "title": "CheckNearAttackPlayer",
+      "description": "",
+      "properties": {
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 540,
+        "y": -288
+      }
+    },
+    "0fafb726-56d6-4174-845f-cfbd89c10d9b": {
+      "id": "0fafb726-56d6-4174-845f-cfbd89c10d9b",
+      "name": "TurnTargetPlayer",
+      "title": "TurnTargetPlayer",
+      "description": "",
+      "properties": {
+        "index": "attackTarget"
+      },
+      "display": {
+        "x": 528,
+        "y": -240
+      }
+    },
+    "8a570df9-5326-47fb-9f0e-121b3da0fb5f": {
+      "id": "8a570df9-5326-47fb-9f0e-121b3da0fb5f",
+      "name": "Succeeder",
+      "title": "Succeeder",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 624,
+        "y": -84
+      }
+    },
+    "f55951df-c3f8-48bd-8565-efd9ee70a216": {
+      "id": "f55951df-c3f8-48bd-8565-efd9ee70a216",
+      "name": "Priority",
+      "title": "Priority",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 480,
+        "y": -96
+      },
+      "children": [
+        "8528ba86-1634-47f0-8cbe-d43467dd7123",
+        "8a570df9-5326-47fb-9f0e-121b3da0fb5f"
+      ]
+    },
+    "9b8e66aa-8945-4158-9427-e5c7b9456007": {
+      "id": "9b8e66aa-8945-4158-9427-e5c7b9456007",
+      "name": "AttrLimit",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "description": "",
+      "properties": {
+        "limit": 20,
+        "attr": 2
+      },
+      "display": {
+        "x": 840,
+        "y": -180
+      }
+    },
+    "97fd76a7-3447-4bee-9333-26f77dcffbf8": {
+      "id": "97fd76a7-3447-4bee-9333-26f77dcffbf8",
+      "name": "Inverter",
+      "title": "Inverter",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 636,
+        "y": -180
+      },
+      "child": "9b8e66aa-8945-4158-9427-e5c7b9456007"
+    },
+    "8528ba86-1634-47f0-8cbe-d43467dd7123": {
+      "id": "8528ba86-1634-47f0-8cbe-d43467dd7123",
+      "name": "Sequence",
+      "title": "Sequence",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": 552,
+        "y": -132
+      },
+      "children": [
+        "97fd76a7-3447-4bee-9333-26f77dcffbf8",
+        "862fce3e-5800-4e07-8170-bf0e69724075"
+      ]
+    },
+    "824bd1ad-de4d-4d09-8a69-abd8fead54d4": {
+      "id": "824bd1ad-de4d-4d09-8a69-abd8fead54d4",
+      "name": "Priority",
+      "title": "PriorityFindFood",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -312,
+        "y": 72
+      },
+      "children": [
+        "c9891cd6-2177-4385-9529-e9c50d5b4a5d",
+        "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e",
+        "cccbc462-caef-4c16-8bd7-8b564d0eb9d5"
+      ]
+    },
+    "b57e5a30-260a-4934-8886-4d543622c112": {
+      "id": "b57e5a30-260a-4934-8886-4d543622c112",
+      "name": "Inverter",
+      "title": "Inverter",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -180,
+        "y": -84
+      },
+      "child": "fcfc4890-001e-4511-8fa9-a423401d4acb"
+    },
+    "a33c3b1f-8cca-481e-b159-0e4f965e59c2": {
+      "id": "a33c3b1f-8cca-481e-b159-0e4f965e59c2",
+      "name": "Sequence",
+      "title": "SequenceHaveWater",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -384,
+        "y": 12
+      },
+      "children": [
+        "b57e5a30-260a-4934-8886-4d543622c112",
+        "824bd1ad-de4d-4d09-8a69-abd8fead54d4"
+      ]
+    },
+    "dc02bd61-9742-4e11-88bf-a00736005785": {
+      "id": "dc02bd61-9742-4e11-88bf-a00736005785",
+      "name": "Priority",
+      "title": "PriorityFindFood",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -504,
+        "y": 72
+      },
+      "children": [
+        "a33c3b1f-8cca-481e-b159-0e4f965e59c2",
+        "c9054f92-0a55-4b30-8ef5-c148bb75f5ea"
+      ]
+    },
+    "c9891cd6-2177-4385-9529-e9c50d5b4a5d": {
+      "id": "c9891cd6-2177-4385-9529-e9c50d5b4a5d",
+      "name": "Priority",
+      "title": "PriorityTryAtk",
+      "description": "",
+      "properties": {},
+      "display": {
+        "x": -216,
+        "y": -36
+      },
+      "children": [
+        "37338e6a-9166-4561-8f19-e0102b882ceb",
+        "11060050-06ab-4cd8-8c83-7ee75e0d4cb8"
+      ]
+    },
+    "1bd1d935-85f5-4ed5-8d95-d153d55edd10": {
+      "id": "1bd1d935-85f5-4ed5-8d95-d153d55edd10",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "eat_food.json"
+      },
+      "display": {
+        "x": -432,
+        "y": -336
+      }
+    },
+    "ad0a9299-d6f5-457c-b35b-6c371df4b1ac": {
+      "id": "ad0a9299-d6f5-457c-b35b-6c371df4b1ac",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "escape.json"
+      },
+      "display": {
+        "x": -444,
+        "y": -456
+      }
+    },
+    "9e5e109a-ce41-4a11-88fc-9918147cfab6": {
+      "id": "9e5e109a-ce41-4a11-88fc-9918147cfab6",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "check_rand_move.json"
+      },
+      "display": {
+        "x": -408,
+        "y": -576
+      }
+    },
+    "65abb298-0716-47d5-b0e2-b069c224af81": {
+      "id": "65abb298-0716-47d5-b0e2-b069c224af81",
+      "name": "SubTree",
+      "title": "SubTree(<treeName>)",
+      "description": "",
+      "properties": {
+        "treeName": "rand_move.json"
+      },
+      "display": {
+        "x": -516,
+        "y": 384
+      }
+    }
+  },
+  "display": {
+    "camera_x": 1056.5,
+    "camera_y": 477,
+    "camera_z": 0.75,
+    "x": -960,
+    "y": 80
+  },
+  "custom_nodes": [
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Log",
+      "category": "action",
+      "title": "Log",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "AttrLimit",
+      "category": "condition",
+      "title": "AttrLimit[<attr>]<<limit>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Rand",
+      "category": "action",
+      "title": "Rand[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnIndex",
+      "category": "action",
+      "title": "TurnIndex[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheakBall",
+      "category": "condition",
+      "title": "CheakBall[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTarget",
+      "category": "action",
+      "title": "TurnTarget[<index>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindNearUnit",
+      "category": "action",
+      "title": "FindNearUnit[<index>]<unitKind>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckEnemyNear",
+      "category": "condition",
+      "title": "CheckEnemyNear",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnAwayTarget",
+      "category": "action",
+      "title": "TurnAwayTarget",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SpeedUp",
+      "category": "action",
+      "title": "SpeedUp",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearPlayer",
+      "category": "condition",
+      "title": "CheckNearPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindAttackTarget",
+      "category": "action",
+      "title": "FindAttackTarget",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckNearAttackPlayer",
+      "category": "condition",
+      "title": "CheckNearAttackPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TurnTargetPlayer",
+      "category": "action",
+      "title": "TurnTargetPlayer",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CheckBool",
+      "category": "condition",
+      "title": "CheckBool",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SendFace",
+      "category": "action",
+      "title": "SendFace",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CastSkill",
+      "category": "action",
+      "title": "CastSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CancelSkill",
+      "category": "action",
+      "title": "CancelSkill",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "TargetAttrLess",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FaceToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindUnitByType",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkFarAwayTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToTarget",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "UseSkill",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkTo",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "WalkToPoint",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLessInt",
+      "category": "condition",
+      "title": "",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfTrue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "IfFalse",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Parallel",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Random",
+      "category": "composite",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SetValue",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondLess",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondEqualValue",
+      "category": "decorator",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "Loop",
+      "category": "composite",
+      "title": "Loop(<maxLoop>)",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKFindAvoidAngle",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "FindDeadBody",
+      "category": "action",
+      "title": null,
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMidValue",
+      "category": "decorator",
+      "title": "CondMidValue<index> <min>-<max>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondMoreValue",
+      "category": "decorator",
+      "title": "CondMoreValue[<index>]><value>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKSpeedUp",
+      "category": "action",
+      "title": "SNKSpeedUp isOn:<IsOn>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "RandSetValue",
+      "category": "action",
+      "title": "RandSetValue[<StoreIndex>]:[<RandMin>-<RandMax>]",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SNKTurnIndex",
+      "category": "action",
+      "title": "SNKTurnIndex<AngleIndex>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "CondBoolTrue",
+      "category": "decorator",
+      "title": "CondBoolTrue <Index>",
+      "properties": {}
+    },
+    {
+      "version": "0.3.0",
+      "scope": "node",
+      "name": "SubTree",
+      "category": "action",
+      "title": "SubTree(<treeName>)",
+      "description": null,
+      "properties": {}
+    }
+  ]
+}

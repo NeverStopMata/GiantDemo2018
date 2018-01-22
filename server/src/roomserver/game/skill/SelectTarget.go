@@ -13,6 +13,27 @@ import (
 
 // 获取朝向上最近的目标
 func FindNearTarget(tick *b3core.Tick, player *plr.ScenePlayer) (interfaces.IBall, interfaces.BallKind) {
+	//	angleVel := GetPlayerDir(tick, player)
+
+	//	var rect util.Square
+	//	rect.CopyFrom(player.GetViewRect())
+	//	rect.SetRadius(GetAttackRange(tick, player))
+	//	cells := player.GetScene().GetAreaCells(&rect)
+
+	//	minball_feed, min_feed := player.FindNearBallByKind(interfaces.BallKind_Feed, angleVel, cells, 0)
+	//	minball_player, min_player := player.FindNearBallByKind(interfaces.BallKind_Player, angleVel, cells, 0)
+	//	minball_ballskill, min_ballskill := player.FindNearBallByKind(interfaces.BallKind_Skill, angleVel, cells, 0)
+	//	if minball_player == nil && minball_feed == nil && minball_ballskill == nil {
+	//		return nil, interfaces.BallKind_None
+	//	}
+
+	//	if min_feed <= min_player && min_feed <= min_ballskill {
+	//		return minball_feed, interfaces.BallKind_Feed
+	//	} else if min_ballskill <= min_player && min_ballskill <= min_feed {
+	//		return minball_ballskill, interfaces.BallKind_Skill
+	//	} else {
+	//		return minball_player, interfaces.BallKind_Player
+	//	}//mata
 	angleVel := GetPlayerDir(tick, player)
 
 	var rect util.Square
@@ -20,20 +41,12 @@ func FindNearTarget(tick *b3core.Tick, player *plr.ScenePlayer) (interfaces.IBal
 	rect.SetRadius(GetAttackRange(tick, player))
 	cells := player.GetScene().GetAreaCells(&rect)
 
-	minball_feed, min_feed := player.FindNearBallByKind(interfaces.BallKind_Feed, angleVel, cells, 0)
-	minball_player, min_player := player.FindNearBallByKind(interfaces.BallKind_Player, angleVel, cells, 0)
-	minball_ballskill, min_ballskill := player.FindNearBallByKind(interfaces.BallKind_Skill, angleVel, cells, 0)
-	if minball_player == nil && minball_feed == nil && minball_ballskill == nil {
+	minball_player, _ := player.FindNearBallByKind(interfaces.BallKind_Player, angleVel, cells, 0)
+	if minball_player == nil {
 		return nil, interfaces.BallKind_None
 	}
+	return minball_player, interfaces.BallKind_Player
 
-	if min_feed <= min_player && min_feed <= min_ballskill {
-		return minball_feed, interfaces.BallKind_Feed
-	} else if min_ballskill <= min_player && min_ballskill <= min_feed {
-		return minball_ballskill, interfaces.BallKind_Skill
-	} else {
-		return minball_player, interfaces.BallKind_Player
-	}
 }
 
 // 获取朝向上所有目标
@@ -142,6 +155,7 @@ func GetPlayerDir(tick *b3core.Tick, player *plr.ScenePlayer) *util.Vector2 {
 		angleVel.X = player.SelfAnimal.GetAngleVel().X
 		angleVel.Y = player.SelfAnimal.GetAngleVel().Y
 	}
+
 	return angleVel
 }
 
@@ -149,7 +163,7 @@ func GetPlayerDir(tick *b3core.Tick, player *plr.ScenePlayer) *util.Vector2 {
 func GetAttackRange(tick *b3core.Tick, player *plr.ScenePlayer) float64 {
 	attackRange := tick.Blackboard.Get("attackRange", "", "")
 	if attackRange != nil {
-		r := attackRange.(float64)
+		r := attackRange.(float64) * float64(10)
 		if r >= 0 {
 			return r * player.SelfAnimal.GetSizeScale()
 		}

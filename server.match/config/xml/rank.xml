@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<!--排行榜表 f 无限模式  t 限时模式  week 周排行-->
+<frank>
+	<item id="1" scorestart="0" scoreend="49" itemid = "2002" num="0"/>
+	<item id="2" scorestart="50" scoreend="199" itemid = "2002" num="1"/>
+	<item id="3" scorestart="200" scoreend="799" itemid = "2002" num="2"/>
+	<item id="4" scorestart="800" scoreend="1999" itemid = "2002" num="4"/>
+	<item id="5" scorestart="2000" scoreend="4499" itemid = "2002" num="7"/>
+	<item id="6" scorestart="4500" scoreend="14999" itemid = "2002" num="11"/>
+	<item id="7" scorestart="15000" scoreend="39999" itemid = "2002" num="17"/>
+	<item id="8" scorestart="40000" scoreend="79999" itemid = "2002" num="25"/>
+	<item id="9" scorestart="80000" scoreend="159999" itemid = "2002" num="35"/>
+	<item id="10" scorestart="160000" scoreend="259999" itemid = "2002" num="50"/>
+	<item id="11" scorestart="260000" scoreend="459999" itemid = "2002" num="80"/>
+	<item id="12" scorestart="460000" scoreend="9999998" itemid = "2002" num="120"/>
+	<item id="13" scorestart="9999999" scoreend="99999999" itemid = "2002" num="200"/>
+</frank>
+<trank>
+	<item id="1" rankstart="1" rankend="1" itemid = "2002" num="35"/>
+	<item id="2" rankstart="2" rankend="2" itemid = "2002" num="32"/>
+	<item id="3" rankstart="3" rankend="3" itemid = "2002" num="30"/>
+	<item id="4" rankstart="4" rankend="4" itemid = "2002" num="28"/>
+	<item id="5" rankstart="5" rankend="5" itemid = "2002" num="26"/>
+	<item id="6" rankstart="6" rankend="6" itemid = "2002" num="24"/>
+	<item id="7" rankstart="7" rankend="7" itemid = "2002" num="22"/>
+	<item id="8" rankstart="8" rankend="8" itemid = "2002" num="20"/>
+	<item id="9" rankstart="9" rankend="9" itemid = "2002" num="18"/>
+	<item id="10" rankstart="10" rankend="10" itemid = "2002" num="16"/>
+	<item id="11" rankstart="11" rankend="11" itemid = "2002" num="15"/>
+	<item id="12" rankstart="12" rankend="12" itemid = "2002" num="14"/>
+	<item id="13" rankstart="13" rankend="13" itemid = "2002" num="13"/>
+	<item id="14" rankstart="14" rankend="14" itemid = "2002" num="12"/>
+	<item id="15" rankstart="15" rankend="15" itemid = "2002" num="11"/>
+	<item id="16" rankstart="16" rankend="16" itemid = "2002" num="10"/>
+	<item id="17" rankstart="17" rankend="17" itemid = "2002" num="9"/>
+	<item id="18" rankstart="18" rankend="18" itemid = "2002" num="8"/>
+	<item id="19" rankstart="19" rankend="19" itemid = "2002" num="7"/>
+	<item id="20" rankstart="20" rankend="20" itemid = "2002" num="6"/>
+	<item id="21" rankstart="21" rankend="30" itemid = "2002" num="5"/>
+</trank>
+<weekfrank>
+	<item id="1" rankstart="1" rankend="1" itemid = "2001" num="150"/>
+	<item id="2" rankstart="2" rankend="2" itemid = "2001" num="120"/>
+	<item id="3" rankstart="3" rankend="3" itemid = "2001" num="100"/>
+	<item id="4" rankstart="4" rankend="6" itemid = "2001" num="90"/>
+	<item id="5" rankstart="7" rankend="10" itemid = "2001" num="80"/>
+	<item id="6" rankstart="11" rankend="20" itemid = "2001" num="75"/>
+	<item id="7" rankstart="21" rankend="30" itemid = "2001" num="70"/>
+	<item id="8" rankstart="31" rankend="40" itemid = "2001" num="65"/>
+	<item id="9" rankstart="41" rankend="50" itemid = "2001" num="60"/>
+	<item id="10" rankstart="51" rankend="70" itemid = "2001" num="55"/>
+	<item id="11" rankstart="71" rankend="100" itemid = "2001" num="50"/>
+</weekfrank>
+<weektrank>
+	<item id="1" rankstart="1" rankend="1" itemid = "2001" num="150"/>
+	<item id="2" rankstart="2" rankend="2" itemid = "2001" num="120"/>
+	<item id="3" rankstart="3" rankend="3" itemid = "2001" num="100"/>
+	<item id="4" rankstart="4" rankend="6" itemid = "2001" num="90"/>
+	<item id="5" rankstart="7" rankend="10" itemid = "2001" num="80"/>
+	<item id="6" rankstart="11" rankend="20" itemid = "2001" num="75"/>
+	<item id="7" rankstart="21" rankend="30" itemid = "2001" num="70"/>
+	<item id="8" rankstart="31" rankend="40" itemid = "2001" num="65"/>
+	<item id="9" rankstart="41" rankend="50" itemid = "2001" num="60"/>
+	<item id="10" rankstart="51" rankend="70" itemid = "2001" num="55"/>
+	<item id="11" rankstart="71" rankend="100" itemid = "2001" num="50"/>
+</weektrank>
+</config>

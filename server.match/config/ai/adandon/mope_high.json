@@ -1,0 +1,873 @@
+{
+    "title": "A Behavior Tree",
+    "description": "",
+    "root": "2cc4a19b-394a-46d5-b073-0175f1825fd6",
+    "display": {
+        "camera_x": 1103.501070425579,
+        "camera_y": 641.0005659947651,
+        "camera_z": 0.75,
+        "x": -944,
+        "y": 16
+    },
+    "properties": {},
+    "nodes": {
+        "2cc4a19b-394a-46d5-b073-0175f1825fd6": {
+            "id": "2cc4a19b-394a-46d5-b073-0175f1825fd6",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "",
+            "display": {
+                "x": -800,
+                "y": 80
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "72870f36-c326-44d5-bca1-246186aa924c",
+                "c8f0b862-8ea0-4492-b963-1e8c0038c108",
+                "1e7a147c-f443-4142-886a-6bf6eace27ba",
+                "dc02bd61-9742-4e11-88bf-a00736005785",
+                "13b42a0d-71f5-427c-8be3-5c2e6bbecb9d"
+            ]
+        },
+        "13b42a0d-71f5-427c-8be3-5c2e6bbecb9d": {
+            "id": "13b42a0d-71f5-427c-8be3-5c2e6bbecb9d",
+            "name": "MemSequence",
+            "title": "MemSequenceFree",
+            "description": "",
+            "display": {
+                "x": -256,
+                "y": 400
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "6201893a-8f52-4a37-941e-a5da819a876b",
+                "2e6de3c3-7fa5-4fb2-a1f8-92864b2878f3",
+                "25ae98c8-7e9a-4f6f-8555-5d4eb47525ac",
+                "bb48037b-1f77-4804-ba9b-6388cf45dcca"
+            ]
+        },
+        "fcfc4890-001e-4511-8fa9-a423401d4acb": {
+            "id": "fcfc4890-001e-4511-8fa9-a423401d4acb",
+            "name": "AttrLimit",
+            "title": "AttrLimit[<attr>]<<limit>",
+            "description": "属性小于固定值",
+            "display": {
+                "x": 16,
+                "y": -112
+            },
+            "parameters": {},
+            "properties": {
+                "limit": 80,
+                "attr": 2
+            }
+        },
+        "25ae98c8-7e9a-4f6f-8555-5d4eb47525ac": {
+            "id": "25ae98c8-7e9a-4f6f-8555-5d4eb47525ac",
+            "name": "Wait",
+            "title": "Wait <milliseconds>msfree",
+            "description": "",
+            "display": {
+                "x": -64,
+                "y": 464
+            },
+            "parameters": {},
+            "properties": {
+                "milliseconds": 3000
+            }
+        },
+        "2e6de3c3-7fa5-4fb2-a1f8-92864b2878f3": {
+            "id": "2e6de3c3-7fa5-4fb2-a1f8-92864b2878f3",
+            "name": "TurnIndex",
+            "title": "TurnIndex[<index>]",
+            "description": "转向",
+            "display": {
+                "x": -80,
+                "y": 400
+            },
+            "parameters": {},
+            "properties": {
+                "index": "randAngle"
+            }
+        },
+        "6201893a-8f52-4a37-941e-a5da819a876b": {
+            "id": "6201893a-8f52-4a37-941e-a5da819a876b",
+            "name": "Rand",
+            "title": "Rand[<index>]",
+            "description": "随机，结果值设置到index",
+            "display": {
+                "x": -80,
+                "y": 352
+            },
+            "parameters": {},
+            "properties": {
+                "index": "randAngle",
+                "min": "",
+                "max": 360
+            }
+        },
+        "196b641b-d963-425c-8578-119c2c115689": {
+            "id": "196b641b-d963-425c-8578-119c2c115689",
+            "name": "CheakBall",
+            "title": "CheakBall[<index>]",
+            "description": "球是否存在",
+            "display": {
+                "x": -288,
+                "y": -160
+            },
+            "parameters": {},
+            "properties": {
+                "index": "foodTarget"
+            }
+        },
+        "a3fa2c89-8efe-48a2-829a-a7544cda0891": {
+            "id": "a3fa2c89-8efe-48a2-829a-a7544cda0891",
+            "name": "TurnTarget",
+            "title": "TurnTarget[<index>]",
+            "description": "转到目标对象",
+            "display": {
+                "x": -352,
+                "y": -64
+            },
+            "parameters": {},
+            "properties": {
+                "index": "foodTarget"
+            }
+        },
+        "c9054f92-0a55-4b30-8ef5-c148bb75f5ea": {
+            "id": "c9054f92-0a55-4b30-8ef5-c148bb75f5ea",
+            "name": "FindNearUnit",
+            "title": "FindNearUnit[<index>]<unitKind>w",
+            "description": "寻找附近单位",
+            "display": {
+                "x": -144,
+                "y": 288
+            },
+            "parameters": {},
+            "properties": {
+                "index": "foodTarget",
+                "unitKind": 2
+            }
+        },
+        "cccbc462-caef-4c16-8bd7-8b564d0eb9d5": {
+            "id": "cccbc462-caef-4c16-8bd7-8b564d0eb9d5",
+            "name": "FindNearUnit",
+            "title": "FindNearUnit[<index>]<unitKind>all",
+            "description": "寻找附近单位",
+            "display": {
+                "x": -16,
+                "y": 192
+            },
+            "parameters": {},
+            "properties": {
+                "index": "foodTarget",
+                "unitKind": 6
+            }
+        },
+        "631c087b-3cab-46f3-86b9-c603db5e5352": {
+            "id": "631c087b-3cab-46f3-86b9-c603db5e5352",
+            "name": "Wait",
+            "title": "Wait",
+            "description": "",
+            "display": {
+                "x": -240,
+                "y": -320
+            },
+            "parameters": {
+                "milliseconds": ""
+            },
+            "properties": {
+                "milliseconds": 3000
+            }
+        },
+        "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e": {
+            "id": "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e",
+            "name": "Sequence",
+            "title": "SequenceMogu",
+            "description": "",
+            "display": {
+                "x": -208,
+                "y": 32
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9",
+                "d68931ea-8d3c-4ba5-822a-86f44bf65d8f"
+            ]
+        },
+        "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3": {
+            "id": "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3",
+            "name": "AttrLimit",
+            "title": "AttrLimit[<attr>]<<limit>",
+            "description": "",
+            "display": {
+                "x": 128,
+                "y": 16
+            },
+            "parameters": {},
+            "properties": {
+                "limit": 3,
+                "attr": 6
+            }
+        },
+        "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9": {
+            "id": "2d3bbbd0-bb88-4884-8453-91e5e7dd71f9",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "display": {
+                "x": -80,
+                "y": 16
+            },
+            "parameters": {},
+            "properties": {},
+            "child": "1cc2032d-1a9b-4f76-8f48-06d9d6f8f8e3"
+        },
+        "d68931ea-8d3c-4ba5-822a-86f44bf65d8f": {
+            "id": "d68931ea-8d3c-4ba5-822a-86f44bf65d8f",
+            "name": "FindNearUnit",
+            "title": "FindNearUnit[<index>]<unitKind>mg",
+            "description": "",
+            "display": {
+                "x": 32,
+                "y": 80
+            },
+            "parameters": {},
+            "properties": {
+                "index": "foodTarget",
+                "unitKind": 8
+            }
+        },
+        "1e7a147c-f443-4142-886a-6bf6eace27ba": {
+            "id": "1e7a147c-f443-4142-886a-6bf6eace27ba",
+            "name": "Sequence",
+            "title": "SequenceWalkTarget",
+            "description": "",
+            "display": {
+                "x": -528,
+                "y": -112
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "196b641b-d963-425c-8578-119c2c115689",
+                "2cde5135-96a8-49d3-8566-a7045f598ed1",
+                "a3fa2c89-8efe-48a2-829a-a7544cda0891"
+            ]
+        },
+        "977c7246-f02b-4e1c-9d63-bada8023a716": {
+            "id": "977c7246-f02b-4e1c-9d63-bada8023a716",
+            "name": "TurnAwayTarget",
+            "title": "TurnAwayTarget",
+            "description": "",
+            "display": {
+                "x": -208,
+                "y": -464
+            },
+            "parameters": {},
+            "properties": {
+                "index": "enemy"
+            }
+        },
+        "e9866361-0b7a-4872-b434-fcb57854233c": {
+            "id": "e9866361-0b7a-4872-b434-fcb57854233c",
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "description": "",
+            "display": {
+                "x": -240,
+                "y": -368
+            },
+            "parameters": {},
+            "properties": {
+                "isOn": 1
+            }
+        },
+        "c8f0b862-8ea0-4492-b963-1e8c0038c108": {
+            "id": "c8f0b862-8ea0-4492-b963-1e8c0038c108",
+            "name": "MemSequence",
+            "title": "MemSequenceEvo",
+            "description": "",
+            "display": {
+                "x": -512,
+                "y": -384
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "a13e3bda-c605-4806-aaca-cf4bedc18df7",
+                "27adf08d-69a1-4c15-81d5-8e130b188d1e",
+                "977c7246-f02b-4e1c-9d63-bada8023a716",
+                "a22d2496-0bcc-478a-b4c9-9657d4b09526",
+                "e9866361-0b7a-4872-b434-fcb57854233c",
+                "631c087b-3cab-46f3-86b9-c603db5e5352",
+                "e80541d8-ecff-414b-88a6-4796d713ee79",
+                "d50feaf6-837a-4612-8094-b73f70c5574a"
+            ]
+        },
+        "e80541d8-ecff-414b-88a6-4796d713ee79": {
+            "id": "e80541d8-ecff-414b-88a6-4796d713ee79",
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "description": "",
+            "display": {
+                "x": -256,
+                "y": -272
+            },
+            "parameters": {},
+            "properties": {
+                "isOn": ""
+            }
+        },
+        "a13e3bda-c605-4806-aaca-cf4bedc18df7": {
+            "id": "a13e3bda-c605-4806-aaca-cf4bedc18df7",
+            "name": "CheckNearPlayer",
+            "title": "CheckNearPlayer",
+            "description": "",
+            "display": {
+                "x": -192,
+                "y": -640
+            },
+            "parameters": {},
+            "properties": {
+                "index": "enemy"
+            }
+        },
+        "37338e6a-9166-4561-8f19-e0102b882ceb": {
+            "id": "37338e6a-9166-4561-8f19-e0102b882ceb",
+            "name": "MemSequence",
+            "title": "MemSequenceAttack",
+            "description": "",
+            "display": {
+                "x": 224,
+                "y": -112
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "b880321b-5e51-4f8d-835b-911c5606e963",
+                "0fafb726-56d6-4174-845f-cfbd89c10d9b",
+                "f55951df-c3f8-48bd-8565-efd9ee70a216",
+                "2a581443-37d2-47ca-bba3-edcbd3a81c67",
+                "12c5d77a-7169-49de-9371-7c71974630c7",
+                "b2e1f546-759c-4f54-8f5c-29d2b9e7f965"
+            ]
+        },
+        "11060050-06ab-4cd8-8c83-7ee75e0d4cb8": {
+            "id": "11060050-06ab-4cd8-8c83-7ee75e0d4cb8",
+            "name": "FindAttackTarget",
+            "title": "FindAttackTarget",
+            "description": "",
+            "display": {
+                "x": 272,
+                "y": -32
+            },
+            "parameters": {},
+            "properties": {
+                "index": "attackTarget",
+                "range": 6
+            }
+        },
+        "862fce3e-5800-4e07-8170-bf0e69724075": {
+            "id": "862fce3e-5800-4e07-8170-bf0e69724075",
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "description": "",
+            "display": {
+                "x": 736,
+                "y": -128
+            },
+            "parameters": {},
+            "properties": {
+                "isOn": 1
+            }
+        },
+        "b2e1f546-759c-4f54-8f5c-29d2b9e7f965": {
+            "id": "b2e1f546-759c-4f54-8f5c-29d2b9e7f965",
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "description": "",
+            "display": {
+                "x": 608,
+                "y": 64
+            },
+            "parameters": {},
+            "properties": {
+                "isOn": ""
+            }
+        },
+        "2a581443-37d2-47ca-bba3-edcbd3a81c67": {
+            "id": "2a581443-37d2-47ca-bba3-edcbd3a81c67",
+            "name": "Wait",
+            "title": "Wait",
+            "description": "",
+            "display": {
+                "x": 608,
+                "y": -32
+            },
+            "parameters": {
+                "milliseconds": ""
+            },
+            "properties": {
+                "milliseconds": 500
+            }
+        },
+        "b880321b-5e51-4f8d-835b-911c5606e963": {
+            "id": "b880321b-5e51-4f8d-835b-911c5606e963",
+            "name": "CheckNearAttackPlayer",
+            "title": "CheckNearAttackPlayer",
+            "description": "",
+            "display": {
+                "x": 544,
+                "y": -288
+            },
+            "parameters": {},
+            "properties": {
+                "index": "attackTarget"
+            }
+        },
+        "0fafb726-56d6-4174-845f-cfbd89c10d9b": {
+            "id": "0fafb726-56d6-4174-845f-cfbd89c10d9b",
+            "name": "TurnTargetPlayer",
+            "title": "TurnTargetPlayer",
+            "description": "",
+            "display": {
+                "x": 528,
+                "y": -240
+            },
+            "parameters": {},
+            "properties": {
+                "index": "attackTarget"
+            }
+        },
+        "8a570df9-5326-47fb-9f0e-121b3da0fb5f": {
+            "id": "8a570df9-5326-47fb-9f0e-121b3da0fb5f",
+            "name": "Succeeder",
+            "title": "Succeeder",
+            "description": "",
+            "display": {
+                "x": 624,
+                "y": -80
+            },
+            "parameters": {},
+            "properties": {}
+        },
+        "f55951df-c3f8-48bd-8565-efd9ee70a216": {
+            "id": "f55951df-c3f8-48bd-8565-efd9ee70a216",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "",
+            "display": {
+                "x": 480,
+                "y": -96
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "8528ba86-1634-47f0-8cbe-d43467dd7123",
+                "8a570df9-5326-47fb-9f0e-121b3da0fb5f"
+            ]
+        },
+        "9b8e66aa-8945-4158-9427-e5c7b9456007": {
+            "id": "9b8e66aa-8945-4158-9427-e5c7b9456007",
+            "name": "AttrLimit",
+            "title": "AttrLimit[<attr>]<<limit>",
+            "description": "",
+            "display": {
+                "x": 848,
+                "y": -176
+            },
+            "parameters": {},
+            "properties": {
+                "limit": 20,
+                "attr": 2
+            }
+        },
+        "97fd76a7-3447-4bee-9333-26f77dcffbf8": {
+            "id": "97fd76a7-3447-4bee-9333-26f77dcffbf8",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "display": {
+                "x": 640,
+                "y": -176
+            },
+            "parameters": {},
+            "properties": {},
+            "child": "9b8e66aa-8945-4158-9427-e5c7b9456007"
+        },
+        "8528ba86-1634-47f0-8cbe-d43467dd7123": {
+            "id": "8528ba86-1634-47f0-8cbe-d43467dd7123",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "display": {
+                "x": 560,
+                "y": -128
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "97fd76a7-3447-4bee-9333-26f77dcffbf8",
+                "862fce3e-5800-4e07-8170-bf0e69724075"
+            ]
+        },
+        "2cde5135-96a8-49d3-8566-a7045f598ed1": {
+            "id": "2cde5135-96a8-49d3-8566-a7045f598ed1",
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "description": "",
+            "display": {
+                "x": -288,
+                "y": -112
+            },
+            "parameters": {},
+            "properties": {
+                "isOn": ""
+            }
+        },
+        "824bd1ad-de4d-4d09-8a69-abd8fead54d4": {
+            "id": "824bd1ad-de4d-4d09-8a69-abd8fead54d4",
+            "name": "Priority",
+            "title": "PriorityFindFood",
+            "description": "",
+            "display": {
+                "x": -304,
+                "y": 80
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "c9891cd6-2177-4385-9529-e9c50d5b4a5d",
+                "4ac70c55-8a3e-4e53-8c6d-ea1f2464a12e",
+                "cccbc462-caef-4c16-8bd7-8b564d0eb9d5"
+            ]
+        },
+        "b57e5a30-260a-4934-8886-4d543622c112": {
+            "id": "b57e5a30-260a-4934-8886-4d543622c112",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "display": {
+                "x": -176,
+                "y": -80
+            },
+            "parameters": {},
+            "properties": {},
+            "child": "fcfc4890-001e-4511-8fa9-a423401d4acb"
+        },
+        "a33c3b1f-8cca-481e-b159-0e4f965e59c2": {
+            "id": "a33c3b1f-8cca-481e-b159-0e4f965e59c2",
+            "name": "Sequence",
+            "title": "SequenceHaveWater",
+            "description": "",
+            "display": {
+                "x": -384,
+                "y": 16
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "b57e5a30-260a-4934-8886-4d543622c112",
+                "824bd1ad-de4d-4d09-8a69-abd8fead54d4"
+            ]
+        },
+        "dc02bd61-9742-4e11-88bf-a00736005785": {
+            "id": "dc02bd61-9742-4e11-88bf-a00736005785",
+            "name": "Priority",
+            "title": "PriorityFindFood",
+            "description": "",
+            "display": {
+                "x": -496,
+                "y": 80
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "a33c3b1f-8cca-481e-b159-0e4f965e59c2",
+                "c9054f92-0a55-4b30-8ef5-c148bb75f5ea"
+            ]
+        },
+        "c9891cd6-2177-4385-9529-e9c50d5b4a5d": {
+            "id": "c9891cd6-2177-4385-9529-e9c50d5b4a5d",
+            "name": "Priority",
+            "title": "PriorityTryAtk",
+            "description": "",
+            "display": {
+                "x": -208,
+                "y": -32
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "37338e6a-9166-4561-8f19-e0102b882ceb",
+                "11060050-06ab-4cd8-8c83-7ee75e0d4cb8"
+            ]
+        },
+        "fccee175-b621-48d7-8b88-e5c57b45b0ed": {
+            "id": "fccee175-b621-48d7-8b88-e5c57b45b0ed",
+            "name": "CheckBool",
+            "title": "CheckBool",
+            "description": "",
+            "display": {
+                "x": -480,
+                "y": -736
+            },
+            "parameters": {},
+            "properties": {
+                "keyname": "isStop"
+            }
+        },
+        "5b3d2cee-d0c3-46a4-803f-d7acf5be4a21": {
+            "id": "5b3d2cee-d0c3-46a4-803f-d7acf5be4a21",
+            "name": "Rand",
+            "title": "Rand[<index>]",
+            "description": "随机，结果值设置到index",
+            "display": {
+                "x": -480,
+                "y": -688
+            },
+            "parameters": {},
+            "properties": {
+                "index": "randAngle",
+                "min": "",
+                "max": 360
+            }
+        },
+        "72870f36-c326-44d5-bca1-246186aa924c": {
+            "id": "72870f36-c326-44d5-bca1-246186aa924c",
+            "name": "MemSequence",
+            "title": "MemSequence",
+            "description": "",
+            "display": {
+                "x": -656,
+                "y": -640
+            },
+            "parameters": {},
+            "properties": {},
+            "children": [
+                "fccee175-b621-48d7-8b88-e5c57b45b0ed",
+                "5b3d2cee-d0c3-46a4-803f-d7acf5be4a21",
+                "403c470d-7951-4785-897d-d6d5a68e888d",
+                "6d2cdba3-4d79-4320-be89-efa73bca7b5e"
+            ]
+        },
+        "403c470d-7951-4785-897d-d6d5a68e888d": {
+            "id": "403c470d-7951-4785-897d-d6d5a68e888d",
+            "name": "TurnIndex",
+            "title": "TurnIndex[<index>]",
+            "description": "转向",
+            "display": {
+                "x": -496,
+                "y": -640
+            },
+            "parameters": {},
+            "properties": {
+                "index": "randAngle"
+            }
+        },
+        "6d2cdba3-4d79-4320-be89-efa73bca7b5e": {
+            "id": "6d2cdba3-4d79-4320-be89-efa73bca7b5e",
+            "name": "Wait",
+            "title": "Wait <milliseconds>msfree",
+            "description": "",
+            "display": {
+                "x": -464,
+                "y": -592
+            },
+            "parameters": {
+                "milliseconds": ""
+            },
+            "properties": {
+                "milliseconds": 3000
+            }
+        },
+        "d50feaf6-837a-4612-8094-b73f70c5574a": {
+            "id": "d50feaf6-837a-4612-8094-b73f70c5574a",
+            "name": "SendFace",
+            "title": "SendFace",
+            "description": "",
+            "display": {
+                "x": -240,
+                "y": -208
+            },
+            "parameters": {},
+            "properties": {
+                "rand": 20,
+                "face": "emo1,emo2,emo3,emo4,emo5"
+            }
+        },
+        "bb48037b-1f77-4804-ba9b-6388cf45dcca": {
+            "id": "bb48037b-1f77-4804-ba9b-6388cf45dcca",
+            "name": "SendFace",
+            "title": "SendFace",
+            "description": "",
+            "display": {
+                "x": -96,
+                "y": 528
+            },
+            "parameters": {},
+            "properties": {
+                "rand": 10,
+                "face": "emo3,emo5"
+            }
+        },
+        "a22d2496-0bcc-478a-b4c9-9657d4b09526": {
+            "id": "a22d2496-0bcc-478a-b4c9-9657d4b09526",
+            "name": "CastSkill",
+            "title": "CastSkill",
+            "description": "",
+            "display": {
+                "x": -240,
+                "y": -416
+            },
+            "parameters": {},
+            "properties": {
+                "rand": 100,
+                "skill": 2
+            }
+        },
+        "12c5d77a-7169-49de-9371-7c71974630c7": {
+            "id": "12c5d77a-7169-49de-9371-7c71974630c7",
+            "name": "CastSkill",
+            "title": "CastSkill",
+            "description": "",
+            "display": {
+                "x": 608,
+                "y": 16
+            },
+            "parameters": {},
+            "properties": {
+                "rand": 100,
+                "skill": 1
+            }
+        },
+        "c228e9ff-e956-454e-998d-bb93b2826422": {
+            "id": "c228e9ff-e956-454e-998d-bb93b2826422",
+            "name": "TargetAttrLess",
+            "title": "TargetAttrLess",
+            "description": "对比目标和自己的某属性",
+            "display": {
+                "x": 0,
+                "y": -592
+            },
+            "parameters": {},
+            "properties": {
+                "attr": 6,
+                "index": "enemy"
+            }
+        },
+        "27adf08d-69a1-4c15-81d5-8e130b188d1e": {
+            "id": "27adf08d-69a1-4c15-81d5-8e130b188d1e",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "display": {
+                "x": -208,
+                "y": -592
+            },
+            "parameters": {},
+            "properties": {},
+            "child": "c228e9ff-e956-454e-998d-bb93b2826422"
+        }
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "title": "Log",
+            "category": "action"
+        },
+        {
+            "name": "AttrLimit",
+            "title": "AttrLimit[<attr>]<<limit>",
+            "category": "condition"
+        },
+        {
+            "name": "Rand",
+            "title": "Rand[<index>]",
+            "category": "action"
+        },
+        {
+            "name": "TurnIndex",
+            "title": "TurnIndex[<index>]",
+            "category": "action"
+        },
+        {
+            "name": "CheakBall",
+            "title": "CheakBall[<index>]",
+            "category": "condition"
+        },
+        {
+            "name": "TurnTarget",
+            "title": "TurnTarget[<index>]",
+            "category": "action"
+        },
+        {
+            "name": "FindNearUnit",
+            "title": "FindNearUnit[<index>]<unitKind>",
+            "category": "action"
+        },
+        {
+            "name": "CheckEnemyNear",
+            "title": "CheckEnemyNear",
+            "category": "condition"
+        },
+        {
+            "name": "TurnAwayTarget",
+            "title": "TurnAwayTarget",
+            "category": "action"
+        },
+        {
+            "name": "SpeedUp",
+            "title": "SpeedUp",
+            "category": "action"
+        },
+        {
+            "name": "CheckNearPlayer",
+            "title": "CheckNearPlayer",
+            "category": "condition"
+        },
+        {
+            "name": "FindAttackTarget",
+            "title": "FindAttackTarget",
+            "category": "action"
+        },
+        {
+            "name": "CheckNearAttackPlayer",
+            "title": "CheckNearAttackPlayer",
+            "category": "condition"
+        },
+        {
+            "name": "TurnTargetPlayer",
+            "title": "TurnTargetPlayer",
+            "category": "action"
+        },
+        {
+            "name": "CheckBool",
+            "title": "CheckBool",
+            "category": "condition"
+        },
+        {
+            "name": "SendFace",
+            "title": "SendFace",
+            "category": "action"
+        },
+        {
+            "name": "CastSkill",
+            "title": "CastSkill",
+            "category": "action"
+        },
+        {
+            "name": "CancelSkill",
+            "title": "CancelSkill",
+            "category": "action"
+        },
+        {
+            "name": "TargetAttrLess",
+            "title": "",
+            "category": "condition"
+        }
+    ]
+}

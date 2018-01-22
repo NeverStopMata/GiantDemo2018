@@ -65,8 +65,8 @@ func (this *ScenePhysic) BuildGroups() {
 	this.feedGroup = ape.NewGroup(false)
 	this.engine.AddGroup(this.feedGroup)
 
-	this.root.AddCollidable(this.animalAll)
-	this.blockAll.AddCollidable(this.animalAll)
+	//this.root.AddCollidable(this.animalAll)
+	//this.blockAll.AddCollidable(this.animalAll)
 	this.feedGroup.AddCollidable(this.animalAll)
 }
 

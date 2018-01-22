@@ -36,7 +36,7 @@ func (this *SceneBirthPointHelper) CreateAllBirthPoint(scene *Scene) {
 		size := float64(conf.ConfigMgr_GetMe().GetFoodSize(scene.SceneID(), fid))
 		if foodnum > 0 {
 			for i := 0; i < int(foodnum); i++ {
-				x, y, op := scene.GetPos()
+				x, y, op := scene.GetPos() //在场景中随机的分配出一个空闲的位置
 				if op {
 					point := NewBirthPoint(scene.NewBallId(), float32(x), float32(y), float32(size), float32(size), fid, ftype, birthTime, 1, scene)
 					this.AddBirthPoint(point)

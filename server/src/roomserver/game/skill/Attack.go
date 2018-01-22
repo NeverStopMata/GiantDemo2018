@@ -126,7 +126,7 @@ func BallSkillAttack(tick *b3core.Tick, player *plr.ScenePlayer, ballskill *bll.
 			targetball := iball.(*bll.BallPlayer)
 			target := targetball.GetPlayer().(*plr.ScenePlayer)
 			return playerHitPlayer(player, target)
-		} else if iball.GetType() > usercmd.BallType_FeedBegin && iball.GetType() < usercmd.BallType_FeedEnd {
+		} else if iball.GetType() > usercmd.BallType_FeedBegin && iball.GetType() < usercmd.BallType_FeedEnd && false { //mata:
 			return playerHitFeed(player, iball.(*bll.BallFeed))
 		}
 	}

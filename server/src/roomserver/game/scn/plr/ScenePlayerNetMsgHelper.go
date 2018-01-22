@@ -34,6 +34,21 @@ func (this *ScenePlayerNetMsgHelper) RegCmds() {
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ReLife, this.OnNetReLife)
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ToSpeak, this.OnNetToSpeak)
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_DoNothing, this.OnNetDoNothing)
+	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ChangeCubeHeight, this.OnNetChangeCubeHeight)
+}
+
+func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byte) {
+	op, ok := common.DecodeCmd(data, flag, &usercmd.MsgChangeCubeHeight{}).(*usercmd.MsgChangeCubeHeight)
+	if !ok {
+		glog.Error("DecodeCmd error: OnNetChangeCubeHeight")
+		return
+	}
+	if op.UporDown {
+		glog.Info("Up")
+	} else {
+		glog.Info("Down")
+	}
+
 }
 
 func (this *ScenePlayerNetMsgHelper) OnNetDoNothing(data []byte, flag byte) {
