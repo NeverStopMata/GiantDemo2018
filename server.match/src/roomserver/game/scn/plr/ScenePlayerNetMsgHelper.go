@@ -9,6 +9,7 @@ import (
 	"common"
 	"roomserver/game/scn/plr/internal"
 	"roomserver/redismgr"
+	"roomserver/util"
 	"usercmd"
 )
 
@@ -37,24 +38,66 @@ func (this *ScenePlayerNetMsgHelper) RegCmds() {
 	this.msgHandlerMap.RegisterHandler(usercmd.MsgTypeCmd_ChangeCubeHeight, this.OnNetChangeCubeHeight)
 }
 
+func (this *ScenePlayerNetMsgHelper) isOnCube(index uint32, pos util.Vector2, radius float64) bool {
+	i := index % 16
+	j := index / 16
+	if pos.X <= float64(2*i+2)-radius && pos.X >= float64(2*i)+radius && pos.Y <= float64(2*j+2)-radius && pos.Y >= float64(2*j)+radius {
+		return true
+	}
+	return false
+}
 func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byte) {
 	op, ok := common.DecodeCmd(data, flag, &usercmd.MsgChangeCubeHeight{}).(*usercmd.MsgChangeCubeHeight)
 	if !ok {
 		glog.Error("DecodeCmd error: OnNetChangeCubeHeight")
 		return
 	}
-	cubeIndex := int(this.selfPlayer.SelfAnimal.Pos.X/2) + int(this.selfPlayer.SelfAnimal.Pos.Y/2)*16
+	cubeIndex := uint32(this.selfPlayer.SelfAnimal.Pos.X/2) + uint32(this.selfPlayer.SelfAnimal.Pos.Y/2)*16
 	scene := this.selfPlayer.GetScene()
-	if op.UporDown {
-		scene.AddMovingCube(&usercmd.CubeReDst{
-			CubeIndex:      uint32(cubeIndex),
-			RemainDistance: 1000,
-		})
-	} else {
-		scene.AddMovingCube(&usercmd.CubeReDst{
-			CubeIndex:      uint32(cubeIndex),
-			RemainDistance: -1000,
-		})
+	var reDst int32
+	if op.UporDown { //upupup
+		reDst = 1000
+		if this.selfPlayer.SelfAnimal.HLState == 1 && this.isOnCube(cubeIndex, this.selfPlayer.SelfAnimal.Pos, this.selfPlayer.SelfAnimal.BallFood.GetRadius()) {
+			//若玩家在负一楼且在方块靠中央位置，则可接受上浮请求
+			this.selfPlayer.SelfAnimal.HLState = -2
+			scene.AddMovingCube(&usercmd.CubeReDst{
+				CubeIndex:      cubeIndex,
+				RemainDistance: reDst,
+			})
+			scene.SetCubeImdState(op.UporDown, cubeIndex)
+			scene.RemoveAnimalPhysicUnder(this.selfPlayer.SelfAnimal.PhysicObj) //让在上升过程中的玩家不能水平移动
+			for _, plr := range scene.GetPlayers() {
+				if this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+					scene.AddMovingPlayer(plr, cubeIndex)
+					glog.Info("方块装载了一个玩家，准备向上", plr.SelfAnimal.PhysicObj)
+				}
+			}
+		} else if this.selfPlayer.SelfAnimal.HLState == 1 {
+			glog.Info("你站在方块边缘 不能上去哦")
+		} else {
+			glog.Info("你不在地下你还想上去 你想上天啊！！")
+		}
+	} else { //downdowndown
+		reDst = -1000
+		if this.selfPlayer.SelfAnimal.HLState == 2 && this.isOnCube(cubeIndex, this.selfPlayer.SelfAnimal.Pos, this.selfPlayer.SelfAnimal.BallFood.GetRadius()) {
+			this.selfPlayer.SelfAnimal.HLState = -1
+			scene.AddMovingCube(&usercmd.CubeReDst{
+				CubeIndex:      cubeIndex,
+				RemainDistance: reDst,
+			})
+			scene.SetCubeImdState(op.UporDown, cubeIndex)
+			scene.RemoveAnimalPhysic(this.selfPlayer.SelfAnimal.PhysicObj) //让在下降过程中的玩家不能水平移动
+			for _, plr := range scene.GetPlayers() {
+				if this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+					scene.AddMovingPlayer(plr, cubeIndex)
+					glog.Info("方块装载了一个玩家，准备向下", plr.SelfAnimal.PhysicObj)
+				}
+			}
+		} else if this.selfPlayer.SelfAnimal.HLState == 2 {
+			glog.Info("你站在方块边缘 不能下去哦")
+		} else {
+			glog.Info("你不在地上你还想下去 你想进坟啊！！")
+		}
 	}
 
 }

@@ -19,6 +19,7 @@ type BallFood struct {
 	rect       util.Square
 	birthPoint interfaces.IBirthPoint
 	exp        int32
+	HLState    int32 //2：表示在上；1：表示在下；-2：表示玩家在上升的过程中，处于虚空！；-1表示玩家在下降过程中
 }
 
 func NewBallFood(id uint32, typeId uint16, x, y float64, scene IScene) *BallFood {

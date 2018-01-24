@@ -10,6 +10,7 @@ type IScene interface {
 	AddBall(ball interfaces.IBall)
 	AddFeedPhysic(feed ape.IAbstractParticle)
 	AddAnimalPhysic(animal ape.IAbstractParticle)
+	AddAnimalPhysicUnder(animal ape.IAbstractParticle)
 	GetRandomPos() (x, y float64, op bool)
 	RoomSize() float64
 	ReturnId(id uint32)

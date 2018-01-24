@@ -4,7 +4,7 @@ package skill
 
 import (
 	b3core "base/behavior3go/core"
-	"base/glog"
+	//"base/glog"
 	"roomserver/game/bll"
 	"roomserver/game/interfaces"
 	"roomserver/game/scn/plr"

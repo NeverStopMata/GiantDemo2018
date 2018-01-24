@@ -61,7 +61,8 @@ func (this *BirthPoint) CreateUnit() interfaces.IBall {
 	case interfaces.BallKind_Feed:
 		x := math.Floor(float64(this.pos.X)) + 0.25
 		y := math.Floor(float64(this.pos.Y)) + 0.25
-		ball = bll.NewBallFeed(scene, this.ballTypeId, this.id, x, y)
+		ball = bll.NewBallFeed(scene, this.ballTypeId, this.id, x, y) //mata:useful
+		glog.Info(this.ballTypeId, this.id)                           //5 306
 	default:
 		glog.Error("CreateUnit unknow ballType:", ballType, "  typeid:", this.ballTypeId)
 	}

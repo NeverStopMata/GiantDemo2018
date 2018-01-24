@@ -15,6 +15,15 @@ type IScene interface {
 	AddOffline(player *ScenePlayer)
 	RemoveBall(ball interfaces.IBall)
 	RemoveAnimalPhysic(animal ape.IAbstractParticle)
+	RemoveAnimalPhysicUnder(animal ape.IAbstractParticle)
+	AddAnimalPhysic(animal ape.IAbstractParticle)
+	AddAnimalPhysicUnder(animal ape.IAbstractParticle)
+
+	AddFeedPhysic(feed ape.IAbstractParticle)
+	AddFeedPhysicUnder(feed ape.IAbstractParticle)
+	RemoveFeedPhysic(feed ape.IAbstractParticle)
+	RemoveFeedPhysicUnder(feed ape.IAbstractParticle)
+
 	Frame() uint32
 	GetAreaCells(s *util.Square) (cells []*cll.Cell)
 	GetPlayers() map[uint64]*ScenePlayer
@@ -26,4 +35,7 @@ type IScene interface {
 	RemoveFeed(feed *bll.BallFeed)
 	AddMovingCube(newMovingCube *usercmd.CubeReDst)
 	GetMovingCubes() map[uint32]int32
+	SetCubeImdState(UporDown bool, cubeIndex uint32)
+	RemoveParticle(ape.AbstractParticle)
+	AddMovingPlayer(upDownPlr *ScenePlayer, index uint32)
 }

@@ -20,7 +20,7 @@ type BallPlayer struct {
 
 func NewBallPlayer(player IScenePlayer, ballid uint32) *BallPlayer {
 	//x, y, _ := player.GetBallScene().GetRandomPos()
-	x, y := float64(15), float64(15) //mata:initialPos
+	x, y := float64(15), float64(1) //mata:initialPos
 	ball := BallPlayer{
 		BallMove: BallMove{
 			BallFood: BallFood{
@@ -46,8 +46,8 @@ func (this *BallPlayer) Init() {
 	this.SetHP(consts.DefaultMaxHP)
 
 	this.PhysicObj = ape.NewCircleParticle(float32(this.Pos.X), float32(this.Pos.Y), float32(this.radius))
-	this.player.GetBallScene().AddAnimalPhysic(this.PhysicObj)
-
+	this.player.GetBallScene().AddAnimalPhysic(this.PhysicObj) //玩家初始化一定在上层
+	//this.player.GetBallScene().AddAnimalPhysicUnder(this.PhysicObj) //debug:initial underground
 	this.UpdateSize()
 }
 

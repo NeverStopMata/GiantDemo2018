@@ -1,7 +1,5 @@
 package ape
 
-import ()
-
 type IAbstractCollection interface {
 	AddConstraint(c IAbstractConstraint)
 	RemoveConstraint(c IAbstractConstraint)
@@ -55,7 +53,7 @@ func (this *AbstractCollection) RemoveParticle(p IAbstractParticle) {
 			break
 		}
 	}
-	p.CleanUp()
+	p.CleanUp() //mata:!danger
 }
 
 /**

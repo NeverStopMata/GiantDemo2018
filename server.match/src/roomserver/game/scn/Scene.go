@@ -35,10 +35,7 @@ const (
 	CUBE_Y_NUM        = 16
 )
 
-type Cube struct {
-	state          int
-	remainDistance int
-}
+type CubeState int
 type Scene struct {
 	SceneBallHelper                                   // 分配球相关的辅助类
 	SceneBirthPointHelper                             // 出生点辅助类
@@ -53,9 +50,12 @@ type Scene struct {
 	Pool                  *MsgPool                    // 球、协议等对象分配池
 	Players               map[uint64]*plr.ScenePlayer // 玩家对象
 	scenePhysic           *physic.ScenePhysic         // 场景物理
+	scenePhysicUnder      *physic.ScenePhysic         // 地下世界的场景
 	cubeNum               uint32                      // cube 数量
-	CubeInf               []*Cube                     // cube信息的集合
+	CubeInf               []CubeState                 // cube信息的集合
 	MovingCubes           map[uint32]int32            //当前场景中正在移动的cube
+	feedPool              [256]ape.RectangleParticle
+	UpDownPlayers         [256][]*plr.ScenePlayer
 }
 
 // NewSceneAIPlayer = ai.NewSceneAIPlayer
@@ -70,9 +70,22 @@ func (this *Scene) Init(room IRoom) {
 
 	this.mapConfig = conf.GetMapConfigById(this.SceneID())
 	this.scenePhysic = physic.NewScenePhysic()
+	this.scenePhysicUnder = physic.NewScenePhysic()
 	this.Players = make(map[uint64]*plr.ScenePlayer)
-	this.SceneBallHelper.Init(this.mapConfig.Size)
+	this.SceneBallHelper.Init(this.mapConfig.Size) //matadot
 	glog.Info("mata begin to load map")
+	for i := 0; i < 16; i++ {
+		for j := 0; j < 16; j++ {
+			this.feedPool[j*16+i] = *ape.NewRectangleParticle(float32(2*i+1), float32(2*j+1), 2.0, 2.0)
+			this.feedPool[j*16+i].SetFixed(true)
+		}
+	}
+	/*for i := 0; i < 16; i++ {
+		for j := 0; j < 16; j++ {
+			this.feedPool[256+j*16+i] = *ape.NewRectangleParticle(float32(2*(i/16)+1), float32(2*j+1), 2.0, 2.0)
+		}
+	}*/ //在feedPool里面先放好这些动态障碍物
+
 	this.LoadMap()
 	for i := 0; i < this.cellNumX*this.cellNumY; i++ {
 		this.cells = append(this.cells, cll.NewCell(i))
@@ -83,10 +96,7 @@ func (this *Scene) Init(room IRoom) {
 	//mata:初始化cube表，高度状态都为0，待移动高度都为0
 	this.cubeNum = CUBE_X_NUM * CUBE_Y_NUM
 	for i := uint32(0); i < this.cubeNum; i++ {
-		this.CubeInf = append(this.CubeInf, &Cube{
-			state:          0,
-			remainDistance: 0,
-		})
+		this.CubeInf = append(this.CubeInf, 0)
 	}
 	this.MovingCubes = make(map[uint32]int32)
 	this.reset()
@@ -97,14 +107,27 @@ func (this *Scene) LoadMap() {
 	this.cellNumX = int(math.Ceil(this.roomSize / cll.CellWidth))
 	this.cellNumY = int(math.Ceil(this.roomSize / cll.CellHeight))
 	this.scenePhysic.CreateBoard(float32(this.mapConfig.Size))
-	glog.Info("fucking size:", float32(this.mapConfig.Size))
-	for _, v := range this.mapConfig.Nodes {
-		LoadMapObjectByConfig(v, this)
-		randblock := this.GetSquare(v.Px, v.Py, v.Radius)
-		for index, _ := range randblock {
-			this.AppendFixedPos(int(randblock[index].X), int(randblock[index].Y))
+	this.scenePhysicUnder.CreateBoard(float32(this.mapConfig.Size))
+	//**************mata:load硬编码来初始化地图哦*****************//
+	for i := 0; i < 16; i++ {
+		for j := 0; j < 16; j++ {
+			//			if i == j {
+			//				this.scenePhysic.AddFeed(&this.feedPool[j*16+i])
+			//			}
+			//			if j == 8 {
+			//				this.scenePhysicUnder.AddFeed(&this.feedPool[j*16+i])
+			//			}
+			//mata:以上代码用于debug
 		}
 	}
+	glog.Info("fucking size:", float32(this.mapConfig.Size))
+	//	for _, v := range this.mapConfig.Nodes {
+	//		LoadMapObjectByConfig(v, this)
+	//		randblock := this.GetSquare(v.Px, v.Py, v.Radius)
+	//		for index, _ := range randblock {
+	//			this.AppendFixedPos(int(randblock[index].X), int(randblock[index].Y))
+	//		}
+	//	}
 }
 
 // 重置整个房间
@@ -127,30 +150,49 @@ func (this *Scene) Render5() {
 	this.SendRoomMsg()
 }
 
-//时间片渲染
-func (this *Scene) Render() {
-	now := time.Now()
-	nowNano := now.UnixNano()
-	var d float64 = consts.FrameTime
+func (this *Scene) UpdateCubeInfPerTick(d float64) {
 	for i, _ := range this.MovingCubes {
 		if this.MovingCubes[i] == 0 {
 			delete(this.MovingCubes, i)
 		} else if this.MovingCubes[i] > 0 {
 			this.MovingCubes[i] -= int32(d * consts.UpDownSpeed)
-			if this.MovingCubes[i] < 0 {
+			if this.MovingCubes[i] <= 0 {
 				this.MovingCubes[i] = 0
-				this.CubeInf[i].state += 1
+				this.CubeInf[i] += 1
+				for _, arvdPlr := range this.UpDownPlayers[i] {
+					this.AddAnimalPhysic(arvdPlr.SelfAnimal.PhysicObj)
+					arvdPlr.SelfAnimal.HLState = 2
+					glog.Info("XIXI 上来了一个玩家:", arvdPlr.Name)
+
+				}
+
+				glog.Info("上升停止 现在方块", i, "状态：", this.CubeInf[i])
 			}
 		} else if this.MovingCubes[i] < 0 {
 			this.MovingCubes[i] += int32(d * consts.UpDownSpeed)
-			if this.MovingCubes[i] > 0 {
+			if this.MovingCubes[i] >= 0 {
 				this.MovingCubes[i] = 0
-				this.CubeInf[i].state -= 1
+				this.CubeInf[i] -= 1
+				for _, arvdPlr := range this.UpDownPlayers[i] {
+					this.AddAnimalPhysicUnder(arvdPlr.SelfAnimal.PhysicObj)
+					arvdPlr.SelfAnimal.HLState = 1
+					glog.Info("XIXI 下来了一个玩家:", arvdPlr.Name)
+				}
+				glog.Info("下降停止 现在方块", i, "状态：", this.CubeInf[i])
 			}
 		}
 	} //实时更新cube还需要移动的高度
+}
+
+//时间片渲染
+func (this *Scene) Render() {
+	now := time.Now()
+	nowNano := now.UnixNano()
+	var d float64 = consts.FrameTime
+	this.UpdateCubeInfPerTick(d)
 	if this.frame%2 == 0 {
 		this.scenePhysic.Tick()
+		this.scenePhysicUnder.Tick()
 	}
 	for _, player := range this.Players {
 		player.Update(d, nowNano, this)
@@ -256,6 +298,7 @@ func (this *Scene) AddPlayer(playertask ri.IPlayerTask, team *tm.Team, robot boo
 			tmpname := scenePlayer.UData().TeamName
 			tmpid := scenePlayer.UData().TeamId
 			scenePlayer.ID = playertask.ID()
+
 			scenePlayer.Key = playertask.Key()
 			scenePlayer.SetUData(playertask.UData())
 			scenePlayer.Name = playertask.Name()
@@ -282,6 +325,7 @@ func (this *Scene) AddPlayer(playertask ri.IPlayerTask, team *tm.Team, robot boo
 
 		scenePlayer.IsRobot = false
 		scenePlayer.SetExp(0)
+		scenePlayer.SelfAnimal.HLState = 2
 		scenePlayer.Sess = nil
 	} else {
 		if copy_player == nil {
@@ -437,6 +481,10 @@ func (this *Scene) AddPlayer(playertask ri.IPlayerTask, team *tm.Team, robot boo
 	return true
 }
 
+func (this *Scene) RemoveParticle(removeFeed ape.AbstractParticle) {
+	//this.scenePhysic.RemoveAnimal(removeFeed) //?????
+}
+
 // 删除玩家
 func (this *Scene) RemovePlayer(playerId uint64) bool {
 	player, ok := this.Players[playerId]
@@ -448,7 +496,7 @@ func (this *Scene) RemovePlayer(playerId uint64) bool {
 	this.AddOffline(player)
 
 	this.RemoveBall(player.SelfAnimal)
-	this.scenePhysic.RemoveAnimal(player.SelfAnimal.PhysicObj)
+	this.scenePhysic.RemoveAnimal(player.SelfAnimal.PhysicObj) //mata copy this
 
 	if false == player.IsRobot {
 		this.room.SaveRoomData(player)
@@ -695,8 +743,24 @@ func (this *Scene) RemoveFeed(feed *bll.BallFeed) {
 	}
 }
 
-func (this *Scene) AddMovingCube(newMovingCube *usercmd.CubeReDst) {
+func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
+	if this.CubeInf[cubeIndex]%2 != 0 {
+		glog.Info("方块在这个状态不能上下动哦！")
+		return
+	}
+	if UporDown && (this.CubeInf[cubeIndex] == -2 || this.CubeInf[cubeIndex] == 0) {
+		this.CubeInf[cubeIndex]++
+		glog.Info("开始上升！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
+	} else if !UporDown && (this.CubeInf[cubeIndex] == 2 || this.CubeInf[cubeIndex] == 0) {
+		this.CubeInf[cubeIndex]--
+		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
+	}
+}
 
+func (this *Scene) AddMovingCube(newMovingCube *usercmd.CubeReDst) {
+	if this.CubeInf[newMovingCube.CubeIndex]%2 != 0 {
+		return
+	}
 	this.MovingCubes[uint32(newMovingCube.CubeIndex)] = newMovingCube.RemainDistance
 
 }
@@ -708,13 +772,34 @@ func (this *Scene) GetMovingCubes() map[uint32]int32 {
 func (this *Scene) AddFeedPhysic(feed ape.IAbstractParticle) {
 	this.scenePhysic.AddFeed(feed)
 }
+func (this *Scene) AddFeedPhysicUnder(feed ape.IAbstractParticle) {
+	this.scenePhysicUnder.AddFeed(feed)
+}
+func (this *Scene) RemoveFeedPhysic(feed ape.IAbstractParticle) {
+	this.scenePhysic.RemoveFeed(feed)
+}
+func (this *Scene) RemoveFeedPhysicUnder(feed ape.IAbstractParticle) {
+	this.scenePhysicUnder.RemoveFeed(feed)
+}
 
 func (this *Scene) AddAnimalPhysic(animal ape.IAbstractParticle) {
 	this.scenePhysic.AddAnimal(animal)
 }
 
+func (this *Scene) AddAnimalPhysicUnder(animal ape.IAbstractParticle) {
+	this.scenePhysicUnder.AddAnimal(animal)
+}
+
 func (this *Scene) RemoveAnimalPhysic(animal ape.IAbstractParticle) {
 	this.scenePhysic.RemoveAnimal(animal)
+}
+
+func (this *Scene) RemoveAnimalPhysicUnder(animal ape.IAbstractParticle) {
+	this.scenePhysicUnder.RemoveAnimal(animal)
+}
+
+func (this *Scene) AddMovingPlayer(upDownPlr *plr.ScenePlayer, index uint32) {
+	this.UpDownPlayers[index] = append(this.UpDownPlayers[index], upDownPlr)
 }
 
 // 地图大小（长、宽相等） XXX 改名为 SceneSize
