@@ -121,13 +121,13 @@ func (this *Scene) LoadMap() {
 		}
 	}
 	glog.Info("fucking size:", float32(this.mapConfig.Size))
-	//	for _, v := range this.mapConfig.Nodes {
-	//		LoadMapObjectByConfig(v, this)
-	//		randblock := this.GetSquare(v.Px, v.Py, v.Radius)
-	//		for index, _ := range randblock {
-	//			this.AppendFixedPos(int(randblock[index].X), int(randblock[index].Y))
-	//		}
-	//	}
+	for _, v := range this.mapConfig.Nodes {
+		LoadMapObjectByConfig(v, this)
+		randblock := this.GetSquare(v.Px, v.Py, v.Radius)
+		for index, _ := range randblock {
+			this.AppendFixedPos(int(randblock[index].X), int(randblock[index].Y))
+		}
+	}
 }
 
 // 重置整个房间
@@ -762,20 +762,20 @@ func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
 	}
 	if UporDown && (this.CubeInf[cubeIndex] == -2 || this.CubeInf[cubeIndex] == 0) {
 		if this.CubeInf[cubeIndex] == -2 {
-			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
 		} else if this.CubeInf[cubeIndex] == 0 {
-			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
-			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.feedPool[cubeIndex])
+			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
 		}
 		this.CubeInf[cubeIndex]++
 
 		glog.Info("开始上升！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
 	} else if !UporDown && (this.CubeInf[cubeIndex] == 2 || this.CubeInf[cubeIndex] == 0) {
 		if this.CubeInf[cubeIndex] == 2 {
-			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.feedPool[cubeIndex])
 		} else if this.CubeInf[cubeIndex] == 0 {
-			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
-			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.feedPool[cubeIndex])
+			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
 		}
 		this.CubeInf[cubeIndex]--
 		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
