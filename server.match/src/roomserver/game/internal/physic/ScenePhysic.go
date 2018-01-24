@@ -43,13 +43,13 @@ func (this *ScenePhysic) CreateBoard(size float32) {
 	top.SetFixed(true)
 	down := ape.NewRectangleParticle(size/2, -size/2, size*2, size)
 	down.SetFixed(true)
-	fiveColorStone := ape.NewCircleParticle(size, size, 1) //可能引擎问题，右上角会穿透，要堵一下
-	fiveColorStone.SetFixed(true)
+	//fiveColorStone := ape.NewCircleParticle(size, size, 1) //可能引擎问题，右上角会穿透，要堵一下
+	//fiveColorStone.SetFixed(true)
 	this.root.AddParticle(left)
 	this.root.AddParticle(right)
 	this.root.AddParticle(top)
 	this.root.AddParticle(down)
-	this.root.AddParticle(fiveColorStone)
+	//this.root.AddParticle(fiveColorStone)
 }
 
 func (this *ScenePhysic) BuildGroups() {

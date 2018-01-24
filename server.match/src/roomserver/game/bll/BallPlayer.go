@@ -32,6 +32,7 @@ func NewBallPlayer(player IScenePlayer, ballid uint32) *BallPlayer {
 		},
 		player: player,
 	}
+	//player.GetBallScene().AddPressedCube(&ball, x, y)
 	ball.Init()
 	ball.ResetRect()
 	return &ball
@@ -47,6 +48,7 @@ func (this *BallPlayer) Init() {
 
 	this.PhysicObj = ape.NewCircleParticle(float32(this.Pos.X), float32(this.Pos.Y), float32(this.radius))
 	this.player.GetBallScene().AddAnimalPhysic(this.PhysicObj) //玩家初始化一定在上层
+
 	//this.player.GetBallScene().AddAnimalPhysicUnder(this.PhysicObj) //debug:initial underground
 	this.UpdateSize()
 }
@@ -70,6 +72,7 @@ func (this *BallPlayer) Move(perTime float64, frameRate float64) bool {
 		force := this.GetForce()
 		pos := this.PhysicObj.GetPostion()
 		this.Pos = util.Vector2{float64(pos.X), float64(pos.Y)}
+
 		this.PhysicObj.SetVelocity(&bmath.Vector2{float32(force.X), float32(force.Y)})
 		return true
 	}

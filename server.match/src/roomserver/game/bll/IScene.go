@@ -2,6 +2,7 @@ package bll
 
 import (
 	"base/ape"
+
 	"roomserver/game/interfaces"
 )
 
@@ -15,4 +16,5 @@ type IScene interface {
 	RoomSize() float64
 	ReturnId(id uint32)
 	UpdateSkillBallCell(ball *BallSkill, oldCellID int)
+	//AddPressedCube(plrOnRoof *BallPlayer, x, y float64)
 }

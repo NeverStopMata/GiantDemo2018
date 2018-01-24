@@ -52,10 +52,12 @@ type Scene struct {
 	scenePhysic           *physic.ScenePhysic         // 场景物理
 	scenePhysicUnder      *physic.ScenePhysic         // 地下世界的场景
 	cubeNum               uint32                      // cube 数量
-	CubeInf               []CubeState                 // cube信息的集合
-	MovingCubes           map[uint32]int32            //当前场景中正在移动的cube
-	feedPool              [256]ape.RectangleParticle
-	UpDownPlayers         [256][]*plr.ScenePlayer
+	CubeStates            []int                       // cube位置状态的集合
+	CubeMoveDrcts         [256]int                    // cube运动方向的集合 1表示上 0 表示静止 -1表示下降
+	MovingCubes           map[uint32]int32            // 当前场景中正在移动的cube
+	feedPool              [256]ape.RectangleParticle  // 备用的动态障碍物
+	UpDownPlayers         [256][]*plr.ScenePlayer     // 正在上下移动的玩家
+	PressedCube           map[*bll.BallPlayer]uint32  // 被玩家压下去的那块
 }
 
 // NewSceneAIPlayer = ai.NewSceneAIPlayer
@@ -63,6 +65,10 @@ var NewSceneAIPlayer func(room IRoom) *plr.ScenePlayer
 
 // NewCopyPlayerAI = ai.NewCopyPlayerAI
 var NewCopyPlayerAI func(room IRoom, copy_player *plr.ScenePlayer) *plr.ScenePlayer
+
+//func (this *Scene) AddPressedCube(plrOnRoof *bll.BallPlayer, x, y float64) {
+//	this.PressedCube[plrOnRoof] = uint32(x/2) + uint32(y/2)*16
+//}
 
 //场景初始化
 func (this *Scene) Init(room IRoom) {
@@ -80,6 +86,9 @@ func (this *Scene) Init(room IRoom) {
 			this.feedPool[j*16+i].SetFixed(true)
 		}
 	}
+	for i := 0; i < 256; i++ {
+		this.CubeMoveDrcts[i] = 0
+	}
 	/*for i := 0; i < 16; i++ {
 		for j := 0; j < 16; j++ {
 			this.feedPool[256+j*16+i] = *ape.NewRectangleParticle(float32(2*(i/16)+1), float32(2*j+1), 2.0, 2.0)
@@ -96,7 +105,7 @@ func (this *Scene) Init(room IRoom) {
 	//mata:初始化cube表，高度状态都为0，待移动高度都为0
 	this.cubeNum = CUBE_X_NUM * CUBE_Y_NUM
 	for i := uint32(0); i < this.cubeNum; i++ {
-		this.CubeInf = append(this.CubeInf, 0)
+		this.CubeStates = append(this.CubeStates, 0)
 	}
 	this.MovingCubes = make(map[uint32]int32)
 	this.reset()
@@ -153,15 +162,16 @@ func (this *Scene) Render5() {
 func (this *Scene) UpdateCubeInfPerTick(d float64) {
 	for i, _ := range this.MovingCubes {
 		if this.MovingCubes[i] == 0 {
-			delete(this.MovingCubes, i)
+			//delete(this.MovingCubes, i)
 		} else if this.MovingCubes[i] > 0 {
 			this.MovingCubes[i] -= int32(d * consts.UpDownSpeed)
 			if this.MovingCubes[i] <= 0 {
 				this.MovingCubes[i] = 0
-				this.CubeInf[i] += 1
-				if this.CubeInf[i] == 2 {
+				this.CubeStates[i] += 1
+				this.CubeMoveDrcts[i] = 0
+				if this.CubeStates[i] == 2 {
 					this.RemoveFeedPhysic(&this.feedPool[i])
-				} else if this.CubeInf[i] == 0 {
+				} else if this.CubeStates[i] == 0 {
 					this.RemoveFeedPhysic(&this.feedPool[i])
 					this.RemoveFeedPhysicUnder(&this.feedPool[i])
 				}
@@ -172,16 +182,17 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 
 				}
 
-				glog.Info("上升停止 现在方块", i, "状态：", this.CubeInf[i])
+				glog.Info("上升停止 现在方块", i, "状态：", this.CubeStates[i])
 			}
 		} else if this.MovingCubes[i] < 0 {
 			this.MovingCubes[i] += int32(d * consts.UpDownSpeed)
 			if this.MovingCubes[i] >= 0 {
 				this.MovingCubes[i] = 0
-				this.CubeInf[i] -= 1
-				if this.CubeInf[i] == -2 {
+				this.CubeStates[i] -= 1
+				this.CubeMoveDrcts[i] = 0
+				if this.CubeStates[i] == -2 {
 					this.RemoveFeedPhysicUnder(&this.feedPool[i])
-				} else if this.CubeInf[i] == 0 {
+				} else if this.CubeStates[i] == 0 {
 					this.RemoveFeedPhysic(&this.feedPool[i])
 					this.RemoveFeedPhysicUnder(&this.feedPool[i])
 				}
@@ -190,7 +201,7 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 					arvdPlr.SelfAnimal.HLState = 1
 					glog.Info("XIXI 下来了一个玩家:", arvdPlr.Name)
 				}
-				glog.Info("下降停止 现在方块", i, "状态：", this.CubeInf[i])
+				glog.Info("下降停止 现在方块", i, "状态：", this.CubeStates[i])
 			}
 		}
 	} //实时更新cube还需要移动的高度
@@ -230,6 +241,10 @@ func (this *Scene) SendRoomMsg() {
 	for _, player := range this.Players {
 		player.ResetMsg()
 	}
+}
+
+func (this *Scene) GetCubeState(index uint32) int {
+	return this.CubeStates[index]
 }
 
 //添加球到场景
@@ -756,34 +771,36 @@ func (this *Scene) RemoveFeed(feed *bll.BallFeed) {
 }
 
 func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
-	if this.CubeInf[cubeIndex]%2 != 0 {
+	if this.CubeStates[cubeIndex]%2 != 0 {
 		glog.Info("方块在这个状态不能上下动哦！")
 		return
 	}
-	if UporDown && (this.CubeInf[cubeIndex] == -2 || this.CubeInf[cubeIndex] == 0) {
-		if this.CubeInf[cubeIndex] == -2 {
+	if UporDown && (this.CubeStates[cubeIndex] == -2 || this.CubeStates[cubeIndex] == 0) {
+		this.CubeMoveDrcts[cubeIndex] = 1
+		if this.CubeStates[cubeIndex] == -2 {
 			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
-		} else if this.CubeInf[cubeIndex] == 0 {
+		} else if this.CubeStates[cubeIndex] == 0 {
 			this.AddFeedPhysic(&this.feedPool[cubeIndex])
 			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
 		}
-		this.CubeInf[cubeIndex]++
+		this.CubeStates[cubeIndex]++
 
-		glog.Info("开始上升！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
-	} else if !UporDown && (this.CubeInf[cubeIndex] == 2 || this.CubeInf[cubeIndex] == 0) {
-		if this.CubeInf[cubeIndex] == 2 {
+		glog.Info("开始上升！！！ 现在方块", cubeIndex, "状态：", this.CubeStates[cubeIndex])
+	} else if !UporDown && (this.CubeStates[cubeIndex] == 2 || this.CubeStates[cubeIndex] == 0) {
+		this.CubeMoveDrcts[cubeIndex] = -1
+		if this.CubeStates[cubeIndex] == 2 {
 			this.AddFeedPhysic(&this.feedPool[cubeIndex])
-		} else if this.CubeInf[cubeIndex] == 0 {
+		} else if this.CubeStates[cubeIndex] == 0 {
 			this.AddFeedPhysic(&this.feedPool[cubeIndex])
 			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
 		}
-		this.CubeInf[cubeIndex]--
-		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
+		this.CubeStates[cubeIndex]--
+		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeStates[cubeIndex])
 	}
 }
 
 func (this *Scene) AddMovingCube(newMovingCube *usercmd.CubeReDst) {
-	if this.CubeInf[newMovingCube.CubeIndex]%2 != 0 {
+	if this.CubeStates[newMovingCube.CubeIndex]%2 != 0 {
 		return
 	}
 	this.MovingCubes[uint32(newMovingCube.CubeIndex)] = newMovingCube.RemainDistance
@@ -792,6 +809,10 @@ func (this *Scene) AddMovingCube(newMovingCube *usercmd.CubeReDst) {
 
 func (this *Scene) GetMovingCubes() map[uint32]int32 {
 	return this.MovingCubes
+}
+
+func (this *Scene) GetCubeMoveDrct(index uint32) int {
+	return this.CubeMoveDrcts[index]
 }
 
 func (this *Scene) AddFeedPhysic(feed ape.IAbstractParticle) {
@@ -825,6 +846,10 @@ func (this *Scene) RemoveAnimalPhysicUnder(animal ape.IAbstractParticle) {
 
 func (this *Scene) AddMovingPlayer(upDownPlr *plr.ScenePlayer, index uint32) {
 	this.UpDownPlayers[index] = append(this.UpDownPlayers[index], upDownPlr)
+}
+
+func (this *Scene) RemoveMovingCube(index uint32) {
+	delete(this.MovingCubes, index)
 }
 
 // 地图大小（长、宽相等） XXX 改名为 SceneSize

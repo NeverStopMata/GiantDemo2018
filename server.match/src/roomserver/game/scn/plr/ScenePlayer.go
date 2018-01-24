@@ -413,16 +413,43 @@ func (this *ScenePlayer) SendSceneMsg() {
 		this.SendCmd(usercmd.MsgTypeCmd_SceneTCP, msg)
 	}
 	//	glog.Info("fuck u!")
-	//	glog.Info(len(this.GetScene().GetMovingCubes()))
+	//glog.Info(len(this.GetScene().GetMovingCubes()))
 
 	if len(Moves) != 0 || len(this.GetScene().GetMovingCubes()) != 0 {
 		msg := &this.msgPool.MsgSceneUDP
+		msg.ChangingInf = []*usercmd.CubeReDst{}
 		for i, v := range this.GetScene().GetMovingCubes() {
-			msg.ChangingInf = append(msg.ChangingInf, &usercmd.CubeReDst{
-				CubeIndex:      i,
-				RemainDistance: v,
-			})
+			if (this.GetScene().GetCubeState(i) == 1 || this.GetScene().GetCubeState(i) == 2) && this.GetScene().GetCubeMoveDrct(i) >= 0 {
+				msg.ChangingInf = append(msg.ChangingInf, &usercmd.CubeReDst{
+					CubeIndex:      i,
+					RemainDistance: 1000 - v,
+				})
+			} else if (this.GetScene().GetCubeState(i) == 1 || this.GetScene().GetCubeState(i) == 0) && this.GetScene().GetCubeMoveDrct(i) <= 0 {
+				msg.ChangingInf = append(msg.ChangingInf, &usercmd.CubeReDst{
+					CubeIndex:      i,
+					RemainDistance: -v,
+				})
+			} else if (this.GetScene().GetCubeState(i) == -1 || this.GetScene().GetCubeState(i) == 0) && this.GetScene().GetCubeMoveDrct(i) >= 0 {
+				msg.ChangingInf = append(msg.ChangingInf, &usercmd.CubeReDst{
+					CubeIndex:      i,
+					RemainDistance: -v,
+				})
+			} else if (this.GetScene().GetCubeState(i) == -2 || this.GetScene().GetCubeState(i) == -1) && this.GetScene().GetCubeMoveDrct(i) <= 0 {
+				msg.ChangingInf = append(msg.ChangingInf, &usercmd.CubeReDst{
+					CubeIndex:      i,
+					RemainDistance: -1000 - v,
+				})
+			}
+			if v == 0 {
+				//删除这个
+				this.GetScene().RemoveMovingCube(i)
+			}
+
 		}
+		for _, v := range msg.ChangingInf {
+			glog.Info(v)
+		}
+
 		msg.Moves = Moves
 		msg.Frame = this.GetScene().Frame()
 
@@ -515,6 +542,7 @@ func (this *ScenePlayer) UpdateMove(perTime float64, frameRate float64) {
 
 		if this.isRunning {
 			cost := frameRate * float64(consts.FrameTimeMS) * consts.DefaultRunCostMP
+			cost = 0 //mata:infinite running
 			diff := ball.GetMP() - cost
 			if diff <= 0 {
 				this.isRunning = false
