@@ -159,6 +159,12 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 			if this.MovingCubes[i] <= 0 {
 				this.MovingCubes[i] = 0
 				this.CubeInf[i] += 1
+				if this.CubeInf[i] == 2 {
+					this.RemoveFeedPhysic(&this.feedPool[i])
+				} else if this.CubeInf[i] == 0 {
+					this.RemoveFeedPhysic(&this.feedPool[i])
+					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+				}
 				for _, arvdPlr := range this.UpDownPlayers[i] {
 					this.AddAnimalPhysic(arvdPlr.SelfAnimal.PhysicObj)
 					arvdPlr.SelfAnimal.HLState = 2
@@ -173,6 +179,12 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 			if this.MovingCubes[i] >= 0 {
 				this.MovingCubes[i] = 0
 				this.CubeInf[i] -= 1
+				if this.CubeInf[i] == -2 {
+					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+				} else if this.CubeInf[i] == 0 {
+					this.RemoveFeedPhysic(&this.feedPool[i])
+					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+				}
 				for _, arvdPlr := range this.UpDownPlayers[i] {
 					this.AddAnimalPhysicUnder(arvdPlr.SelfAnimal.PhysicObj)
 					arvdPlr.SelfAnimal.HLState = 1
@@ -749,9 +761,22 @@ func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
 		return
 	}
 	if UporDown && (this.CubeInf[cubeIndex] == -2 || this.CubeInf[cubeIndex] == 0) {
+		if this.CubeInf[cubeIndex] == -2 {
+			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+		} else if this.CubeInf[cubeIndex] == 0 {
+			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
+			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+		}
 		this.CubeInf[cubeIndex]++
+
 		glog.Info("开始上升！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
 	} else if !UporDown && (this.CubeInf[cubeIndex] == 2 || this.CubeInf[cubeIndex] == 0) {
+		if this.CubeInf[cubeIndex] == 2 {
+			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
+		} else if this.CubeInf[cubeIndex] == 0 {
+			this.AddAnimalPhysic(&this.feedPool[cubeIndex])
+			this.AddAnimalPhysicUnder(&this.feedPool[cubeIndex])
+		}
 		this.CubeInf[cubeIndex]--
 		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeInf[cubeIndex])
 	}
