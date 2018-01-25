@@ -841,3 +841,9 @@ func (this *ScenePlayer) DeadTime() int64 {
 func (this *ScenePlayer) SetDeadTime(deadTime int64) {
 	this.deadTime = deadTime
 }
+func (this *ScenePlayer) GetPlrCubeIndex() uint32 {
+	x := this.SelfAnimal.Pos.X
+	y := this.SelfAnimal.Pos.Y
+	cubeIndex := uint32(x/2) + uint32(y/2)*16
+	return cubeIndex
+}

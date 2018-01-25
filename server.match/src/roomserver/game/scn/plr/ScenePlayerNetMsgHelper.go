@@ -59,7 +59,7 @@ func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byt
 		reDst = 1000
 		if this.selfPlayer.SelfAnimal.HLState == 1 && this.isOnCube(cubeIndex, this.selfPlayer.SelfAnimal.Pos, this.selfPlayer.SelfAnimal.BallFood.GetRadius()) {
 			//若玩家在负一楼且在方块靠中央位置，则可接受上浮请求
-			this.selfPlayer.SelfAnimal.HLState = -2
+			//this.selfPlayer.SelfAnimal.HLState = -2
 			scene.AddMovingCube(&usercmd.CubeReDst{
 				CubeIndex:      cubeIndex,
 				RemainDistance: reDst,
@@ -67,7 +67,8 @@ func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byt
 			scene.SetCubeImdState(op.UporDown, cubeIndex)
 			scene.RemoveAnimalPhysicUnder(this.selfPlayer.SelfAnimal.PhysicObj) //让在上升过程中的玩家不能水平移动
 			for _, plr := range scene.GetPlayers() {
-				if this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+				if plr.SelfAnimal.HLState == 1 && this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+					plr.selfPlayer.SelfAnimal.HLState = -2
 					scene.AddMovingPlayer(plr, cubeIndex)
 					glog.Info("方块装载了一个玩家，准备向上", plr.SelfAnimal.PhysicObj)
 				}
@@ -80,7 +81,7 @@ func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byt
 	} else { //downdowndown
 		reDst = -1000
 		if this.selfPlayer.SelfAnimal.HLState == 2 && this.isOnCube(cubeIndex, this.selfPlayer.SelfAnimal.Pos, this.selfPlayer.SelfAnimal.BallFood.GetRadius()) {
-			this.selfPlayer.SelfAnimal.HLState = -1
+			//this.selfPlayer.SelfAnimal.HLState = -1
 			scene.AddMovingCube(&usercmd.CubeReDst{
 				CubeIndex:      cubeIndex,
 				RemainDistance: reDst,
@@ -88,7 +89,8 @@ func (this *ScenePlayerNetMsgHelper) OnNetChangeCubeHeight(data []byte, flag byt
 			scene.SetCubeImdState(op.UporDown, cubeIndex)
 			scene.RemoveAnimalPhysic(this.selfPlayer.SelfAnimal.PhysicObj) //让在下降过程中的玩家不能水平移动
 			for _, plr := range scene.GetPlayers() {
-				if this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+				if plr.SelfAnimal.HLState == 2 && this.isOnCube(cubeIndex, plr.SelfAnimal.Pos, plr.SelfAnimal.BallFood.GetRadius()) {
+					plr.selfPlayer.SelfAnimal.HLState = -1
 					scene.AddMovingPlayer(plr, cubeIndex)
 					glog.Info("方块装载了一个玩家，准备向下", plr.SelfAnimal.PhysicObj)
 				}
@@ -122,6 +124,9 @@ func (this *ScenePlayerNetMsgHelper) OnCastSkill(data []byte, flag byte) {
 	op, ok := common.DecodeCmd(data, flag, &usercmd.MsgCastSkill{}).(*usercmd.MsgCastSkill)
 	if !ok {
 		glog.Error("DecodeCmd error: OnCastSkill")
+		return
+	}
+	if this.selfPlayer.SelfAnimal.HLState != 2 {
 		return
 	}
 	this.selfPlayer.CastSkill(op)

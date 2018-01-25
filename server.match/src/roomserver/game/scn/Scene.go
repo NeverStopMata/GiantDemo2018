@@ -55,9 +55,10 @@ type Scene struct {
 	CubeStates            []int                       // cube位置状态的集合
 	CubeMoveDrcts         [256]int                    // cube运动方向的集合 1表示上 0 表示静止 -1表示下降
 	MovingCubes           map[uint32]int32            // 当前场景中正在移动的cube
-	feedPool              [256]ape.RectangleParticle  // 备用的动态障碍物
+	DynamicBlocks         [256]ape.RectangleParticle  // 备用的动态障碍物
 	UpDownPlayers         [256][]*plr.ScenePlayer     // 正在上下移动的玩家
-	PressedCube           map[*bll.BallPlayer]uint32  // 被玩家压下去的那块
+	PressedLowCubes       map[uint32]int              // 被玩家压下去的那块
+
 }
 
 // NewSceneAIPlayer = ai.NewSceneAIPlayer
@@ -73,7 +74,7 @@ var NewCopyPlayerAI func(room IRoom, copy_player *plr.ScenePlayer) *plr.ScenePla
 //场景初始化
 func (this *Scene) Init(room IRoom) {
 	this.room = room
-
+	this.PressedLowCubes = make(map[uint32]int)
 	this.mapConfig = conf.GetMapConfigById(this.SceneID())
 	this.scenePhysic = physic.NewScenePhysic()
 	this.scenePhysicUnder = physic.NewScenePhysic()
@@ -82,8 +83,8 @@ func (this *Scene) Init(room IRoom) {
 	glog.Info("mata begin to load map")
 	for i := 0; i < 16; i++ {
 		for j := 0; j < 16; j++ {
-			this.feedPool[j*16+i] = *ape.NewRectangleParticle(float32(2*i+1), float32(2*j+1), 2.0, 2.0)
-			this.feedPool[j*16+i].SetFixed(true)
+			this.DynamicBlocks[j*16+i] = *ape.NewRectangleParticle(float32(2*i+1), float32(2*j+1), 2.0, 2.0)
+			this.DynamicBlocks[j*16+i].SetFixed(true)
 		}
 	}
 	for i := 0; i < 256; i++ {
@@ -159,7 +160,7 @@ func (this *Scene) Render5() {
 	this.SendRoomMsg()
 }
 
-func (this *Scene) UpdateCubeInfPerTick(d float64) {
+func (this *Scene) UpdateCubeInfPer2Tick(d float64) {
 	for i, _ := range this.MovingCubes {
 		if this.MovingCubes[i] == 0 {
 			//delete(this.MovingCubes, i)
@@ -170,18 +171,17 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 				this.CubeStates[i] += 1
 				this.CubeMoveDrcts[i] = 0
 				if this.CubeStates[i] == 2 {
-					this.RemoveFeedPhysic(&this.feedPool[i])
+					this.RemoveFeedPhysic(&this.DynamicBlocks[i])
 				} else if this.CubeStates[i] == 0 {
-					this.RemoveFeedPhysic(&this.feedPool[i])
-					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+					this.RemoveFeedPhysic(&this.DynamicBlocks[i])
+					this.RemoveFeedPhysicUnder(&this.DynamicBlocks[i])
 				}
 				for _, arvdPlr := range this.UpDownPlayers[i] {
 					this.AddAnimalPhysic(arvdPlr.SelfAnimal.PhysicObj)
 					arvdPlr.SelfAnimal.HLState = 2
 					glog.Info("XIXI 上来了一个玩家:", arvdPlr.Name)
-
 				}
-
+				this.UpDownPlayers[i] = this.UpDownPlayers[i][:0]
 				glog.Info("上升停止 现在方块", i, "状态：", this.CubeStates[i])
 			}
 		} else if this.MovingCubes[i] < 0 {
@@ -191,31 +191,59 @@ func (this *Scene) UpdateCubeInfPerTick(d float64) {
 				this.CubeStates[i] -= 1
 				this.CubeMoveDrcts[i] = 0
 				if this.CubeStates[i] == -2 {
-					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+					this.PressedLowCubes[i] = 0 //向场景中加入一个被压到了最底层的cube，先不考虑上面有几个人
+					this.RemoveFeedPhysicUnder(&this.DynamicBlocks[i])
 				} else if this.CubeStates[i] == 0 {
-					this.RemoveFeedPhysic(&this.feedPool[i])
-					this.RemoveFeedPhysicUnder(&this.feedPool[i])
+					this.RemoveFeedPhysic(&this.DynamicBlocks[i])
+					this.RemoveFeedPhysicUnder(&this.DynamicBlocks[i])
 				}
 				for _, arvdPlr := range this.UpDownPlayers[i] {
 					this.AddAnimalPhysicUnder(arvdPlr.SelfAnimal.PhysicObj)
 					arvdPlr.SelfAnimal.HLState = 1
 					glog.Info("XIXI 下来了一个玩家:", arvdPlr.Name)
 				}
+				this.UpDownPlayers[i] = this.UpDownPlayers[i][:0]
 				glog.Info("下降停止 现在方块", i, "状态：", this.CubeStates[i])
 			}
 		}
 	} //实时更新cube还需要移动的高度
+
 }
+
+func (this *Scene) UpdatePlrNumOnLowCube() {
+	/////////////////matamata
+	for _, plrItem := range this.GetPlayers() {
+		cbIdx := plrItem.GetPlrCubeIndex()
+		if _, ok := this.PressedLowCubes[cbIdx]; ok {
+			this.PressedLowCubes[cbIdx]++
+		}
+	} //更新每一块最低位置块上玩家的数量
+	for key, val := range this.PressedLowCubes {
+		if val == 0 {
+			//发出请求将这个cube key 自动上升的请求
+			this.AddMovingCube(&usercmd.CubeReDst{
+				CubeIndex:      key,
+				RemainDistance: 1000,
+			})
+			this.SetCubeImdState(true, key)
+			delete(this.PressedLowCubes, key)
+		} else {
+			this.PressedLowCubes[key] = 0
+		}
+	}
+} //更新最低块上的玩家人数
 
 //时间片渲染
 func (this *Scene) Render() {
 	now := time.Now()
 	nowNano := now.UnixNano()
 	var d float64 = consts.FrameTime
-	this.UpdateCubeInfPerTick(d)
+
 	if this.frame%2 == 0 {
+		this.UpdateCubeInfPer2Tick(d * 2)
 		this.scenePhysic.Tick()
 		this.scenePhysicUnder.Tick()
+		this.UpdatePlrNumOnLowCube()
 	}
 	for _, player := range this.Players {
 		player.Update(d, nowNano, this)
@@ -778,10 +806,10 @@ func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
 	if UporDown && (this.CubeStates[cubeIndex] == -2 || this.CubeStates[cubeIndex] == 0) {
 		this.CubeMoveDrcts[cubeIndex] = 1
 		if this.CubeStates[cubeIndex] == -2 {
-			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysicUnder(&this.DynamicBlocks[cubeIndex])
 		} else if this.CubeStates[cubeIndex] == 0 {
-			this.AddFeedPhysic(&this.feedPool[cubeIndex])
-			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.DynamicBlocks[cubeIndex])
+			this.AddFeedPhysicUnder(&this.DynamicBlocks[cubeIndex])
 		}
 		this.CubeStates[cubeIndex]++
 
@@ -789,10 +817,10 @@ func (this *Scene) SetCubeImdState(UporDown bool, cubeIndex uint32) {
 	} else if !UporDown && (this.CubeStates[cubeIndex] == 2 || this.CubeStates[cubeIndex] == 0) {
 		this.CubeMoveDrcts[cubeIndex] = -1
 		if this.CubeStates[cubeIndex] == 2 {
-			this.AddFeedPhysic(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.DynamicBlocks[cubeIndex])
 		} else if this.CubeStates[cubeIndex] == 0 {
-			this.AddFeedPhysic(&this.feedPool[cubeIndex])
-			this.AddFeedPhysicUnder(&this.feedPool[cubeIndex])
+			this.AddFeedPhysic(&this.DynamicBlocks[cubeIndex])
+			this.AddFeedPhysicUnder(&this.DynamicBlocks[cubeIndex])
 		}
 		this.CubeStates[cubeIndex]--
 		glog.Info("开始下降！！！ 现在方块", cubeIndex, "状态：", this.CubeStates[cubeIndex])

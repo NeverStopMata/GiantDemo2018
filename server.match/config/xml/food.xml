@@ -10,7 +10,7 @@
     <item id="2" type="12" size="0.25" birthTime="10" mapnum="0"/>
     <item id="3" type="13" size="0.25" birthTime="10" mapnum="0"/>
 	<item id="4" type="14" size="0.25" birthTime="0" mapnum="0"/>
-    <item id="5" type="21" size="0.25" birthTime="5" mapnum="0"/>
+    <item id="5" type="21" size="0.25" birthTime="5" mapnum="250"/>
     <item id="31" type="31" size="0.2" birthTime="0" mapnum="0"/>
     <item id="32" type="32" size="0.2" birthTime="0" mapnum="0"/>
 </food>
