@@ -13,13 +13,12 @@ package redis
 import (
 	"base/glog"
 	"errors"
+	consul "github.com/hashicorp/consul/api"
 	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
-
-	"github.com/hashicorp/consul"
 )
 
 const SlotsSepFlag = "|" //redisGroup对应的slots在consul中的分隔符
